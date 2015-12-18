@@ -18,14 +18,4 @@ class AdminController extends Controller
     {
         return view( 'pages.admin.index' );
     }
-
-    /**
-     * Display user previlege management page.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        return view( 'pages.admin.index' );
-    }
 }

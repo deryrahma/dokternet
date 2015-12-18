@@ -24,7 +24,7 @@
             </a>
         </li>
         <li>
-            <a href="{!! route( 'admin.dashboard' ) !!}">
+            <a href="{!! route( 'admin.previlege.index' ) !!}">
                 <i class="fa fa-users"></i>
                 <span>Manajemen Hak Akses</span>
             </a>

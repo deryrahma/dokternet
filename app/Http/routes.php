@@ -11,5 +11,8 @@
 |
 */
 
+// ADMINISTRATOR MANAGEMENT
+// Main dashboard
 Route::get( 'admin/dashboard', [ 'as' => 'admin.dashboard', 'uses' => 'AdminController@index' ] );
-Route::get( 'admin/previlege', [ 'as' => 'admin.previlege', 'uses' => 'AdminController@previlege' ] );
+// Admin previlege management
+Route::resource( 'admin/previlege', 'AdminPrevilegeController' );

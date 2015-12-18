@@ -13,4 +13,8 @@ class Admin extends Model
     	'first_name',
     	'last_name',
     ];
+
+    public function hasAccess( $route ) {
+    	return true;
+    }
 }

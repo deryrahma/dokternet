@@ -149,6 +149,7 @@ return [
          * User defined...
          */
         Illuminate\Html\HtmlServiceProvider::class,
+        AdamWathan\BootForms\BootFormsServiceProvider::class,
     ],
 
     /*
@@ -168,6 +169,7 @@ return [
         'Artisan'   => Illuminate\Support\Facades\Artisan::class,
         'Auth'      => Illuminate\Support\Facades\Auth::class,
         'Blade'     => Illuminate\Support\Facades\Blade::class,
+        'BootForm'  => AdamWathan\BootForms\Facades\BootForm::class,
         'Bus'       => Illuminate\Support\Facades\Bus::class,
         'Cache'     => Illuminate\Support\Facades\Cache::class,
         'Config'    => Illuminate\Support\Facades\Config::class,

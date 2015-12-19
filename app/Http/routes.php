@@ -16,3 +16,6 @@
 Route::get( 'admin/dashboard', [ 'as' => 'admin.dashboard', 'uses' => 'AdminController@index' ] );
 // Admin previlege management
 Route::resource( 'admin/previlege', 'AdminPrevilegeController' );
+// Article management
+Route::resource( 'admin/article-category', 'ArticleCategoryController' );
+Route::get( 'admin/article-category/{id}/delete', array('as' => 'admin.article-category.delete', 'uses' => 'ArticleCategoryController@destroy'));

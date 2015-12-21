@@ -37,7 +37,10 @@
             </a>
             <ul class="treeview-menu">
                 <li>
-                    <a href="{!! route('admin.article-category.index') !!}"><i class="fa fa-angle-double-right"></i> Manajemen Kategori</a>
+                    <a href="{!! route('admin.article-category.index') !!}"><i class="fa fa-angle-double-right"></i> Manajemen Kategori Artikel</a>
+                </li>
+                <li>
+                    <a href="{!! route('admin.article.index') !!}"><i class="fa fa-angle-double-right"></i> Manajemen Kiriman Artikel</a>
                 </li>
             </ul>
         </li>

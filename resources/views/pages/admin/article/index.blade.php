@@ -29,7 +29,7 @@
 @endsection
 
 @section( 'content' )
-	@include( 'pages.admin.article-category.header' )
+	@include( 'pages.admin.article.header' )
 	<section class="content">
 		@include( 'errors.session' )
 		<div class="row">
@@ -37,25 +37,28 @@
 				<div class="box">
 					<div class="box-header with-border">
 						<h3 class="box-title">
-							Daftar Kategori Artikel &nbsp;&nbsp;&nbsp;
-							<a href="{!! route( 'admin.article-category.create' ) !!}" class="btn btn-primary btn-sm">Tambah Kategori Artikel</a>
+							Daftar Kiriman Artikel &nbsp;&nbsp;&nbsp;
+							<a href="{!! route( 'admin.article.create' ) !!}" class="btn btn-primary btn-sm">Tambah Kiriman Artikel</a>
 						</h3>
 					</div>
 					<div class="box-body">
 						<table class="table table-bordered table-striped dataTable">
 							<thead>
 								<tr>
-									<th>Nama</th>
+									<th>Judul</th>
+									<th>Kategori</th>
 									<th class="col-md-1"></th>
 								</tr>
 							</thead>
 							<tbody>
 								@foreach( $data as $row )
 									<tr>
-										<td>{{ $row->name }}</td>
+										<td>{{ $row->title }}</td>
+										<td>{{ $row->article_category->name }}</td>
 										<td>
-											<a href="{!! route( 'admin.article-category.edit', [$row->id] ) !!}" class="fa fa-pencil-square-o"></a>
-											<a href="javascript:void(0);" onclick="deleteModal(this)" data-href="{!! route( 'admin.article-category.delete', [$row->id] ) !!}" class="fa fa-trash-o"></a>
+											<a href="{!! route( 'admin.article.show', [$row->id] ) !!}" class="fa fa-info-circle"></a>&nbsp;
+											<a href="{!! route( 'admin.article.edit', [$row->id] ) !!}" class="fa fa-pencil-square-o"></a>
+											<a href="javascript:void(0);" onclick="deleteModal(this)" data-href="{!! route( 'admin.article.delete', [$row->id] ) !!}" class="fa fa-trash-o"></a>
 										</td>
 									</tr>
 								@endforeach

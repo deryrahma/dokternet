@@ -51,17 +51,6 @@ class ArticleCategoryController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -99,7 +88,7 @@ class ArticleCategoryController extends Controller
     public function destroy($id)
     {
         ArticleCategory::find( $id )->delete();
-        Session::flash( 'success', "Data artikel kategori berhasil dihapus!" );
+        Session::flash( 'success', "Data kategori artikel berhasil dihapus!" );
         return redirect()
                ->route( 'admin.article-category.index' );
     }

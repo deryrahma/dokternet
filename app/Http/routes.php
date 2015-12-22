@@ -21,3 +21,6 @@ Route::resource( 'admin/article-category', 'ArticleCategoryController', ['except
 Route::get( 'admin/article-category/{id}/delete', array('as' => 'admin.article-category.delete', 'uses' => 'ArticleCategoryController@destroy'));
 Route::resource( 'admin/article', 'ArticleController' );
 Route::get( 'admin/article/{id}/delete', array('as' => 'admin.article.delete', 'uses' => 'ArticleController@destroy'));
+
+// HOME
+Route::get( '/', ['as' => 'home', 'uses' => 'HomeController@index'] );

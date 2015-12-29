@@ -9,6 +9,21 @@
 		{!! HTML::style('css/bootstrap.min.css') !!}
 		{!! HTML::style('css/font-awesome.min.css') !!}
 		<style type="text/css">
+			@font-face {
+			    font-family: 'Montserrat';
+			    font-style: normal;
+			    font-weight: 400;
+			    src: local('Montserrat-Regular'), url({!! asset( 'css/fonts/Montserrat-Regular.woff' ) !!}) format('woff');
+			}
+			@font-face {
+			    font-family: 'Montserrat';
+			    font-style: normal;
+			    font-weight: 700;
+			    src: local('Montserrat-Bold'), url({!! asset( 'css/fonts/Montserrat-Bold.woff' ) !!}) format('woff');
+			}
+			html, body {
+				font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+			}
 			.credit {
 				margin: 0 0;
 				padding: 8px 0 4px 0;
@@ -29,6 +44,10 @@
 			    top: auto;
 			    bottom: 100% !important;
 			}
+			.image-brand {
+				height: 40px;
+				padding-top: 10px;
+			}
 		</style>
 	</head>
 	<body style="padding-bottom: 100px">
@@ -41,7 +60,9 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a href="{!! route( 'home' ) !!}" class="navbar-brand">DokterNet</a>
+					<a href="{!! route( 'home' ) !!}">
+						<img src="{!! asset( 'img/brand.png' ) !!}" class="image-brand">
+					</a>
 				</div>
 				<div class="collapse navbar-collapse" id="bs-navbar">
 					<ul class="nav navbar-nav navbar-right">
@@ -50,8 +71,8 @@
 								Pasien <span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu">
-								<li><a href="#">Daftar</a></li>
-								<li><a href="#">Masuk</a></li>
+								<li><a href="#"><i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;Daftar</a></li>
+								<li><a href="#"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;Masuk</a></li>
 							</ul>
 						</li>
 						<li class="dropdown">
@@ -59,8 +80,8 @@
 								Dokter <span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu">
-								<li><a href="#">Daftar</a></li>
-								<li><a href="#">Masuk</a></li>
+								<li><a href="#"><i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;Daftar</a></li>
+								<li><a href="#"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;Masuk</a></li>
 							</ul>
 						</li>
 						<li class="dropdown">
@@ -68,8 +89,8 @@
 								Klinik <span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu">
-								<li><a href="#">Daftar</a></li>
-								<li><a href="#">Masuk</a></li>
+								<li><a href="#"><i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;Daftar</a></li>
+								<li><a href="#"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;Masuk</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -84,10 +105,10 @@
 							<h2>Cari Dokter</h2>
 							<hr>
 							{!! BootForm::open() !!}
-								{!! BootForm::text( 'Lokasi:', '' )->placeholder( 'Pilih lokasi(kota/provinsi)' )->attribute( 'style', 'text-align: center' ) !!}
+								{!! BootForm::text( 'Lokasi:', '' )->placeholder( 'Pilih lokasi (kota/provinsi)' )->attribute( 'style', 'text-align: center' ) !!}
 								{!! BootForm::text( 'Keahlian:', '' )->placeholder( 'Pilih keahlian/spesialisasi dokter' )->attribute( 'style', 'text-align: center' ) !!}
-								{!! BootForm::text( 'Layanan:', '' )->placeholder( 'Pilih jenis layanan' )->attribute( 'style', 'text-align: center' ) !!}
-								{!! BootForm::submit( 'Cari' )->addClass( 'btn btn-success btn-block' ) !!}
+								{!! BootForm::text( 'Layanan:', '' )->placeholder( 'Pilih jenis layanan' )->attribute( 'style', 'text-align: center' ) !!}<br>
+								{!! BootForm::submit( 'Cari' )->addClass( 'btn btn-primary btn-block' ) !!}
 							{!! BootForm::close() !!}
 						</div>
 					</div>
@@ -162,7 +183,7 @@
 					<p class="text-muted credit" style="padding-top: 15px">
 						@foreach( $data['article'] as $row )
 							<div class="btn-group">
-								<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+								<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
 									{!! $row->name !!} <span class="caret caret-up"></span>
 								</button>
 								<ul class="dropdown-menu drop-up" role="menu">

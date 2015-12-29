@@ -24,7 +24,7 @@
 					</div>
 					<div class="box-body">
 						@if( $data['content']->image != null )
-							<img src="{!! url( 'img/article/'.$data['content']->image ) !!}" style="max-height: 300px; max-width: 300px">
+							<img src="{!! asset( 'img/article/'.$data['content']->image ) !!}" style="max-height: 300px; max-width: 300px">
 							<br><br>
 						@endif
 						{!! $data['content']->description !!}

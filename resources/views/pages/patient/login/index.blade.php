@@ -9,21 +9,6 @@
 		{!! HTML::style('css/bootstrap.min.css') !!}
 		{!! HTML::style('css/font-awesome.min.css') !!}
 		<style type="text/css">
-			@font-face {
-			    font-family: 'Montserrat';
-			    font-style: normal;
-			    font-weight: 400;
-			    src: local('Montserrat-Regular'), url({!! asset( 'css/fonts/Montserrat-Regular.woff' ) !!}) format('woff');
-			}
-			@font-face {
-			    font-family: 'Montserrat';
-			    font-style: normal;
-			    font-weight: 700;
-			    src: local('Montserrat-Bold'), url({!! asset( 'css/fonts/Montserrat-Bold.woff' ) !!}) format('woff');
-			}
-			html, body {
-				font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
-			}
 			.credit {
 				margin: 0 0;
 				padding: 8px 0 4px 0;
@@ -44,10 +29,6 @@
 			    top: auto;
 			    bottom: 100% !important;
 			}
-			.image-brand {
-				height: 40px;
-				padding-top: 10px;
-			}
 		</style>
 	</head>
 	<body style="padding-bottom: 100px">
@@ -60,9 +41,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a href="{!! route( 'home' ) !!}">
-						<img src="{!! asset( 'img/brand.png' ) !!}" class="image-brand">
-					</a>
+					<a href="{!! route( 'home' ) !!}" class="navbar-brand">DokterNet</a>
 				</div>
 				<div class="collapse navbar-collapse" id="bs-navbar">
 					<ul class="nav navbar-nav navbar-right">
@@ -71,8 +50,8 @@
 								Pasien <span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu">
-								<li><a href="#"><i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;Daftar</a></li>
-								<li><a href="{!! route( 'patient.login' ) !!}"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;Masuk</a></li>
+								<li><a href="{!! route( 'patient.login' ) !!}">Daftar</a></li>
+								<li><a href="#">Masuk</a></li>
 							</ul>
 						</li>
 						<li class="dropdown">
@@ -80,8 +59,8 @@
 								Dokter <span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu">
-								<li><a href="#"><i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;Daftar</a></li>
-								<li><a href="#"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;Masuk</a></li>
+								<li><a href="#">Daftar</a></li>
+								<li><a href="#">Masuk</a></li>
 							</ul>
 						</li>
 						<li class="dropdown">
@@ -89,8 +68,8 @@
 								Klinik <span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu">
-								<li><a href="#"><i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;Daftar</a></li>
-								<li><a href="#"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;Masuk</a></li>
+								<li><a href="#">Daftar</a></li>
+								<li><a href="#">Masuk</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -102,34 +81,29 @@
 				<div class="row" style="margin-top: 30px">
 					<div class="col-xs-12 col-md-6">
 						<div class="panel panel-info" style="padding: 20px 30px 30px" align="center">
-							<h2>Cari Dokter</h2>
-							<hr>
-							{!! BootForm::open() !!}
-								{!! BootForm::text( 'Lokasi:', '' )->placeholder( 'Pilih lokasi (kota/provinsi)' )->attribute( 'style', 'text-align: center' ) !!}
-								{!! BootForm::text( 'Keahlian:', '' )->placeholder( 'Pilih keahlian/spesialisasi dokter' )->attribute( 'style', 'text-align: center' ) !!}
-								{!! BootForm::text( 'Layanan:', '' )->placeholder( 'Pilih jenis layanan' )->attribute( 'style', 'text-align: center' ) !!}<br>
-								{!! BootForm::submit( 'Cari' )->addClass( 'btn btn-primary btn-block' ) !!}
-							{!! BootForm::close() !!}
+							DokterNet - Halaman Login Pasien
 						</div>
 					</div>
 					<div class="col-xs-12 col-md-6">
 						<div class="panel panel-info" style="padding: 20px 30px 30px" align="center">
-							<ul class="nav nav-tabs">
-								<li class="active"><a href="#location" data-toggle="tab">Lokasi</a></li>
-								<li><a href="#specialty" data-toggle="tab">Keahlian</a></li>
-								<li><a href="#facility" data-toggle="tab">Layanan</a></li>
-							</ul>
-							<div class="tab-content" style="margin-top: 20px">
-								<div id="location" class="tab-pane fade in active">
-									Daftar lokasi
-								</div>
-								<div id="specialty" class="tab-pane fade">
-									Daftar keahlian
-								</div>
-								<div id="facility" class="tab-pane fade">
-									Daftar layanan kesehatan
-								</div>
+							<h2>Login Pasien</h2>
+							<hr>
+							{!! BootForm::open(['route' => 'patient.login.post']) !!}
+							{!! BootForm::text('Email:', '')->placeholder('Email') !!}
+							{!! BootForm::password('Password:', '')->placeholder('Password') !!}
+							<div class="form-group">
+							  <div class="col-xs-8">
+							    <div class="checkbox icheck">
+							      <label>
+							        <input type="checkbox"> Remember Me
+							      </label>
+							    </div>
+							  </div><!-- /.col -->
+							  <div class="col-xs-4">
+							    <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+							  </div><!-- /.col -->
 							</div>
+							{!! BootForm::close() !!}
 						</div>
 					</div>
 				</div>
@@ -183,7 +157,7 @@
 					<p class="text-muted credit" style="padding-top: 15px">
 						@foreach( $data['article'] as $row )
 							<div class="btn-group">
-								<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+								<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
 									{!! $row->name !!} <span class="caret caret-up"></span>
 								</button>
 								<ul class="dropdown-menu drop-up" role="menu">

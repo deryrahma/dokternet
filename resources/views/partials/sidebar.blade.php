@@ -31,6 +31,19 @@
         </li>
         <li class="treeview">
             <a href="#">
+                <i class="fa fa-user-plus"></i>
+                <span>Manajemen Pasien</span>
+                <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+                <li>
+                    <a href="{!! route('admin.patient.index') !!}"><i class="fa fa-angle-double-right"></i> Daftar Pasien</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+        <li class="treeview">
+            <a href="#">
                 <i class="fa fa-folder"></i>
                 <span>Artikel</span>
                 <i class="fa fa-angle-left pull-right"></i>

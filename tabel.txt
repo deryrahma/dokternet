@@ -1,0 +1,21 @@
+filter:
+sp
+kota
+status
+
+daftar kolom:
+nama
+alamat
+no. hp
+no. telp
+action
+
+filter:
+gender
+
+daftar kolom:
+last, first
+birth date
+no. hp
+no. telp
+action

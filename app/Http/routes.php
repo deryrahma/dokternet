@@ -11,6 +11,17 @@
 |
 */
 
+// HOME
+Route::get( '/', ['as' => 'home', 'uses' => 'HomeController@index'] );
+
+//LOGIN MANAGEMENT
+Route::get('patient/login', function(){
+	return redirect()->route('patient.login');
+});
+Route::get('patient/login', array('as' => 'patient.login', 'uses' => 'PatientController@login'));
+Route::post('patient/login', array('as' => 'patient.login.post', 'uses' => 'PatientController@postLogin'));
+Route::get('patient/logout', array('as' => 'patient.logout', 'uses' => 'PatientController@logout'));
+
 // ADMINISTRATOR MANAGEMENT
 // Main dashboard
 Route::get( 'admin/dashboard', [ 'as' => 'admin.dashboard', 'uses' => 'AdminController@index' ] );
@@ -21,6 +32,14 @@ Route::resource( 'admin/article-category', 'ArticleCategoryController', ['except
 Route::get( 'admin/article-category/{id}/delete', array('as' => 'admin.article-category.delete', 'uses' => 'ArticleCategoryController@destroy'));
 Route::resource( 'admin/article', 'ArticleController' );
 Route::get( 'admin/article/{id}/delete', array('as' => 'admin.article.delete', 'uses' => 'ArticleController@destroy'));
+// Patient management
+Route::get('admin/patient/{id}/delete', array('as' => 'admin.patient.delete', 'uses' => 'PatientAdminController@destroy'));
+Route::resource('admin/patient', 'PatientAdminController');
 
-// HOME
-Route::get( '/', ['as' => 'home', 'uses' => 'HomeController@index'] );
+// Doctor management
+/*Route::get('admin/doctor-verify/{id}/delete', array('as' => 'admin.doctor-verify.delete', 'uses' => 'DoctorVerifyController@destroy'));
+Route::resource('admin/doctor-verify', 'DoctorVerifyController');
+
+Route::get('admin/doctor-list/{id}/delete', array('as' => 'admin.doctor-list.delete', 'uses' => 'DoctorListController@destroy'));
+Route::resource('admin/doctor-list', 'DoctorListController');*/
+

@@ -50,8 +50,8 @@
 								Pasien <span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu">
-								<li><a href="{!! route( 'patient.login' ) !!}">Daftar</a></li>
-								<li><a href="#">Masuk</a></li>
+								<li><a href="#">Daftar</a></li>
+								<li><a href="{!! route( 'patient.login' ) !!}">Masuk</a></li>
 							</ul>
 						</li>
 						<li class="dropdown">
@@ -81,76 +81,24 @@
 				<div class="row" style="margin-top: 30px">
 					<div class="col-xs-12 col-md-6">
 						<div class="panel panel-info" style="padding: 20px 30px 30px" align="center">
-							DokterNet - Halaman Login Pasien
+							Ini halaman register pasien
 						</div>
 					</div>
 					<div class="col-xs-12 col-md-6">
 						<div class="panel panel-info" style="padding: 20px 30px 30px" align="center">
-							<h2>Login Pasien</h2>
+							<h2>Pendaftaran Pasien</h2>
 							<hr>
-							{!! BootForm::open(['route' => 'patient.login.post']) !!}
-							{!! BootForm::text('Email:', '')->placeholder('Email') !!}
-							{!! BootForm::password('Password:', '')->placeholder('Password') !!}
-							<div class="form-group">
-							  <div class="col-xs-8">
-							    <div class="checkbox icheck">
-							      <label>
-							        <input type="checkbox"> Remember Me
-							      </label>
-							    </div>
-							  </div><!-- /.col -->
-							  <div class="col-xs-4">
-							    <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
-							  </div><!-- /.col -->
-							</div>
-							{!! BootForm::close() !!}
+							@if( $data['content'] == null )
+								{!! BootForm::open()->action(route('patient.post-register')) !!}
+								{!! BootForm::bind( $data['content'] ) !!}
+								@include('pages.patient.register-form')
+								{!! BootForm::close() !!}
+							@endif
 						</div>
 					</div>
 				</div>
 			</div>
 		</section>
-		<!--
-		<section style="background-color: #a5d7df; margin: 0; padding: 0 0 20px">
-			<div class="container">
-				<div class="row">
-					<div class="col-xs-12 text-center">
-						<h2>Cari Dokter</h2>
-						<br>
-					</div>
-				</div>
-				{!! BootForm::open() !!}
-					<div class="row">
-						<div class="col-xs-4 col-xs-offset-1">
-							{!! BootForm::text( null, '' )
-										->hideLabel()
-										->placeholder( 'Masukkan kota' ) !!}
-						</div>
-						<div class="col-xs-5">
-							{!! BootForm::text( null, '' )
-										->hideLabel()
-										->placeholder( 'Cari berdasar spesialisasi dokter' ) !!}
-						</div>
-						<div class="col-xs-1">
-							{!! BootForm::submit( 'Cari' )->addClass( 'btn btn-success btn-block' ) !!}
-						</div>
-					</div>
-				{!! BootForm::close() !!}
-				<div align="center">
-					<label class="radio-inline">
-						{!! BootForm::radio( 'Cari berdasarkan dokter', 'flag_search' )
-									->value( '0' )
-									->defaultToChecked() !!}
-					</label>
-					<label class="radio-inline">
-					{!! BootForm::radio( 'Cari berdasarkan klinik', 'flag_search' )->value( '1' ) !!}
-					</label>
-					<label class="radio-inline">
-						<a href="#">Cari berdasar opsi lain</a>
-					</label>
-				</div>
-			</div>
-		</section>
-		-->
 		<footer class="footer navbar-fixed-bottom" style="background-color: #ddd">
 			<div class="container">
 				<div class="col-xs-9">

@@ -35,6 +35,7 @@ class CreateTables extends Migration
             $table->string( 'telephone', 20 );
             $table->string( 'email', 50 );
             $table->text( 'password' );
+            $table->rememberToken();
             $table->timestamps();
         } );
 
@@ -83,8 +84,9 @@ class CreateTables extends Migration
             $table->text( 'password' );
             $table->string( 'mobile', 20 );
             $table->string( 'telephone', 20 );
-            $table->boolean( 'verified' );
-            $table->boolean( 'enabled' );
+            $table->boolean( 'verified' )->default(0);
+            $table->boolean( 'enabled' )->default(0);
+            $table->rememberToken();
             $table->timestamps();
         } );
 
@@ -137,7 +139,7 @@ class CreateTables extends Migration
             $table->text( 'activity' );
             $table->text( 'note' );
             $table->string( 'token', 10 );
-            $table->boolean( 'verified' );
+            $table->boolean( 'verified' )->default(0);
             $table->text( 'disease' );
             $table->timestamps();
         } );
@@ -150,10 +152,12 @@ class CreateTables extends Migration
             $table->date( 'birth_date' );
             $table->string( 'email', 50 );
             $table->text( 'password' );
-            $table->boolean( 'enabled' );
-            $table->boolean( 'verified' );
+            $table->boolean( 'enabled' )->default(0);
+            $table->boolean( 'verified' )->default(0);
             $table->string( 'mobile', 20 );
             $table->string( 'telephone', 20 );
+            $table->string( 'activation_code' );
+            $table->rememberToken();
             $table->timestamps();
         } );
 

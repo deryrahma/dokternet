@@ -14,6 +14,12 @@
 // HOME
 Route::get( '/', ['as' => 'home', 'uses' => 'HomeController@index'] );
 
+//REGISTER
+Route::get( 'patient/register', ['as' => 'patient.register', 'uses' => 'SimpleAuthController@register'] );
+Route::post('patient/post-register', ['as' => 'patient.post-register', 'uses' => 'SimpleAuthController@post_register']);
+Route::get('patient/activate/{code}', ['as' => 'patient.activate', 'uses' => 'SimpleauthController@activate']);
+
+
 //LOGIN MANAGEMENT
 Route::get('patient/login', function(){
 	return redirect()->route('patient.login');

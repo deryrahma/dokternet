@@ -30,7 +30,7 @@ class PatientController extends Controller
         $data = [];
         $data['article'] = ArticleCategory::with( 'articles')->get();
 
-        return view('pages.patient.login.index', compact('data'));
+        return view('pages.patient.login', compact('data'));
     }
 
     public function postLogin(Request $request){

@@ -44,7 +44,8 @@ class PatientAdminController extends Controller
             //dd($verified);
         } 
 
-        $data['list_gender'] = \App\Patient::lists('gender','id');
+        $data['list_gender'][0] = 'L';
+        $data['list_gender'][1] = 'P';
         return view('pages.admin.patient.index')->with('data',$data);
     }
 
@@ -59,7 +60,8 @@ class PatientAdminController extends Controller
         $data = array();
         $data['content'] = null;
 
-        $data['list_gender'] = \App\Patient::lists('gender','id');
+        $data['list_gender'][0] = 'L';
+        $data['list_gender'][1] = 'P';
         
         return view('pages.admin.patient.create')->with('data',$data);
     }
@@ -111,7 +113,8 @@ class PatientAdminController extends Controller
         //
         $data = array();
         $data['content'] = \App\Patient::find($id);
-        $data['list_gender'] = \App\Patient::lists('gender','id');
+        $data['list_gender'][0] = 'L';
+        $data['list_gender'][1] = 'P';
         return view('pages.admin.patient.edit')->with('data',$data);
     }
 

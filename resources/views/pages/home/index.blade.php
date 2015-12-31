@@ -50,7 +50,7 @@
 								Pasien <span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu">
-								<li><a href="#">Daftar</a></li>
+								<li><a href="{!! route( 'patient.register' ) !!}">Daftar</a></li>
 								<li><a href="{!! route( 'patient.login' ) !!}">Masuk</a></li>
 							</ul>
 						</li>

@@ -2,11 +2,22 @@
 
 namespace App;
 
+use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Foundation\Auth\Access\Authorizable;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
+use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
-class Doctor extends Model
+class Doctor extends Model implements AuthenticatableContract,
+                                    AuthorizableContract,
+                                    CanResetPasswordContract
 {
+    use Authenticatable, Authorizable, CanResetPassword;
+
     protected $table = 'doctor';
+
     protected $fillable = [
     	'specialization_id',
     	'city_id',
@@ -20,6 +31,7 @@ class Doctor extends Model
     	'telephone',
     	'verified',
     	'enabled',
+        'activation_code'
     ];
 
     public function city() {
@@ -48,5 +60,18 @@ class Doctor extends Model
 
     public function doctor_clinic() {
     	return $this->hasMany( 'App\DoctorClinic' );
+    }
+
+    public function activateAccount($code)
+    {
+
+        $doctor = Doctor::where('activation_code', $code)->first();
+
+        if($doctor)
+        {
+            $doctor->update(['verified' => 1, 'activation_code' => NULL]);
+            Auth::login($doctor);
+            return true;
+        }
     }
 }

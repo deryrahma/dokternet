@@ -16,7 +16,7 @@ class PatientMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::check() && Auth::user()->roles->first()->level=='3'){
+        if(Auth::check() && Auth::user()->roles->first()->level =='3'){
             return $next($request);
         }
         return redirect()->route('patient.login');

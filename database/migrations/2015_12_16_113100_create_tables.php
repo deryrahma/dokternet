@@ -177,6 +177,7 @@ class CreateTables extends Migration
             $table->date( 'birth_date' );
             $table->string( 'email', 50 );
             $table->text( 'password' );
+            $table->text( 'address' );
             $table->boolean( 'enabled' )->default(0);
             $table->boolean( 'verified' )->default(0);
             $table->string( 'mobile', 20 );

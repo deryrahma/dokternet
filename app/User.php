@@ -22,6 +22,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
                         'gender',
                         'birth_date',
                         'email',
+                        'address',
                         'enabled',
                         'verified',
                         'mobile',

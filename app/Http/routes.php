@@ -31,6 +31,9 @@ Route::group(['middleware' => 'patient'], function()
 {
 	Route::get('patient/dashboard', array('as' => 'patient.dashboard', 'uses' => 'PatientController@dashboard'));
 	Route::get('patient/logout', array('as' => 'patient.logout', 'uses' => 'PatientController@logout'));
+	Route::put('patient/update', array('as' => 'patient.update', 'uses' => 'PatientController@update'));
+	Route::get('patient/change-password',array('as' => 'patient.change-password', 'uses' => 'PatientController@changePassword'));
+	Route::get('patient/history',array('as' => 'patient.history', 'uses' => 'PatientController@history'));
 });
 
 

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Requests\PatientRequest;
 use App\Http\Requests\PatientRegRequest;
+use App\Http\Requests\PatientUpdateRequest;
 use App\Http\Controllers\Controller;
 use App\ArticleCategory;
 
@@ -42,6 +43,7 @@ class PatientController extends Controller
         $password = $request->get('password');
         $remember_me = true;
         if (Auth::attempt(['email' => $email, 'password' => $password], $remember_me)){
+            
             if(Auth::user()->verified == '1')
                 return redirect()->route('patient.dashboard');
             else{
@@ -110,11 +112,30 @@ class PatientController extends Controller
     }
     public function dashboard()
     {
-        return "dashboard";
+        $data = [];
+        $data['article'] = ArticleCategory::with( 'articles')->get();
+        $data['content'] = Auth::user();
+        return view('frontend.pages.patient.dashboard', compact('data'));
     }
     public function logout()
     {
         Auth::logout();
         return redirect()->route('patient.login');
+    }
+
+    public function update(PatientUpdateRequest $request)
+    {
+        $data = \App\User::find(Auth::user()->id);
+        $data->first_name = $request->first_name;
+        $data->last_name = $request->last_name;
+        $data->email = $request->email;
+        $data->birth_date = $request->birth_date;
+        $data->gender = $request->gender;
+        $data->mobile = $request->mobile;
+        $data->telephone = $request->telephone;
+        $data->address = $request->address;
+        $data->save();
+
+        return redirect()->route('patient.dashboard');
     }
 }

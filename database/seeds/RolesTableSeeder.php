@@ -34,7 +34,7 @@ class RolesTableSeeder extends Seeder
             'locked' => '0',
             'enabled' => '1',
             'default' => '1',
-            'level' => '2'
+            'level' => '3'
             ]);
         \App\Role::create([
             'code' => 'CL',
@@ -42,7 +42,7 @@ class RolesTableSeeder extends Seeder
             'locked' => '0',
             'enabled' => '1',
             'default' => '0',
-            'level' => '2'
+            'level' => '4'
             ]);
     }
 }

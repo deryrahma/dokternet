@@ -136,11 +136,13 @@ class CreateTables extends Migration
             $table->integer( 'patient_id' )->unsigned();
             $table->integer( 'schedule_id' )->unsigned();
             $table->string( 'status', 50 );
+            $table->text('diagnosis_in');
+            $table->text('diagnosis_out');
+            $table->text('laboratory_result');
             $table->text( 'activity' );
             $table->text( 'note' );
             $table->string( 'token', 10 );
             $table->boolean( 'verified' )->default(0);
-            $table->text( 'disease' );
             $table->timestamps();
         } );
 
@@ -235,6 +237,17 @@ class CreateTables extends Migration
             $table->integer('permission_id')->unsigned()->index()->nullable();
         });
 
+        Schema::create('clinic_patient',function($table){
+            $table->increments('id');
+            $table->integer('patient_id');
+            $table->integer('clinic_id');
+            $table->string('registration_number');
+            $table->string('person_in_charge');
+            $table->string('person_in_charge_status');
+            $table->text('description');
+            $table->timestamps();
+        });
+
     }
 
     /**
@@ -267,5 +280,6 @@ class CreateTables extends Migration
         Schema::dropIfExists( 'role_user' );
         Schema::dropIfExists( 'adminmenu_role' );
         Schema::dropIfExists( 'permission_role' );
+        Schema::dropIfExists( 'clinic_patient' );
     }
 }

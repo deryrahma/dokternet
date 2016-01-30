@@ -80,7 +80,7 @@
 								Dokter <span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu">
-								<li><a href="#"><i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;Daftar</a></li>
+								<li><a href="{!! route( 'doctor.register' ) !!}"><i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;Daftar</a></li>
 								<li><a href="#"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;Masuk</a></li>
 							</ul>
 						</li>

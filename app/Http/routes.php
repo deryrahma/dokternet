@@ -14,16 +14,22 @@
 // HOME
 Route::get( '/', ['as' => 'home', 'uses' => 'HomeController@index'] );
 
-//REGISTER
-Route::get( 'patient/register', ['as' => 'patient.register', 'uses' => 'SimpleAuthController@register'] );
-Route::post('patient/post-register', ['as' => 'patient.post-register', 'uses' => 'SimpleAuthController@post_register']);
-Route::get('patient/activate/{code}', ['as' => 'patient.activate', 'uses' => 'SimpleauthController@activate']);
+//REGISTER PASIEN
+Route::get( 'patient/register', ['as' => 'patient.register', 'uses' => 'PatientAuthController@register'] );
+Route::post('patient/post-register', ['as' => 'patient.post-register', 'uses' => 'PatientAuthController@post_register']);
+Route::get('patient/activate/{code}', ['as' => 'patient.activate', 'uses' => 'PatientAuthController@activate']);
+
+//REGISTER DOKTER
+Route::get( 'doctor/register', ['as' => 'doctor.register', 'uses' => 'DoctorAuthController@register'] );
+Route::post('doctor/post-register', ['as' => 'doctor.post-register', 'uses' => 'DoctorAuthController@post_register']);
+Route::get('doctor/activate/{code}', ['as' => 'doctor.activate', 'uses' => 'DoctorAuthController@activate']);
 
 
 //LOGIN MANAGEMENT
 Route::get('patient/login', function(){
 	return redirect()->route('patient.login');
 });
+
 Route::get('patient/login', array('as' => 'patient.login', 'uses' => 'PatientController@login'));
 Route::post('patient/login', array('as' => 'patient.login.post', 'uses' => 'PatientController@postLogin'));
 Route::get('patient/logout', array('as' => 'patient.logout', 'uses' => 'PatientController@logout'));

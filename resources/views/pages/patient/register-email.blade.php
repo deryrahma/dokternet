@@ -9,7 +9,7 @@
 		<br><br>
 		Silakan klik tautan di bawah ini untuk memverifikasi akun Anda! 
 		<a href="{{!! url('/patient/activate/'. $code) !!}}">
-		{{!! url('/registration/activate/'. $code) !!}}
+		{{!! url('/patient/activate/'. $code) !!}}
 		</a><br><br><br><br><br>
 		Cheers,<br><br>
 		<p style="color:red;">Team.</p>

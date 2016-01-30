@@ -35,6 +35,7 @@ class CreateTables extends Migration
             $table->string( 'telephone', 20 );
             $table->string( 'email', 50 );
             $table->text( 'password' );
+            $table->string( 'activation_code' );
             $table->rememberToken();
             $table->timestamps();
         } );
@@ -86,6 +87,7 @@ class CreateTables extends Migration
             $table->string( 'telephone', 20 );
             $table->boolean( 'verified' )->default(0);
             $table->boolean( 'enabled' )->default(0);
+            $table->string( 'activation_code' );
             $table->rememberToken();
             $table->timestamps();
         } );

@@ -21,7 +21,23 @@
 					@endif
 						<div class="box-body">
 							{!! BootForm::text( 'Judul:', 'title' ) !!}
-							{!! BootForm::textarea( 'Deskripsi:', 'description' ) !!}
+			                <div class="box box-info">
+				                <div class="box-header">
+				                  <h3 class="box-title">Deskripsi</h3>
+				                  <!-- tools box -->
+				                  <div class="pull-right box-tools">
+				                    <button class="btn btn-info btn-sm" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+				                    <button class="btn btn-info btn-sm" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
+				                  </div><!-- /. tools -->
+				                </div><!-- /.box-header -->
+				                <div class="box-body pad">
+				                  <form>
+				                    <textarea id="description" name="description" rows="10" cols="80">
+				                      Ini adalah teks berisi deskripsi
+				                    </textarea>
+				                  </form>
+				                </div>
+				            </div><!-- /.box -->
 							{!! BootForm::file( 'Gambar:', 'image' ) !!}
 							@if( $data['content'] != null )
 								<img src="{!! url( 'img/article/'.$data['content']->image ) !!}" style="max-height: 300px; max-width: 300px">

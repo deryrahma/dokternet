@@ -15,14 +15,12 @@ class CreateTables extends Migration
         Schema::create( 'province', function( Blueprint $table ) {
             $table->increments( 'id' );
             $table->string( 'name', 30 );
-            $table->timestamps();
         } );
 
         Schema::create( 'city', function( Blueprint $table ) {
             $table->increments( 'id' );
             $table->integer( 'province_id' )->unsigned();
             $table->string( 'name', 50 );
-            $table->timestamps();
         } );
 
         Schema::create( 'clinic', function( Blueprint $table ) {

@@ -1,11 +1,22 @@
 @extends( 'frontend.app' )
 
 @section( 'custom-head' )
-	
+	{!! HTML::style('plugins/select2/css/select2.min.css') !!}
 @endsection
 
 @section( 'custom-footer' )
-	
+	{!! HTML::script('plugins/select2/js/select2.full.min.js') !!}
+	<script type="text/javascript">
+		 $("#city").select2({
+		 	allowClear: true,
+		 	language: "id"
+		 });
+		 $("#specialization").select2({
+		 	allowClear: true,
+		 	language: "id"
+		 });
+		 
+	</script>
 @endsection
 
 @section( 'content' )
@@ -15,12 +26,30 @@
 						<div class="panel panel-info" style="padding: 20px 30px 30px" align="center">
 							<h2>Cari Dokter</h2>
 							<hr>
-							{!! BootForm::open() !!}
-								{!! BootForm::text( 'Lokasi:', '' )->placeholder( 'Pilih lokasi (kota/provinsi)' )->attribute( 'style', 'text-align: center' ) !!}
-								{!! BootForm::text( 'Keahlian:', '' )->placeholder( 'Pilih keahlian/spesialisasi dokter' )->attribute( 'style', 'text-align: center' ) !!}
-								{!! BootForm::text( 'Layanan:', '' )->placeholder( 'Pilih jenis layanan' )->attribute( 'style', 'text-align: center' ) !!}<br>
-								{!! BootForm::submit( 'Cari' )->addClass( 'btn btn-primary btn-block' ) !!}
-							{!! BootForm::close() !!}
+							{!! Form::open(['method' => 'POST', 'url' => route('search.doctor')]) !!}
+							<div class="form-group">
+								<label class="control-label" for="">Lokasi:</label>
+								<select name="city" class="form-control" id="city">
+								@foreach($data['city'] as $row)
+									<option value="{!! $row->id !!}">
+										{!! $row->name !!}
+									</option>
+								@endforeach
+								</select>
+							</div>
+							<div class="form-group">
+								<label class="control-label" for="">Keahlian / Spesialisasi:</label>
+								<select name="specialization" class="form-control" id="specialization">
+								@foreach($data['specialization'] as $row)
+									<option value="{!! $row->id !!}">
+										{!! $row->name !!}
+									</option>
+								@endforeach
+								</select>
+							</div>
+							{!! BootstrapForm::text('keyword','Kata Kunci',null, array('placeholder' => 'Nama Dokter, Nama Rumah Sakit, dll')) !!}
+							{!! Form::submit('Cari Dokter', array('class' => 'btn btn-primary btn-block')) !!}
+							{!! Form::close() !!}
 						</div>
 					</div>
 					<div class="col-xs-12 col-md-6">

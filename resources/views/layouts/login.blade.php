@@ -10,7 +10,7 @@
         
             <div class="login-box">
                 <div class="login-logo">
-                    <a href="{!! route('admin.login') !!}"><b>Administrator</b>Panel</a>
+                    <a href=""><b>DokterNet</b>Panel</a>
                 </div><!-- /.login-logo -->
                 <div class="login-box-body">
                     @yield('content')

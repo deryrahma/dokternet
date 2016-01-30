@@ -16,21 +16,33 @@ class RolesTableSeeder extends Seeder
         	'name' => 'Administrator',
         	'locked' => '1',
         	'enabled' => '1',
-        	'default' => '0'
+            'default' => '0',
+        	'level' => '1'
+
         	]);
         \App\Role::create([
         	'code' => 'DC',
         	'name' => 'Doctor',
         	'locked' => '0',
         	'enabled' => '1',
-        	'default' => '0'
+        	'default' => '0',
+            'level' => '2'
         	]);
        	\App\Role::create([
-        	'code' => 'PT',
-        	'name' => 'Patient',
-        	'locked' => '0',
-        	'enabled' => '1',
-        	'default' => '1'
-        	]);
+            'code' => 'PT',
+            'name' => 'Patient',
+            'locked' => '0',
+            'enabled' => '1',
+            'default' => '1',
+            'level' => '2'
+            ]);
+        \App\Role::create([
+            'code' => 'CL',
+            'name' => 'Clinic',
+            'locked' => '0',
+            'enabled' => '1',
+            'default' => '0',
+            'level' => '2'
+            ]);
     }
 }

@@ -26,25 +26,36 @@ Route::get('patient/login', function(){
 });
 Route::get('patient/login', array('as' => 'patient.login', 'uses' => 'PatientController@login'));
 Route::post('patient/login', array('as' => 'patient.login.post', 'uses' => 'PatientController@postLogin'));
-Route::get('patient/logout', array('as' => 'patient.logout', 'uses' => 'PatientController@logout'));
 
-Route::get('patient/dashboard', array('as' => 'patient.dashboard', 'uses' => 'PatientController@dashboard'));
+Route::group(['middleware' => 'patient'], function()
+{
+	Route::get('patient/dashboard', array('as' => 'patient.dashboard', 'uses' => 'PatientController@dashboard'));
+	Route::get('patient/logout', array('as' => 'patient.logout', 'uses' => 'PatientController@logout'));
+});
 
 
+Route::get('admin/login', array('as' => 'admin.login', 'uses' => 'AdminController@login'));
+Route::post('admin/login', array('as' => 'admin.login.post', 'uses' => 'AdminController@postlogin'));
 
-// ADMINISTRATOR MANAGEMENT
-// Main dashboard
-Route::get( 'admin/dashboard', [ 'as' => 'admin.dashboard', 'uses' => 'AdminController@index' ] );
-// Admin previlege management
-Route::resource( 'admin/previlege', 'AdminPrevilegeController' );
-// Article management
-Route::resource( 'admin/article-category', 'ArticleCategoryController', ['except' => ['show']] );
-Route::get( 'admin/article-category/{id}/delete', array('as' => 'admin.article-category.delete', 'uses' => 'ArticleCategoryController@destroy'));
-Route::resource( 'admin/article', 'ArticleController' );
-Route::get( 'admin/article/{id}/delete', array('as' => 'admin.article.delete', 'uses' => 'ArticleController@destroy'));
-// Patient management
-Route::get('admin/patient/{id}/delete', array('as' => 'admin.patient.delete', 'uses' => 'PatientAdminController@destroy'));
-Route::resource('admin/patient', 'PatientAdminController');
+Route::group(['middleware' => 'admin'], function()
+{
+	// ADMINISTRATOR MANAGEMENT
+	Route::get('admin/logout', array('as' => 'admin.logout', 'uses' => 'AdminController@logout'));
+
+	// Main dashboard
+	Route::get( 'admin/dashboard', [ 'as' => 'admin.dashboard', 'uses' => 'AdminController@index' ] );
+	// Admin previlege management
+	Route::resource( 'admin/previlege', 'AdminPrevilegeController' );
+	// Article management
+	Route::resource( 'admin/article-category', 'ArticleCategoryController', ['except' => ['show']] );
+	Route::get( 'admin/article-category/{id}/delete', array('as' => 'admin.article-category.delete', 'uses' => 'ArticleCategoryController@destroy'));
+	Route::resource( 'admin/article', 'ArticleController' );
+	Route::get( 'admin/article/{id}/delete', array('as' => 'admin.article.delete', 'uses' => 'ArticleController@destroy'));
+	// Patient management
+	Route::get('admin/patient/{id}/delete', array('as' => 'admin.patient.delete', 'uses' => 'PatientAdminController@destroy'));
+	Route::resource('admin/patient', 'PatientAdminController');
+});
+
 
 // Doctor management
 /*Route::get('admin/doctor-verify/{id}/delete', array('as' => 'admin.doctor-verify.delete', 'uses' => 'DoctorVerifyController@destroy'));

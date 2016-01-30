@@ -14,6 +14,17 @@
             <img src="{!! asset( 'img/avatar.png' ) !!}" class="user-image" alt="User Image">
             <span class="hidden-xs">Administrator</span>
           </a>
+          <ul class="dropdown-menu">
+                  <!-- Menu Footer-->
+                  <li class="user-footer">
+                    <div class="pull-left">
+                      <a href="#" class="btn btn-default btn-flat">Ganti Password</a>
+                    </div>
+                    <div class="pull-right">
+                      <a href="{!! route('admin.logout') !!}" class="btn btn-default btn-flat">Sign out</a>
+                    </div>
+                  </li>
+                </ul>
         </li>
       </ul>
     </div>

@@ -171,6 +171,72 @@ class CreateTables extends Migration
             $table->text( 'description' );
             $table->timestamps();
         } );
+        Schema::create( 'users', function( Blueprint $table ) {
+            $table->increments( 'id' );
+            $table->string( 'first_name', 30 );
+            $table->string( 'last_name', 30 );
+            $table->char( 'gender', 1 );
+            $table->date( 'birth_date' );
+            $table->string( 'email', 50 );
+            $table->text( 'password' );
+            $table->text( 'address' );
+            $table->boolean( 'enabled' )->default(0);
+            $table->boolean( 'verified' )->default(0);
+            $table->string( 'mobile', 20 );
+            $table->string( 'telephone', 20 );
+            $table->string( 'activation_code' );
+            $table->integer('role_id')->unsigned()->nullable();
+            $table->rememberToken();
+            $table->timestamps();
+        } );
+        Schema::create('roles', function($table)
+        {
+            $table->increments('id');
+            $table->string('code', 16)->nullable();
+            $table->string('name', 32)->nullable();
+            $table->boolean('locked')->nullable();
+            $table->boolean('enabled')->nullable();
+            $table->boolean('default')->nullable();
+            $table->boolean('require_file')->nullable();
+            $table->integer('level')->nullable();
+        });
+
+        Schema::create('adminmenus', function($table)
+        {
+            $table->increments('id');
+            $table->integer('parent_id')->unsigned()->index()->nullable();
+            $table->string('name')->index()->nullable();
+            $table->string('route')->nullable();
+            $table->integer('order_item')->nullable();
+            $table->string('icon');
+            $table->boolean('enabled')->nullable();
+        });
+        Schema::create('permissions', function($table)
+        {
+            $table->increments('id');
+            $table->string('route')->index()->nullable();
+            $table->boolean('enabled')->nullable();
+        });
+        Schema::create('role_user', function($table)
+        {
+            $table->increments('id');
+            $table->integer('user_id')->unsigned()->index()->nullable();
+            $table->integer('role_id')->unsigned()->index()->nullable();
+        });
+        Schema::create('adminmenu_role', function($table)
+        {
+            $table->increments('id');
+            $table->integer('role_id')->unsigned()->index()->nullable();
+            $table->integer('adminmenu_id')->unsigned()->index()->nullable();
+        });
+
+        Schema::create('permission_role', function($table)
+        {
+            $table->increments('id');
+            $table->integer('role_id')->unsigned()->index()->nullable();
+            $table->integer('permission_id')->unsigned()->index()->nullable();
+        });
+
     }
 
     /**
@@ -196,5 +262,12 @@ class CreateTables extends Migration
         Schema::dropIfExists( 'reservation' );
         Schema::dropIfExists( 'patient' );
         Schema::dropIfExists( 'notification' );
+        Schema::dropIfExists( 'users' );
+        Schema::dropIfExists( 'roles' );
+        Schema::dropIfExists( 'adminmenus' );
+        Schema::dropIfExists( 'permissions' );
+        Schema::dropIfExists( 'role_user' );
+        Schema::dropIfExists( 'adminmenu_role' );
+        Schema::dropIfExists( 'permission_role' );
     }
 }

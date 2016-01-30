@@ -15,9 +15,9 @@
 Route::get( '/', ['as' => 'home', 'uses' => 'HomeController@index'] );
 
 //REGISTER
-Route::get( 'patient/register', ['as' => 'patient.register', 'uses' => 'SimpleAuthController@register'] );
-Route::post('patient/post-register', ['as' => 'patient.post-register', 'uses' => 'SimpleAuthController@post_register']);
-Route::get('patient/activate/{code}', ['as' => 'patient.activate', 'uses' => 'SimpleauthController@activate']);
+Route::get( 'patient/register', ['as' => 'patient.register', 'uses' => 'PatientController@register'] );
+Route::post('patient/post-register', ['as' => 'patient.post-register', 'uses' => 'PatientController@post_register']);
+Route::get('patient/activate/{code}', ['as' => 'patient.activate', 'uses' => 'PatientController@activate']);
 
 
 //LOGIN MANAGEMENT
@@ -27,6 +27,10 @@ Route::get('patient/login', function(){
 Route::get('patient/login', array('as' => 'patient.login', 'uses' => 'PatientController@login'));
 Route::post('patient/login', array('as' => 'patient.login.post', 'uses' => 'PatientController@postLogin'));
 Route::get('patient/logout', array('as' => 'patient.logout', 'uses' => 'PatientController@logout'));
+
+Route::get('patient/dashboard', array('as' => 'patient.dashboard', 'uses' => 'PatientController@dashboard'));
+
+
 
 // ADMINISTRATOR MANAGEMENT
 // Main dashboard

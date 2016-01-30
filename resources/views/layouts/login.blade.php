@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>SFA Panel | PT. Nusantara Labs</title>
+        <title>DokterNet | PT. Nusantara Labs</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
         @include('partials.head')
     </head>

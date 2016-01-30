@@ -21,7 +21,7 @@ class HomeController extends Controller
         $data = [];
         $data['article'] = ArticleCategory::with( 'articles')->get();
 
-        return view( 'pages.home.index', compact( 'data' ) );
+        return view( 'frontend.pages.home.index', compact( 'data' ) );
     }
 
     /**

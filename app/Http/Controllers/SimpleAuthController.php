@@ -69,6 +69,7 @@ class SimpleAuthController extends Controller
         ];
         $this->sendEmail($data, $input);
         Session::flash('success', "Cek email untuk mengaktivasi akun");
+        
         return redirect()->route('patient.register');
     }
 

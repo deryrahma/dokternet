@@ -73,7 +73,6 @@ class CreateTables extends Migration
 
         Schema::create( 'doctor', function( Blueprint $table ) {
             $table->increments( 'id' );
-            $table->integer( 'specialization_id' )->unsigned();
             $table->integer( 'city_id' )->unsigned();
             $table->string( 'name', 50 );
             $table->text( 'address' );
@@ -90,9 +89,22 @@ class CreateTables extends Migration
             $table->timestamps();
         } );
 
-        Schema::create( 'specialization', function( Blueprint $table ) {
+        Schema::create( 'specialization_category', function( Blueprint $table ) {
             $table->increments( 'id' );
             $table->string( 'name', 50 );
+            $table->timestamps();
+        } );
+
+        Schema::create( 'specialization', function( Blueprint $table ) {
+            $table->increments( 'id' );
+            $table->integer( 'specialization_category_id');
+            $table->string( 'name', 50 );
+            $table->timestamps();
+        } );
+        Schema::create( 'doctor_specialization', function( Blueprint $table ) {
+            $table->increments( 'id' );
+            $table->integer( 'doctor_id' )->unsigned();
+            $table->integer( 'specialization_id' )->unsigned();
             $table->timestamps();
         } );
 

@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use Response;
+use Input;
+use Auth;
+
 use App\ArticleCategory;
 use App\Schedule;
 
@@ -70,5 +74,37 @@ class ReservationController extends Controller
                                 ->first();
 
     return view( 'frontend.pages.reservation.book', compact( 'data' ) );
+  }
+
+  public function login( Request $request, $schedule_id )
+  {
+    if ( $request->ajax() ) {
+      $email = Input::get( 'email' );
+      $password = Input::get( 'pass' );
+
+      if ( Auth::attempt( ['email' => $email, 'password' => $password], false ) ) {
+        if ( Auth::user()->verified == '1' ) {
+          return Response::json( [ 'success' => true ] );
+        }
+        else {
+          Auth::logout();
+          return Response::json( [
+            'success' => false,
+            'message' => "Akun anda belum terverifikasi silakan cek email anda.",
+          ] );
+        }
+      }
+      else {
+        return Response::json( [
+          'success' => false,
+          'message' => "Kombinasi email dan password tidak cocok.",
+        ] );
+      }
+
+      return Response::json( [
+        'success' => false,
+        'message' => "Mohon maaf terjadi kesalahan server, silakan ulangi proses login.",
+      ] );
+    }
   }
 }

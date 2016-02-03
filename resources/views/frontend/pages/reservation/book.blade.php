@@ -29,7 +29,24 @@
   {!! HTML::script( 'js/wizard-form.js' ) !!}
   <script>
     function login() {
-      nextStep();
+      $.ajax( {
+        url: "{{ route( 'reservation.login', ['id'=>$data['schedule']->id] ) }}",
+        type: 'POST',
+        data: {
+          _token: "{{ csrf_token() }}",
+          email: $( "#login-email" )[0].value,
+          pass: $( "#login-password" )[0].value
+        },
+        dataType: 'JSON',
+        success: function ( data ) {
+          if ( data.success ) {
+            nextStep();
+          }
+          else {
+            alert( data.message );
+          }
+        }
+      } );
     }
     function register() {
       nextStep();
@@ -89,10 +106,10 @@
                   <hr style="width: 75%">
                   <div class="card-box">
                     <div class="form-group">
-                      <input type="text" id="input-email" class="form-control" placeholder="Masukkan email">
+                      <input type="text" id="login-email" class="form-control" placeholder="Masukkan email">
                     </div>
                     <div class="form-group">
-                      <input type="password" id="input-password" class="form-control" placeholder="Masukkan kata sandi">
+                      <input type="password" id="login-password" class="form-control" placeholder="Masukkan kata sandi">
                     </div>
                     <a class="btn btn-block btn-primary" onclick="login()">Login</a>
                   </div>

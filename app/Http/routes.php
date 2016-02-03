@@ -82,6 +82,7 @@ Route::group(['middleware' => 'admin'], function()
 // RESERVATION
 Route::get( 'reservation/{id}', array( 'as' => 'reservation.schedule', 'uses' => 'ReservationController@schedule' ) );
 Route::get( 'reservation/{id}/book', array( 'as' => 'reservation.book', 'uses' => 'ReservationController@book' ) );
+Route::post( 'reservation/{id}/book/login', array( 'as' => 'reservation.login', 'uses' => 'ReservationController@login' ) );
 
 // Doctor management
 /*Route::get('admin/doctor-verify/{id}/delete', array('as' => 'admin.doctor-verify.delete', 'uses' => 'DoctorVerifyController@destroy'));

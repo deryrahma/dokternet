@@ -11,15 +11,24 @@ $( function () {
   } );
   $( ".next-step" ).click( function ( e ) {
       var $active = $( '.wizard .nav-tabs li.active' );
+      $active.addClass( 'disabled' );
       $active.next().removeClass( 'disabled' );
       nextTab( $active );
   } );
   $( ".prev-step" ).click( function ( e ) {
       var $active = $( '.wizard .nav-tabs li.active' );
+      $active.addClass( 'disabled' );
+      $active.prev().removeClass( 'disabled' );
       prevTab( $active );
   } );
 } );
 
+function nextStep() {
+  var $active = $( '.wizard .nav-tabs li.active' );
+  $active.addClass( 'disabled' );
+  $active.next().removeClass( 'disabled' );
+  nextTab( $active );
+}
 function nextTab( elem ) {
   $( elem ).next().find( 'a[data-toggle="tab"]' ).click();
 }

@@ -64,7 +64,10 @@ class ReservationController extends Controller
   public function book( $schedule_id )
   {
     $data = [];
-    $data['article'] = ArticleCategory::with( 'articles')->get();
+    $data['article'] = ArticleCategory::with( 'articles' )->get();
+    $data['schedule'] = Schedule::with( 'doctor', 'clinic' )
+                                ->where( 'id', $schedule_id )
+                                ->first();
 
     return view( 'frontend.pages.reservation.book', compact( 'data' ) );
   }

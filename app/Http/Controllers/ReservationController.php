@@ -60,4 +60,12 @@ class ReservationController extends Controller
 
     return view( 'frontend.pages.reservation.schedule', compact( 'data' ) );
   }
+
+  public function book( $schedule_id )
+  {
+    $data = [];
+    $data['article'] = ArticleCategory::with( 'articles')->get();
+
+    return view( 'frontend.pages.reservation.book', compact( 'data' ) );
+  }
 }

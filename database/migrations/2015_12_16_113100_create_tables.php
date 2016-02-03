@@ -59,8 +59,9 @@ class CreateTables extends Migration
             $table->integer( 'doctor_id' )->unsigned();
             $table->time( 'schedule_start' );
             $table->time( 'schedule_end' );
+            $table->date( 'date' );
             $table->integer( 'quota' );
-            $table->string( 'status', 20 );
+            $table->string( 'status_batal', 20 );
             $table->timestamps();
         } );
 

@@ -72,6 +72,9 @@ Route::group(['middleware' => 'admin'], function()
 	Route::resource('admin/patient', 'PatientAdminController');
 });
 
+// RESERVATION
+Route::get( 'reservation/{id}', array( 'as' => 'reservation.schedule', 'uses' => 'ReservationController@schedule' ) );
+
 
 // Doctor management
 /*Route::get('admin/doctor-verify/{id}/delete', array('as' => 'admin.doctor-verify.delete', 'uses' => 'DoctorVerifyController@destroy'));

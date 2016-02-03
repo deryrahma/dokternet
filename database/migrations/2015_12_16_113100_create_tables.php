@@ -27,6 +27,7 @@ class CreateTables extends Migration
 
         Schema::create( 'clinic', function( Blueprint $table ) {
             $table->increments( 'id' );
+            $table->integer( 'user_id' );
             $table->integer( 'city_id' )->unsigned();
             $table->string( 'name', 100 );
             $table->text( 'address' );
@@ -75,6 +76,7 @@ class CreateTables extends Migration
 
         Schema::create( 'doctor', function( Blueprint $table ) {
             $table->increments( 'id' );
+            $table->integer( 'user_id' );
             $table->integer( 'specialization_id' )->unsigned();
             $table->integer( 'city_id' )->unsigned();
             $table->string( 'name', 50 );
@@ -148,6 +150,7 @@ class CreateTables extends Migration
 
         Schema::create( 'patient', function( Blueprint $table ) {
             $table->increments( 'id' );
+            $table->integer( 'user_id' );
             $table->string( 'first_name', 30 );
             $table->string( 'last_name', 30 );
             $table->char( 'gender', 1 );

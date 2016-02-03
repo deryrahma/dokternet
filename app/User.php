@@ -40,6 +40,21 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     
 
+    public function clinic()
+    {
+        return $this->hasOne('\App\Clinic', 'user_id', 'id');   
+    }
+
+    public function doctor()
+    {
+        return $this->hasOne('\App\Doctor', 'user_id', 'id');   
+    }
+
+    public function patient()
+    {
+        return $this->hasOne('\App\Patient', 'user_id', 'id');   
+    }
+
     public function roleUsers()
     {
         return $this->hasMany('\App\RoleUser', 'user_id', 'id');

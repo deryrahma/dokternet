@@ -19,6 +19,7 @@ class Doctor extends Model implements AuthenticatableContract,
     protected $table = 'doctor';
 
     protected $fillable = [
+        'user_id',
     	'specialization_id',
     	'city_id',
     	'name',
@@ -33,6 +34,11 @@ class Doctor extends Model implements AuthenticatableContract,
     	'enabled',
         'activation_code'
     ];
+
+
+    public function user() {
+        return $this->belongsTo( 'App\User' );
+    }
 
     public function city() {
     	return $this->belongsTo( 'App\City' );

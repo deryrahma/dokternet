@@ -30,6 +30,7 @@ class Patient extends Model implements AuthenticatableContract,
      * @var array
      */
     protected $fillable = [
+        'user_id',
         'first_name',
         'last_name',
         'gender',
@@ -49,6 +50,10 @@ class Patient extends Model implements AuthenticatableContract,
      * @var array
      */
     //protected $hidden = ['password', 'remember_token'];
+
+    public function user() {
+        return $this->belongsTo( 'App\User' );
+    }
 
     public function activateAccount($code)
     {

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class PatientAdminRequest extends Request
+class DoctorRegRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,11 +25,10 @@ class PatientAdminRequest extends Request
     {
         return [
             //
-            'user_id' => 'required',
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'gender' => 'required',
-            'birth_date' => 'required',
+            'specialization_id' => 'required',
+            'city_id' => 'required',
+            'name' => 'required',
+            'address' => 'required',
             'email' => 'required',
             'password' => 'required',
             'mobile' => 'required',
@@ -45,14 +44,14 @@ class PatientAdminRequest extends Request
     public function messages()
     {
         return [
-            'first_name.required' => 'Nama Depan wajib diisi.',
-            'last_name.required' => 'Nama Belakang wajib diisi.',
-            'gender.required' => 'Jenis kelamin wajib diisi.',
-            'birth_date.required' => 'Tanggal lahir wajib diisi.',
-            'email.required' => 'Email wajib diisi.',
-            'password.required' => 'Password wajib diisi.',
-            'mobile.required' => 'No. HP wajib diisi.',
-            'telephone.required' => 'No. Telepon wajib diisi.'
+            'specialization_id.required' => 'Spesialisasi wajib diisi.',
+            'city_id.required' => 'Kota wajib diisi.',
+            'name.required' => 'Nama wajib diisi.',
+            'address.required' => 'Alamat wajib diisi.',
+            'email.required' => 'Email wajib diisi',
+            'password.required' => 'Password wajib diisi',
+            'mobile.required' => 'No. HP wajib diisi',
+            'telephone.required' => 'No. Telepon wajib diisi'
         ];
     }
 }

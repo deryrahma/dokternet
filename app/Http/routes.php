@@ -31,6 +31,8 @@ Route::post('patient/post-register', ['as' => 'patient.post-register', 'uses' =>
 Route::get('patient/activate/{code}', ['as' => 'patient.activate', 'uses' => 'PatientController@activate']);
 
 
+Route::post('search', ['as' => 'search.doctor' , 'uses' => 'HomeController@search']);
+
 //LOGIN MANAGEMENT
 Route::get('patient/login', function(){
 	return redirect()->route('patient.login');
@@ -76,6 +78,9 @@ Route::group(['middleware' => 'admin'], function()
 	Route::get('admin/doctor/{id}/delete', array('as' => 'admin.doctor.delete', 'uses' => 'DoctorAdminController@destroy'));
 	Route::resource('admin/doctor', 'DoctorAdminController');
 });
+
+// RESERVATION
+Route::get( 'reservation/{id}', array( 'as' => 'reservation.schedule', 'uses' => 'ReservationController@schedule' ) );
 
 
 // Doctor management

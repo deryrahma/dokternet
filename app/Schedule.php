@@ -14,7 +14,7 @@ class Schedule extends Model
     	'schedule_end',
     	'date',
     	'quota',
-    	'status',
+    	'status_batal',
     ];
 
     public function clinic() {

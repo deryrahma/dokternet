@@ -15,7 +15,10 @@ class Reservation extends Model
     	'note',
     	'token',
     	'verified',
-    	'disease',
+        'diagnosis_in',
+        'diagnosis_out',
+        'laboratory_result',
+        'diagnosis_in'
     ];
 
     public function schedule() {

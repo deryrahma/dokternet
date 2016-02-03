@@ -15,14 +15,12 @@ class CreateTables extends Migration
         Schema::create( 'province', function( Blueprint $table ) {
             $table->increments( 'id' );
             $table->string( 'name', 30 );
-            $table->timestamps();
         } );
 
         Schema::create( 'city', function( Blueprint $table ) {
             $table->increments( 'id' );
             $table->integer( 'province_id' )->unsigned();
             $table->string( 'name', 50 );
-            $table->timestamps();
         } );
 
         Schema::create( 'clinic', function( Blueprint $table ) {
@@ -62,8 +60,9 @@ class CreateTables extends Migration
             $table->integer( 'doctor_id' )->unsigned();
             $table->time( 'schedule_start' );
             $table->time( 'schedule_end' );
+            $table->date( 'date' );
             $table->integer( 'quota' );
-            $table->string( 'status', 20 );
+            $table->string( 'status_batal', 20 );
             $table->timestamps();
         } );
 
@@ -94,9 +93,22 @@ class CreateTables extends Migration
             $table->timestamps();
         } );
 
-        Schema::create( 'specialization', function( Blueprint $table ) {
+        Schema::create( 'specialization_category', function( Blueprint $table ) {
             $table->increments( 'id' );
             $table->string( 'name', 50 );
+            $table->timestamps();
+        } );
+
+        Schema::create( 'specialization', function( Blueprint $table ) {
+            $table->increments( 'id' );
+            $table->integer( 'specialization_category_id');
+            $table->string( 'name', 50 );
+            $table->timestamps();
+        } );
+        Schema::create( 'doctor_specialization', function( Blueprint $table ) {
+            $table->increments( 'id' );
+            $table->integer( 'doctor_id' )->unsigned();
+            $table->integer( 'specialization_id' )->unsigned();
             $table->timestamps();
         } );
 
@@ -140,11 +152,13 @@ class CreateTables extends Migration
             $table->integer( 'patient_id' )->unsigned();
             $table->integer( 'schedule_id' )->unsigned();
             $table->string( 'status', 50 );
+            $table->text('diagnosis_in');
+            $table->text('diagnosis_out');
+            $table->text('laboratory_result');
             $table->text( 'activity' );
             $table->text( 'note' );
             $table->string( 'token', 10 );
             $table->boolean( 'verified' )->default(0);
-            $table->text( 'disease' );
             $table->timestamps();
         } );
 
@@ -240,6 +254,17 @@ class CreateTables extends Migration
             $table->integer('permission_id')->unsigned()->index()->nullable();
         });
 
+        Schema::create('clinic_patient',function($table){
+            $table->increments('id');
+            $table->integer('patient_id');
+            $table->integer('clinic_id');
+            $table->string('registration_number');
+            $table->string('person_in_charge');
+            $table->string('person_in_charge_status');
+            $table->text('description');
+            $table->timestamps();
+        });
+
     }
 
     /**
@@ -272,5 +297,6 @@ class CreateTables extends Migration
         Schema::dropIfExists( 'role_user' );
         Schema::dropIfExists( 'adminmenu_role' );
         Schema::dropIfExists( 'permission_role' );
+        Schema::dropIfExists( 'clinic_patient' );
     }
 }

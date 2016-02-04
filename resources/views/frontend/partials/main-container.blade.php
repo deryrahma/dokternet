@@ -1,5 +1,5 @@
-		<header id="top" class="navbar navbar-static-top bs-docs-nav" role="banner" style="background-color: #ddd; margin: 0; padding: 0">
-			<div class="container">
+		<header id="top" class="navbar navbar-static-top bs-docs-nav" role="banner">
+			<div class="container  main-navbar">
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-navbar">
 						<span class="sr-only">Toggle navigation</span>
@@ -12,7 +12,7 @@
 					</a>
 				</div>
 				<div class="collapse navbar-collapse" id="bs-navbar">
-					<ul class="nav navbar-nav navbar-right">
+					<ul class="nav navbar-nav main-menu navbar-right">
 						@if(Auth::check() == false)
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -41,6 +41,9 @@
 								<li><a href="#"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;Masuk</a></li>
 							</ul>
 						</li>
+						<li class="login">
+							<a href="#">Daftar Disini</a>
+						</li>
 						@else
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -53,6 +56,7 @@
 						</li>
 						@endif
 					</ul>
+					
 				</div>
 			</div>
 		</header>

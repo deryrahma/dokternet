@@ -10,7 +10,7 @@
         @include('frontend.partials.main-container')
         <section>
             <div class="container">
-                <div class="row" style="margin-top: 30px">
+                <div class="row">
                 @yield('content')
                 </div>
             </div>

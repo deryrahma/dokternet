@@ -19,14 +19,9 @@ class Doctor extends Model implements AuthenticatableContract,
     protected $table = 'doctor';
 
     protected $fillable = [
-<<<<<<< HEAD
-        'city_id',
-    	'specialization_id',
-=======
         'user_id',
     	'specialization_id',
     	'city_id',
->>>>>>> 74f4cc075e6e848bb19a9d3e8fd1da0382e0ddf7
     	'name',
     	'address',
     	'latitude',

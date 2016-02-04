@@ -1,4 +1,4 @@
-<footer class="footer" style="background-color: #ddd">
+<footer class="footer">
 			<div class="container">
 				<div class="col-xs-9">
 					<p class="text-muted credit" style="padding-top: 15px">

@@ -21,39 +21,49 @@
 
 @section( 'content' )
 	<div class="container">
-				<div class="row" style="margin-top: 30px">
+				<div class="row">
 					<div class="col-xs-12 col-md-6">
-						<div class="panel panel-info" style="padding: 20px 30px 30px" align="center">
+						<div class="panel home-panel-search" align="center">
 							<h2>Cari Dokter</h2>
 							<hr>
 							{!! Form::open(['method' => 'GET', 'url' => route('search.doctor')]) !!}
 							<div class="form-group">
 								<label class="control-label" for="">Lokasi:</label>
-								<select name="city" class="form-control" id="city">
-								@foreach($data['city'] as $row)
-									<option value="{!! urlencode($row->name) !!}">
-										{!! $row->name !!}
-									</option>
-								@endforeach
-								</select>
+								<div class="input-group">
+      								<div class="input-group-addon dokternet-bg-yellow"><i class="fa fa-map-marker"></i></div>
+									<select name="city" class="form-control" id="city">
+									@foreach($data['city'] as $row)
+										<option value="{!! urlencode($row->name) !!}">
+											{!! $row->name !!}
+										</option>
+									@endforeach
+									</select>
+								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label" for="">Keahlian / Spesialisasi:</label>
-								<select name="specialization" class="form-control" id="specialization">
-								@foreach($data['specialization'] as $row)
-									<option value="{!! urlencode($row->name) !!}">
-										{!! $row->name !!}
-									</option>
-								@endforeach
-								</select>
+								<div class="input-group">
+      								<div class="input-group-addon dokternet-bg-yellow"><i class="fa fa-tasks"></i></div>
+									<select name="specialization" class="form-control" id="specialization">
+									@foreach($data['specialization'] as $row)
+										<option value="{!! urlencode($row->name) !!}">
+											{!! $row->name !!}
+										</option>
+									@endforeach
+									</select>
+								</div>
 							</div>
 							{!! BootstrapForm::text('keyword','Kata Kunci',null, array('placeholder' => 'Nama Dokter, Nama Rumah Sakit, dll')) !!}
-							{!! Form::submit('Cari Dokter', array('class' => 'btn btn-primary btn-block')) !!}
+							<button class="btn btn-dokternet btn-block" type="submit">
+								CARI DOKTER
+								<i class="fa fa-arrow-circle-right"></i>
+							</button>
+							
 							{!! Form::close() !!}
 						</div>
 					</div>
 					<div class="col-xs-12 col-md-6">
-						<div class="panel panel-info" style="padding: 20px 30px 30px" align="center">
+						<div class="panel home-panel" style="padding: 20px 30px 30px" align="center">
 							<ul class="nav nav-tabs">
 								<li class="active"><a href="#location" data-toggle="tab">Lokasi</a></li>
 								<li><a href="#specialty" data-toggle="tab">Keahlian</a></li>

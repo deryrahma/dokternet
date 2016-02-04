@@ -10,8 +10,10 @@
     font-weight: 700;
     src: local('Montserrat-Bold'), url({!! asset( 'css/fonts/Montserrat-Bold.woff' ) !!}) format('woff');
 }
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300);
+
 html, body {
-	font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	
 }
 .credit {
 	margin: 0 0;
@@ -36,4 +38,110 @@ html, body {
 .image-brand {
 	height: 40px;
 	padding-top: 10px;
+}
+
+/* 
+    Navbar
+*/
+.navbar{
+    margin-bottom: 0px;
+    text-transform: uppercase;
+}
+.main-navbar{
+    background-color: #13A0B2;
+    color: #ffffff;
+    text-decoration: none;
+}
+.main-navbar a{
+    color: #ffffff;
+    text-decoration: none;
+}
+.nav > li > a:focus, .nav > li > a:hover, .nav .open > a, .nav .open > a:focus, .nav .open > a:hover{
+    background: #f6bb19 none repeat scroll 0 0;
+}
+.main-navbar .main-menu{
+    font-weight: 700;
+}
+.main-navbar .login a{
+    background: #f6bb19 none repeat scroll 0 0;
+    text-transform: uppercase;
+}
+.main-navbar li.login a:hover{
+    background: #171b20 none repeat scroll 0 0;
+}
+body{
+    background-color: #F1F1F1;
+    font-family: 'Roboto', sans-serif;
+}
+.dokternet-bg-yellow{
+    background-color: #f6bb19;
+    color: #ffffff;
+    border-color: #f6bb19;
+}
+section .container{
+    background-color: #F7F8FA;
+    padding-top: 10px;
+}
+
+.home-panel .nav-tabs > li > a {
+    border-radius: 0px;
+}
+.home-panel .nav-tabs > li.active > a, 
+.home-panel .nav-tabs > li.active > a:focus, 
+.home-panel .nav-tabs > li.active > a:hover {
+    background: #12A0B1 url("../../img/arrow-up.png") no-repeat scroll center bottom;
+    color: #ffffff;
+    border-bottom: solid 1px #ffffff;
+}
+.home-panel .nav > li a{
+    text-decoration: none;
+    color: #323232;
+}
+.home-panel .nav > li{
+    border-bottom: none;
+    display: table-cell;
+}
+.home-panel-search {
+    padding: 20px 30px 30px;
+}
+.home-panel-search .select2-container--default .select2-selection--single{
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
+}
+.home-panel-search .select2-container .select2-selection--single {
+    height: 100%;
+}
+.btn-dokternet{
+
+    background: #f6bb19 none repeat scroll 0 0;
+}
+.btn-dokternet:hover{
+    background: #171b20 none repeat scroll 0 0;
+    color: #ffffff;
+}
+.btn-dokternet:hover i::after,
+{
+    background-color: #ffffff;
+}
+.btn-dokternet:hover i{
+    border-left: 1px solid #ffffff;
+}
+.btn-dokternet i::after{
+    background: #EBAD02 none repeat scroll 0 0;
+}
+.btn-dokternet i{
+    margin-left: 20px;
+    border-left: 1px solid #EBAD02;
+    padding-left: 10px;
+}
+
+.footer {
+    background-color: #212832;
+    color: #797A7C;
+    font-family: 'Roboto', sans-serif;
+}
+.footer a{
+
+    color: #13A0B2;
+    text-decoration: none;
 }

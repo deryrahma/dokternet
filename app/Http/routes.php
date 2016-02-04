@@ -24,6 +24,7 @@ Route::get('patient/activate/{code}', ['as' => 'patient.activate', 'uses' => 'Pa
 /*Route::get( 'doctor/register', ['as' => 'doctor.register', 'uses' => 'DoctorAuthController@register'] );
 Route::post('doctor/post-register', ['as' => 'doctor.post-register', 'uses' => 'DoctorAuthController@post_register']);
 Route::get('doctor/activate/{code}', ['as' => 'doctor.activate', 'uses' => 'DoctorAuthController@activate']);*/
+
 //REGISTER
 Route::get( 'patient/register', ['as' => 'patient.register', 'uses' => 'PatientController@register'] );
 Route::post('patient/post-register', ['as' => 'patient.post-register', 'uses' => 'PatientController@post_register']);
@@ -71,8 +72,18 @@ Route::group(['middleware' => 'admin'], function()
 	// Patient management
 	Route::get('admin/patient/{id}/delete', array('as' => 'admin.patient.delete', 'uses' => 'PatientAdminController@destroy'));
 	Route::resource('admin/patient', 'PatientAdminController');
+	// Clinic management
+	Route::get('admin/clinic/{id}/delete', array('as' => 'admin.clinic.delete', 'uses' => 'ClinicAdminController@destroy'));
+	Route::resource('admin/clinic', 'ClinicAdminController');
+	// Doctor management
+	Route::get('admin/doctor/{id}/delete', array('as' => 'admin.doctor.delete', 'uses' => 'DoctorAdminController@destroy'));
+	Route::resource('admin/doctor', 'DoctorAdminController');
 });
 
+// RESERVATION
+Route::get( 'reservation/{id}', array( 'as' => 'reservation.schedule', 'uses' => 'ReservationController@schedule' ) );
+Route::get( 'reservation/{id}/book', array( 'as' => 'reservation.book', 'uses' => 'ReservationController@book' ) );
+Route::post( 'reservation/{id}/book/login', array( 'as' => 'reservation.login', 'uses' => 'ReservationController@login' ) );
 
 // Doctor management
 /*Route::get('admin/doctor-verify/{id}/delete', array('as' => 'admin.doctor-verify.delete', 'uses' => 'DoctorVerifyController@destroy'));

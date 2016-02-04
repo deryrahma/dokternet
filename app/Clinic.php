@@ -8,7 +8,8 @@ class Clinic extends Model
 {
     protected $table = 'clinic';
     protected $fillable = [
-    	'city_id',
+    	'user_id',
+        'city_id',
     	'name',
     	'address',
     	'latitude',
@@ -17,6 +18,12 @@ class Clinic extends Model
     	'email',
     	'password',
     ];
+
+
+
+    public function user() {
+        return $this->belongsTo( 'App\User' );
+    }
 
     public function city() {
     	return $this->belongsTo( 'App\City' );

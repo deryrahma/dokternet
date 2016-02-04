@@ -77,6 +77,7 @@ class PatientAdminController extends Controller
         //
         $data = array();
         
+        $data['user_id'] = 3;
         $data['first_name'] = $request->get('first_name');
         $data['last_name'] = $request->get('last_name');
         $data['gender'] = $request->get('gender');
@@ -129,6 +130,8 @@ class PatientAdminController extends Controller
     {
         //
         $data = array();
+
+        $data['user_id'] = 3;
         $data['first_name'] = $request->get('first_name');
         $data['last_name'] = $request->get('last_name');
         $data['gender'] = $request->get('gender');

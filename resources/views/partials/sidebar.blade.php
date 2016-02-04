@@ -32,6 +32,30 @@
         <li class="treeview">
             <a href="#">
                 <i class="fa fa-user-plus"></i>
+                <span>Manajemen Klinik</span>
+                <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+                <li>
+                    <a href="{!! route('admin.clinic.index') !!}"><i class="fa fa-angle-double-right"></i> Daftar Klinik</a>
+                </li>
+            </ul>
+        </li>
+        <li class="treeview">
+            <a href="#">
+                <i class="fa fa-user-plus"></i>
+                <span>Manajemen Dokter</span>
+                <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+                <li>
+                    <a href="{!! route('admin.doctor.index') !!}"><i class="fa fa-angle-double-right"></i> Daftar Dokter</a>
+                </li>
+            </ul>
+        </li>
+        <li class="treeview">
+            <a href="#">
+                <i class="fa fa-user-plus"></i>
                 <span>Manajemen Pasien</span>
                 <i class="fa fa-angle-left pull-right"></i>
             </a>
@@ -41,7 +65,6 @@
                 </li>
             </ul>
         </li>
-        <li>
         <li class="treeview">
             <a href="#">
                 <i class="fa fa-folder"></i>

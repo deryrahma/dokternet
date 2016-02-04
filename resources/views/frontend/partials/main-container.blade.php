@@ -42,7 +42,7 @@
 							</ul>
 						</li>
 						<li class="login">
-							<a href="#">Daftar Disini</a>
+							<a href="{!! route( 'patient.register' ) !!}">Daftar Disini</a>
 						</li>
 						@else
 						<li class="dropdown">

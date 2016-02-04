@@ -75,10 +75,7 @@ class CreateTables extends Migration
 
         Schema::create( 'doctor', function( Blueprint $table ) {
             $table->increments( 'id' );
-<<<<<<< HEAD
-=======
             $table->integer( 'user_id' );
->>>>>>> 74f4cc075e6e848bb19a9d3e8fd1da0382e0ddf7
             $table->integer( 'specialization_id' )->unsigned();
             $table->integer( 'city_id' )->unsigned();
             $table->string( 'name', 50 );

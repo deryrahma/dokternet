@@ -15,7 +15,8 @@
 							</div>
 						@endforeach
 					</p>
-					<p style="padding-bottom: 10px">Copyright © 2015</p>
+					<p style="padding-bottom: 10px">
+					<small>Copyright © 2015 PT. Dokternet Indonesia. All rights reserved. </small></p>
 				</div>
 				<div class="col-xs-3 pull-right">
 					<div style="display: flex; justify-content: center; flex-direction: column; height: 100px; font-size: 25px" align="right">

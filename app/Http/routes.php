@@ -30,7 +30,8 @@ Route::post('patient/post-register', ['as' => 'patient.post-register', 'uses' =>
 Route::get('patient/activate/{code}', ['as' => 'patient.activate', 'uses' => 'PatientController@activate']);
 
 
-Route::post('search', ['as' => 'search.doctor' , 'uses' => 'HomeController@search']);
+Route::get('search', ['as' => 'search.doctor' , 'uses' => 'HomeController@search']);
+Route::get('doctor/{name}', ['as' => 'doctor.search-profile' , 'uses' => 'HomeController@searchProfile']);
 
 //LOGIN MANAGEMENT
 Route::get('patient/login', function(){

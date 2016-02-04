@@ -73,6 +73,7 @@ class CreateTables extends Migration
 
         Schema::create( 'doctor', function( Blueprint $table ) {
             $table->increments( 'id' );
+            $table->integer( 'specialization_id' )->unsigned();
             $table->integer( 'city_id' )->unsigned();
             $table->string( 'name', 50 );
             $table->text( 'address' );
@@ -293,5 +294,7 @@ class CreateTables extends Migration
         Schema::dropIfExists( 'adminmenu_role' );
         Schema::dropIfExists( 'permission_role' );
         Schema::dropIfExists( 'clinic_patient' );
+        Schema::dropIfExists( 'doctor_specialization' );
+        Schema::dropIfExists( 'specialization_category' );
     }
 }

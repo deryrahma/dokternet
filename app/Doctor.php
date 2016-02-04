@@ -19,7 +19,8 @@ class Doctor extends Model implements AuthenticatableContract,
     protected $table = 'doctor';
 
     protected $fillable = [
-    	'city_id',
+        'city_id',
+    	'specialization_id',
     	'name',
     	'address',
     	'latitude',
@@ -38,7 +39,7 @@ class Doctor extends Model implements AuthenticatableContract,
     }
     public function specialization()
     {
-        return $this->belongsToMany('App\Specialization','doctor_specialization');
+        return $this->belongsTo('App\Specialization','specialization_id');
     }
 
     public function reviews() {

@@ -26,12 +26,12 @@
 						<div class="panel panel-info" style="padding: 20px 30px 30px" align="center">
 							<h2>Cari Dokter</h2>
 							<hr>
-							{!! Form::open(['method' => 'POST', 'url' => route('search.doctor')]) !!}
+							{!! Form::open(['method' => 'GET', 'url' => route('search.doctor')]) !!}
 							<div class="form-group">
 								<label class="control-label" for="">Lokasi:</label>
 								<select name="city" class="form-control" id="city">
 								@foreach($data['city'] as $row)
-									<option value="{!! $row->id !!}">
+									<option value="{!! urlencode($row->name) !!}">
 										{!! $row->name !!}
 									</option>
 								@endforeach
@@ -41,7 +41,7 @@
 								<label class="control-label" for="">Keahlian / Spesialisasi:</label>
 								<select name="specialization" class="form-control" id="specialization">
 								@foreach($data['specialization'] as $row)
-									<option value="{!! $row->id !!}">
+									<option value="{!! urlencode($row->name) !!}">
 										{!! $row->name !!}
 									</option>
 								@endforeach

@@ -298,5 +298,7 @@ class CreateTables extends Migration
         Schema::dropIfExists( 'adminmenu_role' );
         Schema::dropIfExists( 'permission_role' );
         Schema::dropIfExists( 'clinic_patient' );
+        Schema::dropIfExists( 'doctor_specialization' );
+        Schema::dropIfExists( 'specialization_category' );
     }
 }

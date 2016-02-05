@@ -10,9 +10,12 @@ use App\Http\Controllers\Controller;
 use Response;
 use Input;
 use Auth;
+use Mail;
 
 use App\ArticleCategory;
+use App\Reservation;
 use App\Schedule;
+use App\User;
 
 class ReservationController extends Controller
 {
@@ -105,6 +108,47 @@ class ReservationController extends Controller
         'success' => false,
         'message' => "Mohon maaf terjadi kesalahan server, silakan ulangi proses login.",
       ] );
+    }
+  }
+
+  public function confirm( Request $request, $schedule_id )
+  {
+    if ( $request->ajax() ) {
+      $email = Input::get( 'email' );
+      $patient = User::with( 'patient' )->where( 'email', $email )->get();
+      $verification_token = substr( str_shuffle( "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" ), 0, 8 );
+
+      $reservation = Reservation::create( [
+        'patient_id'  => $patient->patient->id,
+        'schedule_id' => Input::get( 'schedule_id' ),
+        'status'      => '0',
+        'token'       => $verification_token,
+        'verified'    => 0,
+      ] );
+
+      Mail::send( 'frontend.reservation.book', [ 'data' => $verification_token ], function( $m ) use ( $email ) {
+        $m->from( 'team@dokternet.com', 'DokterNet-Indonesia' );
+        $m->to( $email );
+        $m->subject( 'DokterNet - Verifikasi Jadwal Pertemuan' );
+      } );
+
+      return Response::json( [ 'success' => true, 'reservation_id' => $reservation->id ] );
+    }
+  }
+
+  public function verify( Request $request, $schedule_id )
+  {
+    if ( $request->ajax() ) {
+      $reservation = Reservation::find( Input::get( 'reservation_id' ) );
+      if ( $reservation->token == Input::get( 'verification_token' ) ) {
+        return Response::json( [ 'success' => true ] );
+      }
+      else {
+        return Response::json( [
+          'success' => false,
+          'message' => "Kode verifikasi tidak sama, mohon masukkan kembali dengan nilai yang benar.",
+        ] );
+      }
     }
   }
 }

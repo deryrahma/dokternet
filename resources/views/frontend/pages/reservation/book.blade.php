@@ -28,6 +28,7 @@
 @section( 'custom-footer' )
   {!! HTML::script( 'js/wizard-form.js' ) !!}
   <script>
+    var reservation_id = 0;
     function login() {
       $.ajax( {
         url: "{{ route( 'reservation.login', ['id'=>$data['schedule']->id] ) }}",
@@ -48,14 +49,46 @@
         }
       } );
     }
-    function register() {
-      nextStep();
-    }
     function confirm() {
-      nextStep();
+      $.ajax( {
+        url: "{{ route( 'reservation.confirm', ['id'=>$data['schedule']->id] ) }}",
+        type: 'POST',
+        data: {
+          _token: "{{ csrf_token() }}",
+          email: $( "#login-email" )[0].value,
+          schedule_id: {{ $data['schedule']->id }}
+        },
+        dataType: 'JSON',
+        success: function ( data ) {
+          if ( data.success ) {
+            reservation_id = data.reservation_id;
+            nextStep();
+          }
+          else {
+            alert( data.message );
+          }
+        }
+      } );
     }
     function verify() {
-      nextStep();
+      $.ajax( {
+        url: "{{ route( 'reservation.verify', ['id'=>$data['schedule']->id] ) }}",
+        type: 'POST',
+        data: {
+          _token: "{{ csrf_token() }}",
+          reservation_id: reservation_id,
+          verification: $( "#verification-token" )[0].value
+        },
+        dataType: 'JSON',
+        success: function ( data ) {
+          if ( data.success ) {
+            nextStep();
+          }
+          else {
+            alert( data.message );
+          }
+        }
+      } );
     }
   </script>
 @endsection
@@ -116,24 +149,10 @@
                 </div>
                 <div class="col col-md-6 col-xs-12 right-col">
                   <h3 align="center">Belum memiliki akun <strong>DokterNet</strong></h3>
+                  <p align="center">Silakan mendaftar dan login setelah melakukan pendaftaran</p>
                   <hr style="width: 75%">
                   <div class="card-box">
-                    <div class="form-group">
-                      <input type="text" id="register-first-name" class="form-control" placeholder="Nama Depan">
-                    </div>
-                    <div class="form-group">
-                      <input type="text" id="register-last-name" class="form-control" placeholder="Nama Belakang">
-                    </div>
-                    <div class="form-group">
-                      <input type="text" id="register-email" class="form-control" placeholder="Email">
-                    </div>
-                    <div class="form-group">
-                      <input type="password" id="register-password" class="form-control" placeholder="Kata sandi">
-                    </div>
-                    <div class="form-group">
-                      <input type="password" id="register-re-password" class="form-control" placeholder="Tulis ulang kata sandi">
-                    </div>
-                    <a class="btn btn-block btn-primary" onclick="register()">Daftar</a>
+                    <a class="btn btn-block btn-primary" href="{{ route( 'patient.register' ) }}" target="_blank">Daftar</a>
                   </div>
                 </div>
               </div>
@@ -144,7 +163,6 @@
                   <h3 class="panel-title">Identitas Dokter</h3>
                 </div>
                 <div class="panel-body">
-                  <p><strong>Nama:</strong> {{ $data['schedule']->doctor == null ? "" : $data['schedule']->doctor->name }}</p>
                   <p><strong>Nama:</strong> {{ $data['schedule']->doctor == null ? "" : $data['schedule']->doctor->name }}</p>
                   <p><strong>Email:</strong> {{ $data['schedule']->doctor == null ? "" : $data['schedule']->doctor->email }}</p>
                   <p><strong>No. HP:</strong> {{ $data['schedule']->doctor == null ? "" : $data['schedule']->doctor->mobile }}</p>

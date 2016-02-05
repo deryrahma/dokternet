@@ -68,7 +68,7 @@
 					{!! Form::close() !!}
 				</div>
 			</div>
-			<div class="col-xs-12 col-md-6">
+			<!-- <div class="col-xs-12 col-md-6">
 				<div class="panel home-panel" style="padding: 20px 30px 30px" align="center">
 					<ul class="nav nav-tabs">
 						<li class="active"><a href="#location" data-toggle="tab">Lokasi</a></li>
@@ -87,7 +87,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> -->
 		</div>
 	</div>
 </div>

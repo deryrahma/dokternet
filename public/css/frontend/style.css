@@ -75,14 +75,26 @@ html, body {
     background: #171b20 none repeat scroll 0 0;
 }
 body{
-    background-color: #F1F1F1;
+    /*background-color: #F1F1F1;*/
+    background-attachment: scroll;
+    background-color: #ffffff;
+    background-image: url('../../img/bg.png');
+    background-position: left top;
+    background-repeat: repeat;
     font-family: 'Roboto', sans-serif;
+}
+body .main-page{
+    padding-top: 10px;
+}
+body .main-page-content{
+    box-shadow:  0 10px 0 rgba(255, 255, 255, 0.9) inset, 0 10px 15px rgba(0, 0, 0, 0.3);
 }
 .dokternet-bg-yellow{
     background-color: #f6bb19;
     color: #ffffff;
     border-color: #f6bb19;
 }
+
 section .container{
     background-color: #F7F8FA;
 }
@@ -94,7 +106,7 @@ section .home-page {
     position: relative;
     background-repeat: no-repeat;
     background-size: cover;
-    box-shadow:  0 3px 0 rgba(255, 255, 255, 0.3) inset, 0 2px 3px rgba(0, 0, 0, 0.2);
+    /*box-shadow:  0 3px 0 rgba(255, 255, 255, 0.3) inset, 0 2px 3px rgba(0, 0, 0, 0.2);*/
 }
 section .home-page::after{
     background: rgba(8, 108, 163, 0.7) none repeat scroll 0 0;
@@ -173,8 +185,8 @@ section .home-page .home-content{
     background-color: #083B46;
     color: #ffffff;
     font-family: 'Roboto', sans-serif;
-    bottom: 0;
     
+    position: absolute;
     right: 0;
     width: 100%;
 
@@ -206,4 +218,67 @@ section .home-page .home-content{
     background-color: #083741;
     text-align: center;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+.footer .list-social {
+    font-size: 30px;
+    padding-top: 2px;
+    margin-bottom: 0px;
+}
+
+.search-bg{
+    background-image: url('../../img/blue-bg.jpg');
+    background-color: #1B8AF3;
+    background-position: center top;
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.search-bg::after{
+    background: rgba(8, 108, 163, 0.5) none repeat scroll 0 0;
+    content: "";
+    height: 100%;
+    left: 0;
+    top: 0;
+    width: 100%;
+    position: absolute;
+}
+.search-bg form{
+    position: relative;
+    z-index: 100;
+    padding-top: 10px;
+}
+.search-bg form label{
+    color: #ffffff;
+}
+
+.search-bg form .select2-container--default .select2-selection--single{
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
+}
+.search-bg form .select2-container .select2-selection--single {
+    height: 34px;
+}
+.section-search-result{
+    font-family: 'Roboto', sans-serif;
+}
+.section-search-result ul.list-search-result{
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+}
+.section-search-result ul.list-search-result .name{
+    padding: 0px;
+    margin: 0px;
+    font-size: 15px;
+}
+.section-search-result ul.list-search-result .search-doctor-detail {
+    color: #4c4c4c;
+}
+.section-search-result ul.list-search-result .search-doctor-detail .speciality{
+    font-size: 12px;
+    line-height: 12px;
+    font-weight: 700;
+}
+.section-search-result ul.list-search-result .search-doctor-detail .address{
+    font-size: 12px;
 }

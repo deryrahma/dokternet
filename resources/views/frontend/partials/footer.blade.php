@@ -1,41 +1,44 @@
 <footer class="footer">
 	<div class="container">
-		<div class="col-xs-9 bottom-menu">
-			<ul>
-				@foreach( $data['article'] as $row )
-				<li>
-					<a href="{!! route('home.article.show',[urlencode($row->name)]) !!}">
-						{!! $row->name !!}
-					</a>
-				</li>
-				@endforeach
-			</ul>
-				
-		</div>
-		<div class="col-xs-3 pull-right">
-			<div >
-				<ul class="list-inline">
+		<div class="row">
+			<div class="col-xs-9 bottom-menu">
+				<ul>
+					@foreach( $data['article'] as $row )
 					<li>
-						<a href="#"><i class="fa fa-facebook-square"></i></a>
+						<a href="{!! route('home.article.show',[urlencode($row->name)]) !!}">
+							{!! $row->name !!}
+						</a>
 					</li>
-					<li>
-						<a href="#"><i class="fa fa-google-plus-square"></i></a>
-					</li>
-					<li>
-						<a href="#"><i class="fa fa-twitter-square"></i></a>
-					</li>
-					<li>
-						<a href="#"><i class="fa fa-linkedin-square"></i></a>
-					</li>
+					@endforeach
 				</ul>
+					
+			</div>
+			<div class="col-xs-3 pull-right">
+				<div >
+					<ul class="list-inline list-social">
+						<li>
+							<a href="#"><i class="fa fa-facebook-square"></i></a>
+						</li>
+						<li>
+							<a href="#"><i class="fa fa-google-plus-square"></i></a>
+						</li>
+						<li>
+							<a href="#"><i class="fa fa-twitter-square"></i></a>
+						</li>
+						<li>
+							<a href="#"><i class="fa fa-linkedin-square"></i></a>
+						</li>
+					</ul>
+				</div>
 			</div>
 		</div>
-		<div class="col-md-12">
-			
-				Jl. Raya ITS, No. 3 Surabaya
-			
+		<div class="row">
+			<div class="col-md-12">
+				<small>Jl. Raya ITS, No. 3 Surabaya | Telp. (085) 747 2121 68 | admin@dokternet.com</small>
+			</div>
 		</div>
 	</div>
+	
 	<div class="footer-copyright">
 		<p style="padding-bottom: 10px">
 			<small>Copyright © 2015 PT. Dokternet Indonesia. All rights reserved. </small>

@@ -62,7 +62,7 @@ Route::group(['middleware' => 'admin'], function()
 	Route::get('admin/logout', array('as' => 'admin.logout', 'uses' => 'AdminController@logout'));
 
 	// Main dashboard
-	Route::get( 'admin/dashboard', [ 'as' => 'admin.dashboard', 'uses' => 'AdminController@index' ] );
+	Route::get( 'admin', [ 'as' => 'admin.dashboard', 'uses' => 'AdminController@index' ] );
 	// Admin previlege management
 	Route::resource( 'admin/previlege', 'AdminPrevilegeController' );
 	// Article management

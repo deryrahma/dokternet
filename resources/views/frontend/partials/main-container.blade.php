@@ -13,10 +13,10 @@
 				</div>
 				<div class="collapse navbar-collapse" id="bs-navbar">
 					<ul class="nav navbar-nav main-menu navbar-right">
-						@if(Auth::check() == false)
+						@if(Auth::check() == false or (Auth::check() and Auth::user()->roles->first()->level =='1'))
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-								Pasien <span class="caret"></span>
+								Pasien
 							</a>
 							<ul class="dropdown-menu">
 								<li><a href="{!! route( 'patient.register' ) !!}">Daftar</a></li>
@@ -25,7 +25,7 @@
 						</li>
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-								Dokter <span class="caret"></span>
+								Dokter
 							</a>
 							<ul class="dropdown-menu">
 								<li><a href="#"><i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;Daftar</a></li>
@@ -34,7 +34,7 @@
 						</li>
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-								Klinik <span class="caret"></span>
+								Klinik 
 							</a>
 							<ul class="dropdown-menu">
 								<li><a href="#"><i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;Daftar</a></li>

@@ -33,6 +33,7 @@ Route::get('patient/activate/{code}', ['as' => 'patient.activate', 'uses' => 'Pa
 
 Route::get('search', ['as' => 'search.doctor' , 'uses' => 'HomeController@search']);
 Route::get('doctor/{name}', ['as' => 'doctor.search-profile' , 'uses' => 'HomeController@searchProfile']);
+Route::get('article/{category}', ['as' => 'home.article.show', 'uses' => 'HomeController@article']);
 
 //LOGIN MANAGEMENT
 Route::get('patient/login', function(){

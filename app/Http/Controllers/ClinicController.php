@@ -5,11 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Http\Requests\ClinicUpdateRequest;
 use App\Http\Controllers\Controller;
 
 use Auth;
 use Session;
 
+use App\User;
+use App\Clinic;
 use App\ArticleCategory;
 
 class ClinicController extends Controller
@@ -46,7 +49,57 @@ class ClinicController extends Controller
         return redirect()->back();
     }
 
-    public function dashboard()
+    public function dashboard( Request $request )
+    {
+        $data = [];
+        $data['article'] = ArticleCategory::with( 'articles' )->get();
+        $data['content'] = Auth::user()->clinic;
+
+        return view( 'frontend.pages.clinic.dashboard', compact( 'data' ) );
+    }
+
+    public function update( ClinicUpdateRequest $request )
+    {
+        Clinic::where( 'user_id', Auth::user()->id )->update( [
+            'name'      => $request->name,
+            'address'   => $request->address,
+            'telephone' => $request->telephone,
+            'email'     => $request->email,
+        ] );
+
+        $data = User::find( Auth::user()->id );
+        $data->email = $request->email;
+        $data->save();
+
+        Session::flash( 'success', "Data klinik berhasil disimpan!" );
+        return redirect()->route( 'clinic.dashboard' );
+    }
+
+    public function changePassword()
+    {
+        $data = [];
+        $data['article'] = ArticleCategory::with( 'articles' )->get();
+
+        return view( 'frontend.pages.clinic.dashboard', compact( 'data' ) );
+    }
+
+    public function doctor()
+    {
+        $data = [];
+        $data['article'] = ArticleCategory::with( 'articles' )->get();
+
+        return view( 'frontend.pages.clinic.dashboard', compact( 'data' ) );
+    }
+
+    public function appointment()
+    {
+        $data = [];
+        $data['article'] = ArticleCategory::with( 'articles' )->get();
+
+        return view( 'frontend.pages.clinic.dashboard', compact( 'data' ) );
+    }
+
+    public function report()
     {
         $data = [];
         $data['article'] = ArticleCategory::with( 'articles' )->get();

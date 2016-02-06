@@ -2,7 +2,7 @@
 
 @section( 'content' )
   <div class="container">
-    <div class="row" style="margin-top: 30px">
+    <div class="row" style="margin: 30px">
       <div class="col-xs-12 col-md-6 col-md-offset-6">
         <div class="panel panel-info" style="padding: 20px 30px 30px">
           <h2>Login Klinik</h2>

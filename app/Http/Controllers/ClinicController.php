@@ -80,7 +80,36 @@ class ClinicController extends Controller
         $data = [];
         $data['article'] = ArticleCategory::with( 'articles' )->get();
 
-        return view( 'frontend.pages.clinic.dashboard', compact( 'data' ) );
+        return view( 'frontend.pages.clinic.change-password', compact( 'data' ) );
+    }
+
+    public function postChangePassword( Request $request )
+    {
+        $old = $request->old;
+        $new = $request->new;
+        $confirm = $request->confirm;
+
+        if ( $old != "" && $new != "" && $confirm != "" ) {
+            if ( $new == $confirm ) {
+                if ( password_verify( $old, Auth::user()->password ) ) {
+                    $data = User::find( Auth::user()->id );
+                    $data->password = bcrypt( $new );
+                    $data->save();
+                    Session::flash( 'success', "Password baru berhasil disimpan!" );
+                }
+                else {
+                    Session::flash( 'failed', "Password lama salah." );
+                }
+            }
+            else {
+                Session::flash( 'failed', "Konfirmasi password baru tidak cocok." );
+            }
+        }
+        else {
+            Session::flash( 'failed', "Semua kolom harus diisi." );
+        }
+
+        return redirect()->back();
     }
 
     public function doctor()

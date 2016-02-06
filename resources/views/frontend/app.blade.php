@@ -7,12 +7,18 @@
         @include('frontend.partials.head')
     </head>
     <body>
-        @include('frontend.partials.main-container')
-        <section>
-            <div class="container">
-                @yield('content')
+        <div class="container main-page">
+            <div class="row main-page-content">
+                @include('frontend.partials.main-container')
+                <section>
+                    <div class="container">
+                        @yield('content')
+                    </div>
+                </section>
+                <div class="col-md-12">
+                    @include('frontend.partials.footer')
+                </div>
             </div>
-        </section>
-        @include('frontend.partials.footer')
+        </div>
     </body>
 </html>

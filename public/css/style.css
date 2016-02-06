@@ -5,3 +5,34 @@
 .login-box-body{
 	min-height: 200px;
 }
+
+.skin-blue .main-header .navbar{
+	background-color: #FFFFFF;
+	color: #707070;
+}
+.skin-blue .main-header .logo{
+	background-color: #383C48;
+	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12)
+}
+.skin-blue .main-header .navbar .nav > li > a {
+	color: #707070;
+}
+
+.skin-blue .main-header .navbar .nav > li > a:hover, .skin-blue .main-header .navbar .nav > li > a:active, .skin-blue .main-header .navbar .nav > li > a:focus, .skin-blue .main-header .navbar .nav .open > a, .skin-blue .main-header .navbar .nav .open > a:hover, .skin-blue .main-header .navbar .nav .open > a:focus, .skin-blue .main-header .navbar .nav > .active > a{
+	background-color: #383C48;
+	color: #FFFFFF;
+}
+.skin-blue .wrapper, .skin-blue .main-sidebar, .skin-blue .left-side{
+	background-color: #2D323E;
+}
+.skin-blue .sidebar-menu > li:hover > a, .skin-blue .sidebar-menu > li.active > a{
+	background: #039BE5 none repeat scroll 0 0;
+    border-left-color: #fff;
+    color: #fff;
+}
+.skin-blue .main-header .navbar .sidebar-toggle{
+	/*color: #039BE5;*/
+}
+.main-header .sidebar-toggle{
+	background-color: #039BE5;
+}

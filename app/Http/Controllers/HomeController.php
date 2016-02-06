@@ -29,18 +29,22 @@ class HomeController extends Controller
     public function search(Request $request)
     {
         $data = array();
-        $data['city'] = urldecode($request->input('city'));
-        $data['specialization'] = urldecode($request->input('specialization'));
+        $data['article'] = ArticleCategory::with( 'articles')->get();
+        $data['city'] = \App\City::all();
+        $data['specialization'] = \App\Specialization::all();
+
+        $data['city_k'] = urldecode($request->input('city'));
+        $data['specialization_k'] = urldecode($request->input('specialization'));
         $data['keyword'] = urldecode($request->input('keyword'));
 
-        $data['city_obj'] = \App\City::where('name','like','%'.$data['city'].'%')->lists('id');
+        $data['city_obj'] = \App\City::where('name','like','%'.$data['city_k'].'%')->lists('id');
 
-        $result = \App\Specialization::where('name','like','%'.$data['specialization'].'%')
+        $result = \App\Specialization::where('name','like','%'.$data['specialization_k'].'%')
             ->whereHas('doctors', function($query) use($data){
                 $query->whereIn('city_id', $data['city_obj'])
-                    ->where('name','like', $data['keyword']);
+                    ->where('name','like', '%'.$data['keyword'].'%');
             })->with('doctors')->get();
-        $data = array();
+        
         $data['article'] = ArticleCategory::with( 'articles')->get();
         $data['content'] = $result;
         return view('frontend.pages.home.search-result', compact('data'));

@@ -34,11 +34,11 @@
 						</li>
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-								Klinik 
+								Klinik
 							</a>
 							<ul class="dropdown-menu">
 								<li><a href="#"><i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;Daftar</a></li>
-								<li><a href="#"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;Masuk</a></li>
+								<li><a href="{{ route( 'clinic.login' ) }}"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;Masuk</a></li>
 							</ul>
 						</li>
 						<li class="login">
@@ -56,7 +56,7 @@
 						</li>
 						@endif
 					</ul>
-					
+
 				</div>
 			</div>
 		</header>

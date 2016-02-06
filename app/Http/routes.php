@@ -81,6 +81,12 @@ Route::group(['middleware' => 'admin'], function()
 	Route::resource('admin/doctor', 'DoctorAdminController');
 });
 
+Route::get( 'clinic/login', array( 'as' => 'clinic.login', 'uses' => 'ClinicController@login' ) );
+Route::post( 'clinic/login', array( 'as' => 'clinic.login.post', 'uses' => 'ClinicController@postLogin' ) );
+Route::group( ['middleware' => 'clinic'], function() {
+	Route::get( 'clinic/dashboard', array( 'as' => 'clinic.dashboard', 'uses' => 'ClinicController@dashboard' ) );
+} );
+
 // RESERVATION
 Route::get( 'reservation/{id}', array( 'as' => 'reservation.schedule', 'uses' => 'ReservationController@schedule' ) );
 Route::get( 'reservation/{id}/book', array( 'as' => 'reservation.book', 'uses' => 'ReservationController@book' ) );

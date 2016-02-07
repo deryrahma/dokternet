@@ -42,7 +42,7 @@
                     <div class="box-body">
                         <form method="get" action="{!! route('admin.doctor.index') !!}">
                             <div class="form-group">
-                                <label class="form-label" for="gender_id">Provinsi</label>
+                                <label class="form-label" for="province_id">Provinsi</label>
                                 <?php 
                                     $arr_Province = array();
                                     //$arr_Parent['0'] = "Tidak Ada";
@@ -54,7 +54,7 @@
                                 {!! Form::select('province_id', $arr_Province, null, array('class' => 'form-control')) !!}
                             </div>
                             <div class="form-group">
-                                <label class="form-label" for="gender_id">Kota</label>
+                                <label class="form-label" for="city_id">Kota</label>
                                 <?php 
                                     $arr_City = array();
                                     //$arr_Parent['0'] = "Tidak Ada";
@@ -66,7 +66,7 @@
                                 {!! Form::select('city_id', $arr_City, null, array('class' => 'form-control')) !!}
                             </div>
                             <div class="form-group">
-                                <label class="form-label" for="gender_id">Spesialisasi</label>
+                                <label class="form-label" for="specialization_id">Spesialisasi</label>
                                 <?php 
                                     $arr_Specialization = array();
                                     //$arr_Parent['0'] = "Tidak Ada";
@@ -78,7 +78,7 @@
                                 {!! Form::select('specialization_id', $arr_Specialization, null, array('class' => 'form-control')) !!}
                             </div>
                             <div class="form-group">
-                                <label class="form-label" for="parent_id">Status</label>
+                                <label class="form-label" for="verified">Status</label>
                                 {!! Form::select('verified', array('0' => 'Belum diverifikasi', '1' => 'Sudah diverifikasi'), $data['verified'], array('class' => 'form-control')) !!}
                             </div>
                             <div class="box-footer">

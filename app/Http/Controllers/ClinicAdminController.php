@@ -37,7 +37,7 @@ class ClinicAdminController extends Controller
             
         } else
         {
-            $data['content'] = //bingung
+            $data['content'] = \App\Clinic::where('city_id', $city_id)->get();
             $data['province_id'] = $province_id;
             $data['city_id'] = $city_id;
         } 
@@ -75,7 +75,7 @@ class ClinicAdminController extends Controller
         //
         $data = array();
         
-        $data['user_id'] = 1;
+        $data['user_id'] = 4;
         $data['city_id'] = $request->get('city_id');
         $data['name'] = $request->get('name');
         $data['address'] = $request->get('address');
@@ -129,7 +129,7 @@ class ClinicAdminController extends Controller
         //
         $data = array();
         
-        $data['user_id'] = 1;
+        $data['user_id'] = 4;
         $data['city_id'] = $request->get('city_id');
         $data['name'] = $request->get('name');
         $data['address'] = $request->get('address');

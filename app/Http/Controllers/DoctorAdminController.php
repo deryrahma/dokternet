@@ -41,7 +41,7 @@ class DoctorAdminController extends Controller
             $data['verified'] = null;
         } else
         {
-            $data['content'] = //bingung
+            $data['content'] = \App\Doctor::where('city_id', $city_id)->where('specialization_id', $specialization_id)->where('verified', $verified)->get();
             $data['province_id'] = $province_id;
             $data['city_id'] = $city_id;
             $data['specialization_id'] = $specialization_id;
@@ -94,7 +94,7 @@ class DoctorAdminController extends Controller
         $data['telephone'] = $request->get('telephone');
         
         $hasil = \App\Doctor::create($data);
-        Session::flash('success', "Data berhasil ditambahkan");
+        Session::flash('success', "Data dokter berhasil ditambahkan");
         return redirect()->route('admin.doctor.index');
     }
 
@@ -152,7 +152,7 @@ class DoctorAdminController extends Controller
         
         $hasil = \App\Doctor::find($id);
         $hasil->update($data);
-        Session::flash('success', "Data berhasil diperbarui");
+        Session::flash('success', "Data dokter berhasil diperbarui");
         return redirect()->route('admin.doctor.index');
     }
 
@@ -168,7 +168,7 @@ class DoctorAdminController extends Controller
         $data = \App\Doctor::find($id);
         //$data->users()->detach();
         $data->delete();
-        Session::flash('success', "Data berhasil dihapus");
+        Session::flash('success', "Data dokter berhasil dihapus");
         return redirect()->route('admin.doctor.index');
     }
 

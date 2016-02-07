@@ -87,6 +87,7 @@ class CreateTables extends Migration
             $table->integer( 'specialization_id' )->unsigned();
             $table->integer( 'city_id' )->unsigned();
             $table->string( 'name', 50 );
+            $table->string( 'photo', 150 );
             $table->string( 'practice_time' );
             $table->text( 'address' );
             $table->float( 'latitude' );

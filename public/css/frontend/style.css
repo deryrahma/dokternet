@@ -260,6 +260,10 @@ section .home-page .home-content{
 }
 .section-search-result{
     font-family: 'Roboto', sans-serif;
+    padding: 10px;
+}
+.section-search-result li{
+
 }
 .section-search-result ul.list-search-result{
     list-style-type: none;
@@ -281,4 +285,28 @@ section .home-page .home-content{
 }
 .section-search-result ul.list-search-result .search-doctor-detail .address{
     font-size: 12px;
+}
+
+.search-result-image-doctor{
+    height: 170px;
+}
+.search-result-image-doctor img{
+    height: auto;
+    margin-bottom: 10px;
+    max-height: 170px;
+    /*max-width: 80%;*/
+}
+
+.search-profile{
+    padding-top: 10px;
+    background-color: #F1F1F2;
+}
+
+ul.list-rating {
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+}
+ul.list-rating li{
+    padding: 0px;
 }

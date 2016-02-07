@@ -73,18 +73,26 @@
 				@if($specialization->doctors->count() > 0)
 				@foreach($specialization->doctors as $doctor)
 				<li>
-					<h3 class="name">
-					<a href="{!! route('doctor.search-profile', urlencode($doctor->name)) !!}">
-						{!! $doctor->name !!}
-					</a>
-					<div class="search-doctor-detail">
-						<div class="speciality">
-							{!! $specialization->name !!}
-						</div>
-						<div class="address">
-							{!! $doctor->address !!}
+					<div class="col-md-2">
+						<div class="search-result-image-doctor">
+							<img src="{!! asset('data/doctor/'.$doctor->photo) !!}" class="img-responsive img-thumbnail">
 						</div>
 					</div>
+					<div class="col-md-10">
+						<h3 class="name">
+						<a href="{!! route('doctor.search-profile', urlencode($doctor->name)) !!}">
+							{!! $doctor->name !!}
+						</a>
+						<div class="search-doctor-detail">
+							<div class="speciality">
+								{!! $specialization->name !!}
+							</div>
+							<div class="address">
+								{!! $doctor->address !!}
+							</div>
+						</div>	
+					</div>
+					
 					
 				</li>
 				@endforeach

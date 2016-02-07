@@ -52,6 +52,7 @@ html, body {
     
     color: #086CA3;
     text-decoration: none;
+    border-bottom: 1px solid #C8C8CC;
 }
 .main-navbar a{
     color: #086CA3;
@@ -300,6 +301,14 @@ section .home-page .home-content{
 .search-profile{
     padding-top: 10px;
     background-color: #F1F1F2;
+    font-family: 'Roboto', sans-serif;
+}
+.search-profile .image{
+    padding-top: 20px;
+}
+.search-profile blockquote{
+    font-size: 12px;
+    padding: 5px;
 }
 
 ul.list-rating {
@@ -309,4 +318,14 @@ ul.list-rating {
 }
 ul.list-rating li{
     padding: 0px;
+}
+.search-profile .lead-text{
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.blue-dokternet{
+    color: #086CA3;
+}
+.schedule-practice{
+    font-size: 11px;
 }

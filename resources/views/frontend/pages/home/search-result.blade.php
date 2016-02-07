@@ -75,7 +75,11 @@
 				<li>
 					<div class="col-md-2">
 						<div class="search-result-image-doctor">
+							@if(File::exists('data/doctor/'.$doctor->photo) and !empty($doctor->photo))
 							<img src="{!! asset('data/doctor/'.$doctor->photo) !!}" class="img-responsive img-thumbnail">
+							@else
+							<img src="{!! asset('img/doctor.png') !!}" class="img-responsive img-thumbnail">
+							@endif
 						</div>
 					</div>
 					<div class="col-md-10">

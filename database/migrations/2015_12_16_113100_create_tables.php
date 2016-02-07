@@ -86,9 +86,12 @@ class CreateTables extends Migration
             $table->integer( 'user_id' );
             $table->integer( 'specialization_id' )->unsigned();
             $table->integer( 'city_id' )->unsigned();
+            $table->string( 'registration_number', 100 );
+            $table->integer('registration_year');
             $table->string( 'name', 50 );
             $table->string( 'photo', 150 );
             $table->string( 'practice_time' );
+            $table->text( 'description' );
             $table->text( 'address' );
             $table->float( 'latitude' );
             $table->float( 'longitude' );
@@ -100,6 +103,12 @@ class CreateTables extends Migration
             $table->rememberToken();
             $table->timestamps();
         } );
+        Schema::create('doctor_educations', function($table){
+            $table->increments('id');
+            $table->integer('doctor_id');
+            $table->string('name');
+            $table->integer('year');
+        });
 
         Schema::create( 'specialization_category', function( Blueprint $table ) {
             $table->increments( 'id' );
@@ -311,5 +320,6 @@ class CreateTables extends Migration
         Schema::dropIfExists( 'clinic_patient' );
         Schema::dropIfExists( 'doctor_specialization' );
         Schema::dropIfExists( 'specialization_category' );
+        Schema::dropIfExists( 'doctor_educations' );
     }
 }

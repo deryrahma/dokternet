@@ -65,9 +65,10 @@ class PatientTableSeeder extends Seeder
                 'verified' => '1',
                 'telephone' => '0315998314'
             ]);
-        \App\Doctor::create( [
+        $doctor = \App\Doctor::create( [
             'user_id'   => $data->id,
             'city_id'   => 1,
+            'specialization_id' => '1',
             'name'      => 'dr. Joko Lianto',
             'address'   => 'Kompleks Poliklinik Kampus ITS Jl. Arif Rahman Hakim Surabaya',
             'latitude'  => '-7.2902946',
@@ -75,5 +76,11 @@ class PatientTableSeeder extends Seeder
             'telephone' => $data->telephone
         ] );
         $data->roles()->attach(2);
+        $doctor->clinics()->attach(1);
+        \App\DoctorEducation::create([
+            'doctor_id' => $doctor->id,
+            'year'  => '2016',
+            'name'  => 'S1 Teknik Informatika ITS'
+            ]);
     }
 }

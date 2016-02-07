@@ -112,7 +112,7 @@
                                             {!! $row->email !!}
                                         </td>
                                         <td>
-                                            
+                                            <a href="{!! route('admin.doctor.show', [$row->id]) !!}" class="fa fa-eye"></a>
                                                 <a href="{!! route('admin.doctor.edit',[$row->id]) !!}" class="fa fa-pencil-square-o"></a>
                                             
                                                 <a href="javascript:void(0);" onclick="deleteModal(this)" data-href="{!! route('admin.doctor.delete',[$row->id]) !!}" class="fa fa-trash-o"></a>

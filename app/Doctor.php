@@ -22,6 +22,9 @@ class Doctor extends Model implements AuthenticatableContract,
         'user_id',
     	'specialization_id',
     	'city_id',
+        'registration_number',
+        'registration_year',
+        'description',
     	'name',
     	'address',
     	'latitude',
@@ -47,7 +50,10 @@ class Doctor extends Model implements AuthenticatableContract,
     }
 
     public function reviews() {
-    	return $this->hasMany( 'App\Review' );
+        return $this->hasMany( 'App\Review' );
+    }
+    public function doctorEducation() {
+        return $this->hasMany( 'App\DoctorEducation' );
     }
 
     public function recommendations() {

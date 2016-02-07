@@ -106,7 +106,9 @@ class DoctorAdminController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = array();
+        $data['content'] = \App\Doctor::find($id);
+        return view('pages.admin.doctor.show', compact('data'));
     }
 
     /**
@@ -168,5 +170,21 @@ class DoctorAdminController extends Controller
         $data->delete();
         Session::flash('success', "Data berhasil dihapus");
         return redirect()->route('admin.doctor.index');
+    }
+
+    public function education($id)
+    {
+        $doctor = \App\Doctor::find($id);
+        return view('pages.admin.doctor.education', compact('doctor'));
+    }
+    public function educationStore(Request $request, $id)
+    {
+        \App\DoctorEducation::create([
+            'doctor_id' => $id,
+            'year' => $request->input('year'),
+            'name' => $request->input('name')
+            ]);
+        Session::flash('success', "Data pendidikan berhasil ditambahkan.");
+        return redirect()->route('admin.doctor.show', [$id]);
     }
 }

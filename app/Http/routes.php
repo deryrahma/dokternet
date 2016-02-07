@@ -84,6 +84,8 @@ Route::group(['middleware' => 'admin'], function()
 	// Doctor management
 	Route::get('admin/doctor/{id}/delete', array('as' => 'admin.doctor.delete', 'uses' => 'DoctorAdminController@destroy'));
 	Route::resource('admin/doctor', 'DoctorAdminController');
+	Route::get('admin/doctor/{id}/education',array('as' => 'admin.doctor.education.create', 'uses' => 'DoctorAdminController@education'));
+	Route::post('admin/doctor/{id}/education',array('as' => 'admin.doctor.education.store', 'uses' => 'DoctorAdminController@educationStore'));
 });
 
 Route::get( 'clinic/login', array( 'as' => 'clinic.login', 'uses' => 'ClinicController@login' ) );

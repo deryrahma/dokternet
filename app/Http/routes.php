@@ -78,8 +78,8 @@ Route::group(['middleware' => 'admin'], function()
 	Route::resource('admin/clinic', 'ClinicAdminController');
 	
 	// Add Doctor from Clinic management
-	Route::get('admin/clinic/doctor/{id}/delete', array('as' => 'admin.clinic.doctor.delete', 'uses' => 'DoctorAtClinicAdminController@destroy'));
-	Route::resource('admin/clinic/doctor', 'DoctorAtClinicAdminController');
+	//Route::get('admin/clinic/doctor/{id}/delete', array('as' => 'admin.clinic.doctor.delete', 'uses' => 'DoctorAtClinicAdminController@destroy'));
+	//Route::resource('admin/clinic/doctor', 'DoctorAtClinicAdminController');
 
 	// Doctor management
 	Route::get('admin/doctor/{id}/delete', array('as' => 'admin.doctor.delete', 'uses' => 'DoctorAdminController@destroy'));

@@ -99,6 +99,41 @@ class ClinicAdminController extends Controller
     public function show($id)
     {
         //
+        $province_id = Input::get('province_id');
+
+        $city_id = Input::get('city_id');
+
+        $specialization_id = Input::get('specialization_id');
+        
+        $verified = Input::get('verified');
+
+        $data = array();
+
+        $data['content'] = \App\Clinic::find($id);
+
+
+        if(empty($province_id) && empty($city_id) && empty($specialization_id) && empty($verified))
+        {
+            
+            $data['content_doctor'] = \App\Doctor::all();
+            $data['province_id'] = null;
+            $data['city_id'] = null;
+            $data['specialization_id'] = null;
+            $data['verified'] = null;
+        } else
+        {
+            $data['content_doctor'] = \App\Doctor::where('city_id', $city_id)->where('specialization_id', $specialization_id)->where('verified', $verified)->get();
+            $data['province_id'] = $province_id;
+            $data['city_id'] = $city_id;
+            $data['specialization_id'] = $specialization_id;
+            $data['verified'] = $verified;
+        }
+
+        
+        $data['list_province'] = \App\Province::lists('name','id');
+        $data['list_city'] = \App\City::lists('name','id');
+        $data['list_specialization'] = \App\Specialization::lists('name','id');
+        return view('pages.admin.clinic.show', compact('data'));
     }
 
     /**

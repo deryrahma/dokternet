@@ -38,5 +38,25 @@ class PatientTableSeeder extends Seeder
                 'telephone' => '0312345'
             ]);
         $data->roles()->attach(3);
+
+        $data = \App\User::create([
+                'email' => 'medcen@email.com',
+                'password' => Hash::make('1234'),
+                'enabled' => '1',
+                'verified' => '1',
+                'telephone' => '0315998314'
+            ]);
+        \App\Clinic::create( [
+            'user_id'   => $data->id,
+            'city_id'   => 1,
+            'name'      => 'Medical Center ITS',
+            'address'   => 'Kompleks Poliklinik Kampus ITS Jl. Arif Rahman Hakim Surabaya',
+            'latitude'  => '-7.2902946',
+            'longitude' => '112.7928178',
+            'telephone' => $data->telephone,
+            'email'     => $data->email,
+            'password'  => $data->password,
+        ] );
+        $data->roles()->attach(4);
     }
 }

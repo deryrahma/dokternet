@@ -81,6 +81,18 @@ Route::group(['middleware' => 'admin'], function()
 	Route::resource('admin/doctor', 'DoctorAdminController');
 });
 
+Route::get( 'clinic/login', array( 'as' => 'clinic.login', 'uses' => 'ClinicController@login' ) );
+Route::post( 'clinic/login', array( 'as' => 'clinic.login.post', 'uses' => 'ClinicController@postLogin' ) );
+Route::group( ['middleware' => 'clinic'], function() {
+	Route::get( 'clinic/dashboard', array( 'as' => 'clinic.dashboard', 'uses' => 'ClinicController@dashboard' ) );
+	Route::put( 'clinic/update', array( 'as' => 'clinic.update', 'uses' => 'ClinicController@update' ) );
+	Route::get( 'clinic/change-password', array( 'as' => 'clinic.change-password', 'uses' => 'ClinicController@changePassword' ) );
+	Route::post( 'clinic/change-password', array( 'as' => 'clinic.change-password.save', 'uses' => 'ClinicController@postChangePassword' ) );
+	Route::get( 'clinic/doctor', array( 'as' => 'clinic.doctor', 'uses' => 'ClinicController@doctor' ) );
+	Route::get( 'clinic/appointment', array( 'as' => 'clinic.appointment', 'uses' => 'ClinicController@appointment' ) );
+	Route::get( 'clinic/report', array( 'as' => 'clinic.report', 'uses' => 'ClinicController@report' ) );
+} );
+
 // RESERVATION
 Route::get( 'reservation/{id}', array( 'as' => 'reservation.schedule', 'uses' => 'ReservationController@schedule' ) );
 Route::get( 'reservation/{id}/book', array( 'as' => 'reservation.book', 'uses' => 'ReservationController@book' ) );

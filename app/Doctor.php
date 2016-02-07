@@ -26,8 +26,6 @@ class Doctor extends Model implements AuthenticatableContract,
     	'address',
     	'latitude',
     	'longitude',
-    	'email',
-    	'password',
     	'mobile',
     	'telephone',
     	'verified',
@@ -66,6 +64,9 @@ class Doctor extends Model implements AuthenticatableContract,
 
     public function doctor_clinic() {
     	return $this->hasMany( 'App\DoctorClinic' );
+    }
+    public function clinics(){
+        return $this->belongsToMany('App\Clinic','doctor_clinic','doctor_id','clinic_id');
     }
 
     public function activateAccount($code)

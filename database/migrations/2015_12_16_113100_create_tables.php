@@ -16,7 +16,15 @@ class CreateTables extends Migration
             $table->increments( 'id' );
             $table->string( 'name', 30 );
         } );
-
+        Schema::create( 'days', function( Blueprint $table ) {
+            $table->increments( 'id' );
+            $table->string( 'name', 30 );
+        } );
+        Schema::create( 'day_doctor', function( Blueprint $table ) {
+            $table->increments( 'id' );
+            $table->integer( 'day_id');
+            $table->integer( 'doctor_id');
+        } );
         Schema::create( 'city', function( Blueprint $table ) {
             $table->increments( 'id' );
             $table->integer( 'province_id' )->unsigned();
@@ -79,6 +87,8 @@ class CreateTables extends Migration
             $table->integer( 'specialization_id' )->unsigned();
             $table->integer( 'city_id' )->unsigned();
             $table->string( 'name', 50 );
+            $table->string( 'photo', 150 );
+            $table->string( 'practice_time' );
             $table->text( 'address' );
             $table->float( 'latitude' );
             $table->float( 'longitude' );
@@ -281,6 +291,8 @@ class CreateTables extends Migration
         Schema::dropIfExists( 'schedule' );
         Schema::dropIfExists( 'doctor_clinic' );
         Schema::dropIfExists( 'doctor' );
+        Schema::dropIfExists( 'days' );
+        Schema::dropIfExists( 'day_doctor' );
         Schema::dropIfExists( 'specialization' );
         Schema::dropIfExists( 'review' );
         Schema::dropIfExists( 'recommendation' );

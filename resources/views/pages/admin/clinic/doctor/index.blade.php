@@ -29,7 +29,7 @@
 @endsection
 
 @section( 'content' )
-    @include( 'pages.admin.clinic.header' )
+    @include( 'pages.admin.clinic.doctor.header' )
     <section class="content">
         @include( 'errors.session' )
         <div class="row">
@@ -37,10 +37,10 @@
                 <div class="box">
 
                     <div class="box-header">
-                        <h3 class="box-title">Daftar Klinik &nbsp;&nbsp;&nbsp; <a class="btn btn-primary btn-sm" href="{!! route('admin.clinic.create') !!}">Tambah Klinik</a></h3>                                    
+                        <h3 class="box-title">Daftar Dokter &nbsp;&nbsp;&nbsp; <a class="btn btn-primary btn-sm" href="{!! route('admin.clinic.doctor.create') !!}">Tambah Dokter</a></h3>                                    
                     </div>
                     <div class="box-body">
-                        <form method="get" action="{!! route('admin.clinic.index') !!}">
+                        <form method="get" action="{!! route('admin.clinic.doctor.index') !!}">
                             <div class="form-group">
                                 <label class="form-label" for="gender_id">Provinsi</label>
                                 <?php 
@@ -54,7 +54,7 @@
                                 {!! Form::select('province_id', $arr_Province, null, array('class' => 'form-control')) !!}
                             </div>
                             <div class="form-group">
-                                <label class="form-label" for="parent_id">Kota</label>
+                                <label class="form-label" for="gender_id">Kota</label>
                                 <?php 
                                     $arr_City = array();
                                     //$arr_Parent['0'] = "Tidak Ada";
@@ -64,6 +64,22 @@
                                     } 
                                 ?>
                                 {!! Form::select('city_id', $arr_City, null, array('class' => 'form-control')) !!}
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="specialization_id">Spesialisasi</label>
+                                <?php 
+                                    $arr_Specialization = array();
+                                    //$arr_Parent['0'] = "Tidak Ada";
+
+                                    foreach ($data['list_specialization'] as $key => $value) {
+                                      $arr_Specialization[$key] = $value;
+                                    } 
+                                ?>
+                                {!! Form::select('specialization_id', $arr_Specialization, null, array('class' => 'form-control')) !!}
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="parent_id">Status</label>
+                                {!! Form::select('verified', array('0' => 'Belum diverifikasi', '1' => 'Sudah diverifikasi'), $data['verified'], array('class' => 'form-control')) !!}
                             </div>
                             <div class="box-footer">
                                 <button type="submit" class="btn btn-primary">Filter</button>
@@ -78,7 +94,6 @@
                                     <th>No. Telepon</th>
                                     <th>Email</th>
                                     <th>Action</th>
-                                    <th>Tambah Dokter</th>
                                 </tr>
                             </thead>
                                 <tbody>
@@ -98,13 +113,13 @@
                                         </td>
                                         <td>
                                             
-                                                <a href="{!! route('admin.clinic.edit',[$row->id]) !!}" class="fa fa-pencil-square-o"></a>
+                                                <a href="{!! route('admin.clinic.doctor.edit',[$row->id]) !!}" class="fa fa-pencil-square-o"></a>
                                             
-                                                <a href="javascript:void(0);" onclick="deleteModal(this)" data-href="{!! route('admin.clinic.delete',[$row->id]) !!}" class="fa fa-trash-o"></a>
+                                                <a href="javascript:void(0);" onclick="deleteModal(this)" data-href="{!! route('admin.clinic.doctor.delete',[$row->id]) !!}" class="fa fa-trash-o"></a>
                                             
                                         </td>
                                         <td>
-                                            <a class="btn btn-warning btn-sm" href="{!! route('admin.clinic.doctor.index') !!}">Tambah Dokter</a>
+                                            <a class="btn btn-warning btn-sm" href="{!! route('admin.clinic.doctor.store') !!}">Tambahkan ke Klinik</a>
                                         </td>
                                     </tr>
                                     <?php $a++; ?>

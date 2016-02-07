@@ -88,7 +88,7 @@ class PatientAdminController extends Controller
         $data['telephone'] = $request->get('telephone');
         
         $hasil = \App\Patient::create($data);
-        Session::flash('success', "Data berhasil ditambahkan");
+        Session::flash('success', "Data pasien berhasil ditambahkan");
         return redirect()->route('admin.patient.index');
     }
 
@@ -143,7 +143,7 @@ class PatientAdminController extends Controller
         
         $hasil = \App\Patient::find($id);
         $hasil->update($data);
-        Session::flash('success', "Data berhasil diperbarui");
+        Session::flash('success', "Data pasien berhasil diperbarui");
         return redirect()->route('admin.patient.index');
     }
 
@@ -159,7 +159,7 @@ class PatientAdminController extends Controller
         $data = \App\Patient::find($id);
         //$data->users()->detach();
         $data->delete();
-        Session::flash('success', "Data berhasil dihapus");
+        Session::flash('success', "Data pasien berhasil dihapus");
         return redirect()->route('admin.patient.index');
     }
 }

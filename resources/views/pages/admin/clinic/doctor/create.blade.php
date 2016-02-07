@@ -5,11 +5,12 @@
  
                 <section class="content-header">
                     <h1>
-                        Dokter
+                        Klinik
                         <small>Administrator panel</small>
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                        <li><a href="#">Klinik</li>
                         <li class="active">Tambah Dokter</li>
                     </ol>
                 </section>
@@ -22,12 +23,12 @@
                                 </div>
                                 <div class="box-body table-responsive">
                                     @if( $data['content'] == null )
-                                        {!! BootForm::open()->action( route( 'admin.doctor.store' ) ) !!}
+                                        {!! BootForm::open()->action( route( 'admin.clinic.doctor.store' ) ) !!}
                                     @else
-                                        {!! BootForm::open()->put()->action( route( 'admin.doctor.update', [$data['content']->id] ) ) !!}
+                                        {!! BootForm::open()->put()->action( route( 'admin.clinic.doctor.update', [$data['content']->id] ) ) !!}
                                         {!! BootForm::bind( $data['content'] ) !!}
                                     @endif
-                                    @include('pages.admin.doctor.form')   
+                                    @include('pages.admin.clinic.doctor.form')   
                                     {!! BootForm::close() !!}
                                 </div>
                             </div>

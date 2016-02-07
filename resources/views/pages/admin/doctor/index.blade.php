@@ -37,7 +37,7 @@
                 <div class="box">
 
                     <div class="box-header">
-                        <h3 class="box-title">Daftar Dokter &nbsp;&nbsp;&nbsp; <a class="btn btn-primary btn-sm" href="{!! route('admin.doctor.create') !!}">Tambah Pasien</a></h3>                                    
+                        <h3 class="box-title">Daftar Dokter &nbsp;&nbsp;&nbsp; <a class="btn btn-primary btn-sm" href="{!! route('admin.doctor.create') !!}">Tambah Dokter</a></h3>                                    
                     </div>
                     <div class="box-body">
                         <form method="get" action="{!! route('admin.doctor.index') !!}">

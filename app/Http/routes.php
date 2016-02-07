@@ -31,7 +31,9 @@ Route::post('patient/post-register', ['as' => 'patient.post-register', 'uses' =>
 Route::get('patient/activate/{code}', ['as' => 'patient.activate', 'uses' => 'PatientController@activate']);
 
 
-Route::post('search', ['as' => 'search.doctor' , 'uses' => 'HomeController@search']);
+Route::get('search', ['as' => 'search.doctor' , 'uses' => 'HomeController@search']);
+Route::get('doctor/{name}', ['as' => 'doctor.search-profile' , 'uses' => 'HomeController@searchProfile']);
+Route::get('article/{category}', ['as' => 'home.article.show', 'uses' => 'HomeController@article']);
 
 //LOGIN MANAGEMENT
 Route::get('patient/login', function(){
@@ -60,7 +62,7 @@ Route::group(['middleware' => 'admin'], function()
 	Route::get('admin/logout', array('as' => 'admin.logout', 'uses' => 'AdminController@logout'));
 
 	// Main dashboard
-	Route::get( 'admin/dashboard', [ 'as' => 'admin.dashboard', 'uses' => 'AdminController@index' ] );
+	Route::get( 'admin', [ 'as' => 'admin.dashboard', 'uses' => 'AdminController@index' ] );
 	// Admin previlege management
 	Route::resource( 'admin/previlege', 'AdminPrevilegeController' );
 	// Article management
@@ -84,9 +86,24 @@ Route::group(['middleware' => 'admin'], function()
 	Route::resource('admin/doctor', 'DoctorAdminController');
 });
 
+Route::get( 'clinic/login', array( 'as' => 'clinic.login', 'uses' => 'ClinicController@login' ) );
+Route::post( 'clinic/login', array( 'as' => 'clinic.login.post', 'uses' => 'ClinicController@postLogin' ) );
+Route::group( ['middleware' => 'clinic'], function() {
+	Route::get( 'clinic/dashboard', array( 'as' => 'clinic.dashboard', 'uses' => 'ClinicController@dashboard' ) );
+	Route::put( 'clinic/update', array( 'as' => 'clinic.update', 'uses' => 'ClinicController@update' ) );
+	Route::get( 'clinic/change-password', array( 'as' => 'clinic.change-password', 'uses' => 'ClinicController@changePassword' ) );
+	Route::post( 'clinic/change-password', array( 'as' => 'clinic.change-password.save', 'uses' => 'ClinicController@postChangePassword' ) );
+	Route::get( 'clinic/doctor', array( 'as' => 'clinic.doctor', 'uses' => 'ClinicController@doctor' ) );
+	Route::get( 'clinic/appointment', array( 'as' => 'clinic.appointment', 'uses' => 'ClinicController@appointment' ) );
+	Route::get( 'clinic/report', array( 'as' => 'clinic.report', 'uses' => 'ClinicController@report' ) );
+} );
+
 // RESERVATION
 Route::get( 'reservation/{id}', array( 'as' => 'reservation.schedule', 'uses' => 'ReservationController@schedule' ) );
-
+Route::get( 'reservation/{id}/book', array( 'as' => 'reservation.book', 'uses' => 'ReservationController@book' ) );
+Route::post( 'reservation/{id}/book/login', array( 'as' => 'reservation.login', 'uses' => 'ReservationController@login' ) );
+Route::post( 'reservation/{id}/book/confirm', array( 'as' => 'reservation.confirm', 'uses' => 'ReservationController@confirm' ) );
+Route::post( 'reservation/{id}/book/verify', array( 'as' => 'reservation.verify', 'uses' => 'ReservationController@verify' ) );
 
 // Doctor management
 /*Route::get('admin/doctor-verify/{id}/delete', array('as' => 'admin.doctor-verify.delete', 'uses' => 'DoctorVerifyController@destroy'));

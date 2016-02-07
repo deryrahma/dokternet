@@ -45,7 +45,7 @@ class Doctor extends Model implements AuthenticatableContract,
     }
     public function specialization()
     {
-        return $this->belongsToMany('App\Specialization','doctor_specialization');
+        return $this->belongsTo('App\Specialization','specialization_id');
     }
 
     public function reviews() {

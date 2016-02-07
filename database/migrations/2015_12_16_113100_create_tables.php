@@ -82,8 +82,6 @@ class CreateTables extends Migration
             $table->text( 'address' );
             $table->float( 'latitude' );
             $table->float( 'longitude' );
-            $table->string( 'email', 50 );
-            $table->text( 'password' );
             $table->string( 'mobile', 20 );
             $table->string( 'telephone', 20 );
             $table->boolean( 'verified' )->default(0);
@@ -194,8 +192,9 @@ class CreateTables extends Migration
             $table->string( 'last_name', 30 );
             $table->char( 'gender', 1 );
             $table->date( 'birth_date' );
-            $table->string( 'email', 50 );
+            $table->string( 'email', 150 );
             $table->text( 'password' );
+            $table->string( 'photo' );
             $table->text( 'address' );
             $table->boolean( 'enabled' )->default(0);
             $table->boolean( 'verified' )->default(0);
@@ -298,5 +297,7 @@ class CreateTables extends Migration
         Schema::dropIfExists( 'adminmenu_role' );
         Schema::dropIfExists( 'permission_role' );
         Schema::dropIfExists( 'clinic_patient' );
+        Schema::dropIfExists( 'doctor_specialization' );
+        Schema::dropIfExists( 'specialization_category' );
     }
 }

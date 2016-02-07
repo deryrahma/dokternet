@@ -1,5 +1,5 @@
-		<header id="top" class="navbar navbar-static-top bs-docs-nav" role="banner" style="background-color: #ddd; margin: 0; padding: 0">
-			<div class="container">
+		<header id="top" class="navbar navbar-static-top bs-docs-nav" role="banner">
+			<div class="container  main-navbar">
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-navbar">
 						<span class="sr-only">Toggle navigation</span>
@@ -12,11 +12,11 @@
 					</a>
 				</div>
 				<div class="collapse navbar-collapse" id="bs-navbar">
-					<ul class="nav navbar-nav navbar-right">
-						@if(Auth::check() == false)
+					<ul class="nav navbar-nav main-menu navbar-right">
+						@if(Auth::check() == false or (Auth::check() and Auth::user()->roles->first()->level =='1'))
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-								Pasien <span class="caret"></span>
+								Pasien
 							</a>
 							<ul class="dropdown-menu">
 								<li><a href="{!! route( 'patient.register' ) !!}">Daftar</a></li>
@@ -25,7 +25,7 @@
 						</li>
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-								Dokter <span class="caret"></span>
+								Dokter
 							</a>
 							<ul class="dropdown-menu">
 								<li><a href="#"><i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;Daftar</a></li>
@@ -34,12 +34,15 @@
 						</li>
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-								Klinik <span class="caret"></span>
+								Klinik
 							</a>
 							<ul class="dropdown-menu">
 								<li><a href="#"><i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;Daftar</a></li>
-								<li><a href="#"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;Masuk</a></li>
+								<li><a href="{{ route( 'clinic.login' ) }}"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;Masuk</a></li>
 							</ul>
+						</li>
+						<li class="login">
+							<a href="{!! route( 'patient.register' ) !!}">Daftar Disini</a>
 						</li>
 						@else
 						<li class="dropdown">
@@ -53,6 +56,7 @@
 						</li>
 						@endif
 					</ul>
+
 				</div>
 			</div>
 		</header>

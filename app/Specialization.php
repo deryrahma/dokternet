@@ -13,7 +13,7 @@ class Specialization extends Model
     ];
 
     public function doctors() {
-    	return $this->belongsToMany( 'App\Doctor','doctor_specialization' );
+    	return $this->hasMany('App\Doctor','specialization_id');
     }
     public function specializationCategory(){
     	return $this->belongsTo('App\SpecializationCategory','specialization_category_id','id');

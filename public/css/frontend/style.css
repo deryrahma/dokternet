@@ -10,8 +10,10 @@
     font-weight: 700;
     src: local('Montserrat-Bold'), url({!! asset( 'css/fonts/Montserrat-Bold.woff' ) !!}) format('woff');
 }
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300);
+
 html, body {
-	font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	
 }
 .credit {
 	margin: 0 0;
@@ -36,4 +38,247 @@ html, body {
 .image-brand {
 	height: 40px;
 	padding-top: 10px;
+}
+
+/* 
+    Navbar
+*/
+.navbar{
+    margin-bottom: 0px;
+    text-transform: uppercase;
+    background-color: #F9F9F9;
+}
+.main-navbar{
+    
+    color: #086CA3;
+    text-decoration: none;
+}
+.main-navbar a{
+    color: #086CA3;
+    text-decoration: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.nav > li > a:focus, .nav > li > a:hover, .nav .open > a, .nav .open > a:focus, .nav .open > a:hover{
+    background: none;
+    border-bottom: 2px solid #086CA3;
+}
+.main-navbar .main-menu{
+    font-weight: 300;
+}
+.main-navbar .login a{
+    background: #f6bb19 none repeat scroll 0 0;
+    text-transform: uppercase;
+}
+.main-navbar li.login a:hover{
+    background: #171b20 none repeat scroll 0 0;
+}
+body{
+    /*background-color: #F1F1F1;*/
+    background-attachment: scroll;
+    background-color: #ffffff;
+    background-image: url('../../img/bg.png');
+    background-position: left top;
+    background-repeat: repeat;
+    font-family: 'Roboto', sans-serif;
+}
+body .main-page{
+    padding-top: 10px;
+}
+body .main-page-content{
+    box-shadow:  0 10px 0 rgba(255, 255, 255, 0.9) inset, 0 10px 15px rgba(0, 0, 0, 0.3);
+}
+.dokternet-bg-yellow{
+    background-color: #f6bb19;
+    color: #ffffff;
+    border-color: #f6bb19;
+}
+
+section .container{
+    background-color: #F7F8FA;
+}
+section .home-page {
+    padding-top: 20px;
+    background-image: url('../../img/home-bg.jpg');
+    background-color: #1B8AF3;
+    background-position: center top;
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /*box-shadow:  0 3px 0 rgba(255, 255, 255, 0.3) inset, 0 2px 3px rgba(0, 0, 0, 0.2);*/
+}
+section .home-page::after{
+    background: rgba(8, 108, 163, 0.7) none repeat scroll 0 0;
+    content: "";
+    height: 100%;
+    left: 0;
+    top: 0;
+    width: 100%;
+    position: absolute;
+
+}
+section .home-page .home-content{
+    position: relative;
+    z-index: 100;
+}
+.home-panel{
+    background: rgba(255, 255, 255, 0.85) none repeat scroll 0 0;
+}
+.home-panel .tab-content{
+    background: #ffffff;
+}
+.home-panel .nav-tabs > li > a {
+    border-radius: 0px;
+}
+.home-panel .nav-tabs > li.active > a, 
+.home-panel .nav-tabs > li.active > a:focus, 
+.home-panel .nav-tabs > li.active > a:hover {
+    background: #12A0B1 url("../../img/arrow-up.png") no-repeat scroll center bottom;
+    color: #ffffff;
+    border-bottom: solid 1px #ffffff;
+}
+.home-panel .nav > li a{
+    text-decoration: none;
+    color: #323232;
+}
+.home-panel .nav > li{
+    border-bottom: none;
+    display: table-cell;
+}
+.home-panel-search {
+    padding: 20px 30px 30px;
+    
+}
+.home-panel-search .select2-container--default .select2-selection--single{
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
+}
+.home-panel-search .select2-container .select2-selection--single {
+    height: 100%;
+}
+.btn-dokternet{
+
+    background: #f6bb19 none repeat scroll 0 0;
+}
+.btn-dokternet:hover{
+    background: #171b20 none repeat scroll 0 0;
+    color: #ffffff;
+}
+.btn-dokternet:hover i::after,
+{
+    background-color: #ffffff;
+}
+.btn-dokternet:hover i{
+    border-left: 1px solid #ffffff;
+}
+.btn-dokternet i::after{
+    background: #EBAD02 none repeat scroll 0 0;
+}
+.btn-dokternet i{
+    margin-left: 20px;
+    border-left: 1px solid #EBAD02;
+    padding-left: 10px;
+}
+
+.footer {
+    background-color: #083B46;
+    color: #ffffff;
+    font-family: 'Roboto', sans-serif;
+    
+    position: absolute;
+    right: 0;
+    width: 100%;
+
+    /* sementara */
+    z-index: 1000;
+}
+.footer a{
+    color: #ffffff;
+    text-decoration: none;
+}
+.footer .bottom-menu {
+    padding-top: 10px;
+}
+.footer .bottom-menu ul{
+    padding: 0px; 
+    margin: 0px;
+    list-style-type: none;
+}
+.footer .bottom-menu ul li{
+    display: inline;
+    padding-right: 15px;
+    text-transform: uppercase;
+}
+.footer .bottom-menu ul li a:hover{
+    text-decoration: underline;
+}
+.footer .footer-copyright{
+    padding-top: 10px;
+    background-color: #083741;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+.footer .list-social {
+    font-size: 30px;
+    padding-top: 2px;
+    margin-bottom: 0px;
+}
+
+.search-bg{
+    background-image: url('../../img/blue-bg.jpg');
+    background-color: #1B8AF3;
+    background-position: center top;
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.search-bg::after{
+    background: rgba(8, 108, 163, 0.5) none repeat scroll 0 0;
+    content: "";
+    height: 100%;
+    left: 0;
+    top: 0;
+    width: 100%;
+    position: absolute;
+}
+.search-bg form{
+    position: relative;
+    z-index: 100;
+    padding-top: 10px;
+}
+.search-bg form label{
+    color: #ffffff;
+}
+
+.search-bg form .select2-container--default .select2-selection--single{
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
+}
+.search-bg form .select2-container .select2-selection--single {
+    height: 34px;
+}
+.section-search-result{
+    font-family: 'Roboto', sans-serif;
+}
+.section-search-result ul.list-search-result{
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+}
+.section-search-result ul.list-search-result .name{
+    padding: 0px;
+    margin: 0px;
+    font-size: 15px;
+}
+.section-search-result ul.list-search-result .search-doctor-detail {
+    color: #4c4c4c;
+}
+.section-search-result ul.list-search-result .search-doctor-detail .speciality{
+    font-size: 12px;
+    line-height: 12px;
+    font-weight: 700;
+}
+.section-search-result ul.list-search-result .search-doctor-detail .address{
+    font-size: 12px;
 }

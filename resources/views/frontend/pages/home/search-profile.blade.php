@@ -10,10 +10,14 @@
 @section( 'content' )
 	<div class="row">
 		<div class="col-md-12 search-profile">
-			<div class="col-md-6">
+			<div class="col-md-5">
 				<div class="col-md-4">
 					<div class="image">
-						<img src="{!! asset('data/doctor/'.$data['content']->photo) !!}" class="img-responsive">
+						@if(File::exists('data/doctor/'.$data['content']->photo) and !empty($data['content']->photo))
+                            <img src="{!! asset('data/doctor/'.$data['content']->photo) !!}" class="img-responsive img-thumbnail">
+                        @else
+                            <img src="{!! asset('img/doctor.png') !!}" class="img-responsive img-thumbnail">
+                        @endif
 					</div>
 				</div>
 				<div class="col-md-8">
@@ -44,8 +48,20 @@
 							({!! $data['content']->reviews->count() !!} ulasan)
 						</p>
 					</p>
+					<p>
+						<i class="fa fa-credit-card"> </i> {!! $data['content']->registration_number !!} ({!! $data['content']->registration_year !!})
+					</p>
+					<p>
+						<i class="fa fa-envelope-o"> </i><a href="mailto:{!! $data['content']->user->email !!}"> {!! $data['content']->user->email !!}</a>
+					</p>
+					
+				</div>
+				<div class="col-md-12">
+					<p>
+						{!! $data['content']->profile !!}
+					</p>
 					<div>
-						<h4>Tempat Praktek</h4>
+						<h4 class="blue-dokternet lead-text">Tempat Praktek</h4>
 						<ul class="list-inline">
 							@foreach($data['content']->clinics as $clinic)
 							<li>
@@ -54,11 +70,13 @@
 							@endforeach
 						</ul>
 					</div>
-				</div>
-				<div class="col-md-12">
-					<h3>Kualifikasi Dokter</h3>
-					<div class="education">
-						
+					<div class="education ">
+						<h4 class="blue-dokternet lead-text">Pendidikan</h4>
+						<ol>
+							@foreach($data['content']->doctorEducation as $row)
+								<li>{!! $row->year !!} - {!! $row->name !!}</li>
+							@endforeach
+						</ol>
 					</div>
 					<div class="history_clinic">
 						
@@ -66,12 +84,20 @@
 				</div>
 			</div>
 			
-			<div class="col-md-6">
-				<table border="1" width="100%">
+			<div class="col-md-7">
+				<h4  class="blue-dokternet lead-text">
+					Jadwal Praktek
+				</h4>
+				<blockquote>
+				  <p>
+				  Pilih slot tersedia untuk melakukan perjanjian online.
+				  </p>
+				</blockquote>
+				<table class="table schedule-practice">
 			        <tbody>
 			          @for( $i = 0; $i <= 7; $i++ )
 			            <tr height="">
-			              <td class="col-md-2 col-xs-2">{{ date( "Y-m-d", strtotime( "+".$i." day" ) ) }}</td>
+			              <td class="col-md-2 col-xs-2">{{ date( "l, d M Y", strtotime( "+".$i." day" ) ) }}</td>
 			              <td class="col-md-10 col-xs-10">
 			                @foreach( $data['schedule'][$i] as $row )
 			                  <a href="{{ route( 'reservation.book', ['id' => $row->id] ) }}" class="btn btn-default" {{ ( $row->status_batal == "1" || $row->quota == 0 ) ? "disabled=disabled style=text-decoration:line-through" : '' }}>
@@ -83,7 +109,7 @@
 			            </tr>
 			          @endfor
 			        </tbody>
-			      </table>
+			    </table>
 			</div>
 		</div>
 	</div>

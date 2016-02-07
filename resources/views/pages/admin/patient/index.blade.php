@@ -46,7 +46,7 @@
                                 {!! Form::select('gender', array('L' => 'Laki-laki', 'P' => 'Perempuan'), $data['gender'], array('class' => 'form-control')) !!}
                             </div>
                             <div class="form-group">
-                                <label class="form-label" for="parent_id">Status</label>
+                                <label class="form-label" for="verified">Status</label>
                                 {!! Form::select('verified', array('0' => 'Belum diverifikasi', '1' => 'Sudah diverifikasi'), $data['verified'], array('class' => 'form-control')) !!}
                             </div>
                             <div class="box-footer">

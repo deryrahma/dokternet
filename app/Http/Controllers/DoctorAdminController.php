@@ -87,7 +87,7 @@ class DoctorAdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DoctorAdminRequest $request)
     {
         //
         $data = array();
@@ -164,7 +164,7 @@ class DoctorAdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(DoctorAdminRequest $request, $id)
     {
         $hasil = \App\Doctor::find($id);
         $hasil->day()->detach();

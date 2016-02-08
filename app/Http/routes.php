@@ -79,6 +79,12 @@ Route::group(['middleware' => 'admin'], function()
 	// Clinic management
 	Route::get('admin/clinic/{id}/delete', array('as' => 'admin.clinic.delete', 'uses' => 'ClinicAdminController@destroy'));
 	Route::resource('admin/clinic', 'ClinicAdminController');
+	// Specialization management
+	Route::get('admin/spec/{id}/delete', array('as' => 'admin.spec.delete', 'uses' => 'SpecAdminController@destroy'));
+	Route::resource('admin/spec', 'SpecAdminController');
+	// Specialization category management
+	Route::get('admin/spec-cat/{id}/delete', array('as' => 'admin.spec-cat.delete', 'uses' => 'SpecCatAdminController@destroy'));
+	Route::resource('admin/spec-cat', 'SpecCatAdminController');
 	
 	// Add Doctor from Clinic management
 	//Route::get('admin/clinic/doctor/{id}/delete', array('as' => 'admin.clinic.doctor.delete', 'uses' => 'DoctorAtClinicAdminController@destroy'));

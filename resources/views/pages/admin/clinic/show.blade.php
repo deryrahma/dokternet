@@ -49,19 +49,19 @@
                         <div class="col-md-10">
                             <h3><b>{!! $data['content']->name !!}</b></h3>
                             <p>
-                                <i>{!! $data['content']->city->name !!}</i>
+                                <h4><i>{!! $data['content']->city->name !!}</i></h4>
                             </p>
                             
                             <div>
-                                <h4><b>Alamat Klinik</h4></b>
+                                <h3><b>Alamat Klinik</h3></b>
                                 <ul class="list-inline">
-                                    <i>{!! $data['content']->address !!}</i>
+                                    <h4><i>{!! $data['content']->address !!}</i></h4>
                                 </ul>
                             </div>
                             <div>
-                                <h4><b>Kontak</b></h4>
+                                <h3><b>Kontak</b></h3>
                                 <ul class="list-inline">
-                                    <i>{!! $data['content']->telephone !!}</i>
+                                    <h4><i>{!! $data['content']->telephone !!}</i></h4>
                                 </ul>
                             </div>
                         </div>
@@ -78,7 +78,7 @@
                         <h3 class="box-title">Daftar Dokter di Klinik {!! $data['content']->name !!} &nbsp;&nbsp;&nbsp; <a class="btn btn-primary btn-sm" href="#">Tambah Dokter</a></h3>                                    
                     </div>
                     <div class="box-body">
-                        <form method="get" action="#">
+                        <form method="get" action="{!! route('admin.clinic.show') !!}">
                             <div class="form-group">
                                 <label class="form-label" for="province_id">Provinsi</label>
                                 <?php 
@@ -136,7 +136,7 @@
                             </thead>
                                 <tbody>
                                     <?php $a=0; ?>
-                                    @foreach($data['content'] as $row)
+                                    @foreach($data['content_doctor'] as $row)
                                     <tr>
                                         <td>{!! $a+1 !!}</td>
                                         <td>{!! $row->name !!}</td>

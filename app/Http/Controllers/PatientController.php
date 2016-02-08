@@ -87,7 +87,7 @@ class PatientController extends Controller
            'code' => $input['activation_code']
         ];
         // $this->sendEmail($data, $input);
-        Session::flash('success', "Cek email untuk mengaktivasi akun");
+        Session::flash('success', "Silakan periksa email anda untuk mengaktifkan akun Anda. Jika dalam kurun waktu 24 jam Anda tidak menerima email dari kami, Anda dapat menghubungi kami melalui email di <a href='mailto:support@dokternet.com'>support@dokternet.com</a>");
         
         return redirect()->route('patient.register');
     }

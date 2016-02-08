@@ -99,10 +99,13 @@ body .main-page-content{
     color: #ffffff;
     border-color: #f6bb19;
 }
-
+.dokternet-color{
+    color: #086CA3;
+}
 section .container{
     background-color: #F7F8FA;
 }
+
 section .home-page {
     padding-top: 20px;
     background-image: url('../../img/home-bg.jpg');
@@ -388,4 +391,46 @@ ul.list-rating li{
 }
 .detail-article i{
     color: #086CA3;
+}
+.register-page {
+    padding-top: 10px;
+}
+.register-page .register-panel{
+    padding: 10px;
+}
+
+
+section .register-page{
+    padding-top: 20px;
+    background-image: url('../../img/home-bg.jpg');
+    background-color: #1B8AF3;
+    background-position: center top;
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+section .register-page::after{
+    background: rgba(8, 108, 163, 0.7) none repeat scroll 0 0;
+    content: "";
+    height: 100%;
+    left: 0;
+    top: 0;
+    width: 100%;
+    position: absolute;
+
+
+}
+section .register-page .register-content{
+    position: relative;
+    z-index: 100;
+}
+
+.btn-register{
+    color: #ffffff;
+    font-weight: 700;
+    background: #f6bb19 none repeat scroll 0 0;
+}
+.btn-register:hover{
+    background: #171b20 none repeat scroll 0 0;
+    color: #ffffff;
 }

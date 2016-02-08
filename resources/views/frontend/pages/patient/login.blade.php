@@ -10,29 +10,52 @@
 @endsection
 
 @section( 'content' )
-	<div class="container">
-				<div class="row" style="margin-top: 30px">
-					<div class="col-xs-12 col-md-6">
-						<div class="panel panel-info" style="padding: 20px 30px 30px" align="center">
-							Ini halaman Login pasien
-						</div>
-					</div>
-					<div class="col-xs-12 col-md-6">
-						<div class="panel panel-info" style="padding: 20px 30px 30px">
-							<h2>Login Pasien</h2>
-							<hr>
-							@include('frontend.errors.session')
-							{!! BootForm::open()->action(route('patient.login.post')) !!}
-							<div class="box-body">
-							    {!! BootstrapForm::text('email','Email') !!}
-							    {!! BootstrapForm::password('password','Password') !!}
-							</div><!-- /.box-body -->
-							<div class="box-footer">
-							    <button type="submit" class="btn btn-primary">Login</button>
-							</div>
-							{!! BootForm::close() !!}
-						</div>
-					</div>
+<div class="row" >
+	<div class="col-md-12 register-page">
+		<div class="row">
+			@if(Session::has('success'))
+			<div class="col-md-12 register-content">
+				<div class="alert alert-info alert-dismissible" role="alert">
+				  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				  <strong>Pendaftaran Berhasil!</strong>
+				  {!! Session::get('success') !!}
 				</div>
 			</div>
+			@endif
+			<div class="col-xs-12 col-md-6 col-md-offset-3 register-content">
+				<div class="panel register-panel">
+					<h3 class="text-center">Masuk ke sistem <b class="dokternet-color">DokterNet</b></h3>
+					<p  class="text-center">
+						Segera dapatkan layanan perjanjian kesehatan secara online.
+					</p>
+					<hr>
+					@include('frontend.errors.session')
+					{!! BootForm::open()->action(route('patient.login.post')) !!}
+					<div class="row">
+						<div class="col-md-12">
+					        {!! BootstrapForm::text('email','Email') !!}
+					    </div>
+				    </div>
+				    <div class="row">
+						<div class="col-md-12">    
+						    {!! BootstrapForm::password('password','Password') !!}
+						</div><!-- /.box-body -->
+					</div>
+					<div class="row">
+				        <div class="col-md-12">
+				            <button type="submit" class="btn btn-register btn-block">Masuk</button>
+				        </div>
+				        <div class="col-md-12">
+				        	<p>
+				        		<br>
+				        		Belum memiliki akun? <a href="{!! route('patient.register') !!}"> Daftar </a>
+				        	</p>
+				        </div>
+				    </div>
+					{!! BootForm::close() !!}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 @endsection

@@ -29,7 +29,7 @@
 							</a>
 						</li>
 						<li class="">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+							<a href="{!! route('patient.login') !!}">
 								Masuk
 							</a>
 						</li>

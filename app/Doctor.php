@@ -55,6 +55,9 @@ class Doctor extends Model implements AuthenticatableContract,
     public function doctorEducation() {
         return $this->hasMany( 'App\DoctorEducation' );
     }
+    public function doctorExperience() {
+        return $this->hasMany( 'App\DoctorExperience' );
+    }
 
     public function recommendations() {
     	return $this->hasMany( 'App\Recommendation' );

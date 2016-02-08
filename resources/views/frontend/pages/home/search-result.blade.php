@@ -55,15 +55,18 @@
 			</div>
 			<div class="col-md-3">
 				<div class="form-group">
-					
 					{!! Form::text('keyword',$data['keyword'], array('placeholder' => 'Nama Dokter, Nama Rumah Sakit, dll', 'class' => 'form-control')) !!}
 				</div>
 			</div>	
-			<div class="col-md-3">
-				<button class="btn btn-dokternet btn-block" type="submit">
+			<div class="col-md-2">
+				<button class="btn btn-dokternet" type="submit">
 					CARI DOKTER
 					<i class="fa fa-arrow-circle-right"></i>
 				</button>
+				
+			</div>
+			<div class="col-md-1">
+				<a href="" class="btn btn-default"><i class="fa fa-sliders"></i></a>
 			</div>
 			{!! Form::close() !!}
 		</div>
@@ -88,16 +91,39 @@
 							{!! $doctor->name !!}
 						</a>
 						<div class="search-doctor-detail">
-							<div class="speciality">
-								{!! $specialization->name !!}
+							<div class="">
+								<div class="speciality">
+									{!! $specialization->name !!}
+									<?php 
+									$rate = 0;
+									foreach ($doctor->reviews as $row) {
+										$rate += intval($row->rating);
+									}
+									if($rate > 0)
+										$rate /= $doctor->reviews->count();
+									$rate = intval($rate);
+									?>
+									
+										<ul class="list-rating list-inline">
+										@for($i = 1; $i <= 5; $i++)
+											@if($i <= $rate)
+											<li><i class="fa fa-star"></i></li>
+											@else
+											<li><i class="fa fa-star-o"></i></li>
+											@endif
+										@endfor
+										</ul>
+									
+								</div>
+							</div>
+							<div class="address">
+								<i class="fa fa-map-marker"></i> {!! $doctor->clinics->first()->name !!}
 							</div>
 							<div class="address">
 								{!! $doctor->address !!}
 							</div>
 						</div>	
 					</div>
-					
-					
 				</li>
 				@endforeach
 				@endif

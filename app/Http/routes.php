@@ -34,6 +34,7 @@ Route::get('patient/activate/{code}', ['as' => 'patient.activate', 'uses' => 'Pa
 Route::get('search', ['as' => 'search.doctor' , 'uses' => 'HomeController@search']);
 Route::get('doctor/{name}', ['as' => 'doctor.search-profile' , 'uses' => 'HomeController@searchProfile']);
 Route::get('article/{category}', ['as' => 'home.article.show', 'uses' => 'HomeController@article']);
+Route::get('blog', ['as' => 'home.blog', 'uses' => 'HomeController@blog']);
 
 //LOGIN MANAGEMENT
 Route::get('patient/login', function(){
@@ -84,8 +85,12 @@ Route::group(['middleware' => 'admin'], function()
 	// Doctor management
 	Route::get('admin/doctor/{id}/delete', array('as' => 'admin.doctor.delete', 'uses' => 'DoctorAdminController@destroy'));
 	Route::resource('admin/doctor', 'DoctorAdminController');
+	Route::get('admin/doctor/education/{id}/destroy',array('as' => 'admin.doctor.education.destroy', 'uses' => 'DoctorAdminController@educationDestroy'));
 	Route::get('admin/doctor/{id}/education',array('as' => 'admin.doctor.education.create', 'uses' => 'DoctorAdminController@education'));
 	Route::post('admin/doctor/{id}/education',array('as' => 'admin.doctor.education.store', 'uses' => 'DoctorAdminController@educationStore'));
+	Route::get('admin/doctor/experience/{id}/destroy',array('as' => 'admin.doctor.experience.destroy', 'uses' => 'DoctorAdminController@experienceDestroy'));
+	Route::get('admin/doctor/{id}/experience',array('as' => 'admin.doctor.experience.create', 'uses' => 'DoctorAdminController@experience'));
+	Route::post('admin/doctor/{id}/experience',array('as' => 'admin.doctor.experience.store', 'uses' => 'DoctorAdminController@experienceStore'));
 });
 
 Route::get( 'clinic/login', array( 'as' => 'clinic.login', 'uses' => 'ClinicController@login' ) );

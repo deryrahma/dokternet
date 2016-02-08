@@ -109,7 +109,7 @@
                                             {!! $row->telephone !!}
                                         </td>
                                         <td>
-                                            {!! $row->email !!}
+                                            {!! $row->user->email !!}
                                         </td>
                                         <td>
                                             <a href="{!! route('admin.doctor.show', [$row->id]) !!}" class="fa fa-eye"></a>

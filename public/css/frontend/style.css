@@ -63,7 +63,7 @@ html, body {
 }
 .nav > li > a:focus, .nav > li > a:hover, .nav .open > a, .nav .open > a:focus, .nav .open > a:hover{
     background: none;
-    border-bottom: 2px solid #086CA3;
+    border-top: 2px solid #086CA3;
 }
 .main-navbar .main-menu{
     font-weight: 300;
@@ -71,9 +71,13 @@ html, body {
 .main-navbar .login a{
     background: #f6bb19 none repeat scroll 0 0;
     text-transform: uppercase;
+    color: #ffffff;
+    font-weight: bold;
 }
 .main-navbar li.login a:hover{
     background: #171b20 none repeat scroll 0 0;
+    color: #ffffff;
+    border-top: none;
 }
 body{
     /*background-color: #F1F1F1;*/
@@ -328,4 +332,45 @@ ul.list-rating li{
 }
 .schedule-practice{
     font-size: 11px;
+}
+.blog-page ul{
+    list-style-type: none;
+}
+.blog-page ul .title{
+    text-transform: uppercase;
+}
+.blog-head{
+    background-image: url('../../img/blog-bg.jpg');
+    background-color: #1B8AF3;
+    background-position: center top;
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100px;
+    width: 100%;
+}
+.blog-head::after{
+    background: rgba(8, 108, 163, 0.7) none repeat scroll 0 0;
+    content: "";
+    height: 100%;
+    left: 0;
+    top: 0;
+    width: 100%;
+    position: absolute;
+}
+.blog-head .blog-head-content{
+    top: 20px;
+    z-index: 10;
+    position: relative;
+    text-transform: uppercase;
+    color: #ffffff;
+}
+    
+.blog-head .blog-head-content h3{
+    font-size: 48px;
+    font-weight: 300;
+    margin-top: 0;
+}
+.detail-article i{
+    color: #086CA3;
 }

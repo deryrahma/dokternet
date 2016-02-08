@@ -100,4 +100,9 @@ class HomeController extends Controller
         }
         return view('frontend.pages.home.search-profile', compact('data'));
     }
+    function blog(){
+      $data['article'] = \App\ArticleCategory::with( 'articles')->get();
+      $data['content'] = \App\Article::orderBy('created_at', 'desc')->paginate(10);
+      return view('frontend.pages.home.blog', compact('data')); 
+    }
 }

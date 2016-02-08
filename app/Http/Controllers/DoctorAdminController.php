@@ -92,6 +92,9 @@ class DoctorAdminController extends Controller
         $data['password'] = $request->get('password');
         $data['email'] = $request->get('email');
         $data['telephone'] = $request->get('telephone');
+        $data['registration_number'] = $request->get('registration_number');
+        $data['registration_year'] = $request->get('registration_year');
+        $data['description'] = $request->get('description');
         
         $hasil = \App\Doctor::create($data);
         Session::flash('success', "Data dokter berhasil ditambahkan");
@@ -149,6 +152,9 @@ class DoctorAdminController extends Controller
         $data['password'] = $request->get('password');
         $data['email'] = $request->get('email');
         $data['telephone'] = $request->get('telephone');
+        $data['registration_number'] = $request->get('registration_number');
+        $data['registration_year'] = $request->get('registration_year');
+        $data['description'] = $request->get('description');
         
         $hasil = \App\Doctor::find($id);
         $hasil->update($data);
@@ -186,5 +192,35 @@ class DoctorAdminController extends Controller
             ]);
         Session::flash('success', "Data pendidikan berhasil ditambahkan.");
         return redirect()->route('admin.doctor.show', [$id]);
+    }
+    public function educationDestroy($id)
+    {
+        $data = \App\DoctorEducation::find($id);
+        $doctor_id = $data->doctor_id;
+        $data->delete();
+        Session::flash('success', "Data pendidikan berhasil dihapus.");
+        return redirect()->route('admin.doctor.show', [$doctor_id]);
+    }
+    public function experience($id)
+    {
+        $doctor = \App\Doctor::find($id);
+        return view('pages.admin.doctor.experience', compact('doctor'));
+    }
+    public function experienceStore(Request $request, $id)
+    {
+        \App\DoctorExperience::create([
+            'doctor_id' => $id,
+            'name' => $request->input('name')
+            ]);
+        Session::flash('success', "Data pengalaman berhasil ditambahkan.");
+        return redirect()->route('admin.doctor.show', [$id]);
+    }
+    public function experienceDestroy($id)
+    {
+        $data = \App\DoctorExperience::find($id);
+        $doctor_id = $data->doctor_id;
+        $data->delete();
+        Session::flash('success', "Data pengalaman berhasil dihapus.");
+        return redirect()->route('admin.doctor.show', [$doctor_id]);
     }
 }

@@ -1,9 +1,12 @@
-<form action="javascript:void(0);" name="form1" id="form1">
-    <input type="text" name="location" class="textbox" id="location" value="" />
-    <input type="submit" value="Submit" class="submit" />
-</form>
-<div id="map-canvas"></div>
-<div class="box-body">
+    <div class="box-body">
+    <div class="form-group">
+        <label class="form-label" for="registration_number">Nomor Registrasi</label>
+        {!! Form::text('registration_number', $data['content']['registration_number'], array('class' => 'form-control')) !!}
+    </div>
+    <div class="form-group">
+        <label class="form-label" for="registration_year">Tahun Registrasi</label>
+        {!! Form::text('registration_year', $data['content']['registration_year'], array('class' => 'form-control')) !!}
+    </div>
     <div class="form-group">
         <label class="form-label" for="name">Nama</label>
         {!! Form::text('name', $data['content']['name'], array('class' => 'form-control')) !!}
@@ -58,6 +61,10 @@
     <div class="form-group">
         <label class="form-label" for="telephone">No. Telepon</label>
         {!! Form::text('telephone', $data['content']['telephone'], array('class' => 'form-control')) !!}
+    </div>
+    <div class="form-group">
+        <label class="form-label" for="description">Profil Singkat</label>
+        {!! Form::textarea('description', $data['content']['description'], array('class' => 'form-control')) !!}
     </div>
 </div><!-- /.box-body -->
 

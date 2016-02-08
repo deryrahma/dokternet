@@ -64,6 +64,19 @@ class ClinicAdminController extends Controller
         return view('pages.admin.clinic.create')->with('data',$data);
     }
 
+    public function create_doctor()
+    {
+        //
+        $data = array();
+        $data['content'] = null;
+
+        $data['list_province'] = \App\Province::lists('name','id');
+        $data['list_city'] = \App\City::lists('name','id');
+        $data['list_specialization'] = \App\Specialization::lists('name','id');
+        
+        return view('pages.admin.doctor.create')->with('data',$data);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -99,6 +112,7 @@ class ClinicAdminController extends Controller
     public function show($id)
     {
         //
+
         $province_id = Input::get('province_id');
 
         $city_id = Input::get('city_id');
@@ -115,14 +129,24 @@ class ClinicAdminController extends Controller
         if(empty($province_id) && empty($city_id) && empty($specialization_id) && empty($verified))
         {
             
-            $data['content_doctor'] = \App\Doctor::all();
+            $data['content_doctor'] = \App\Doctor::whereHas('doctor_clinic', function($q) use($id)
+            {
+                $q->where('clinic_id', $id);
+
+            })->get();
+
             $data['province_id'] = null;
             $data['city_id'] = null;
             $data['specialization_id'] = null;
             $data['verified'] = null;
         } else
         {
-            $data['content_doctor'] = \App\Doctor::where('city_id', $city_id)->where('specialization_id', $specialization_id)->where('verified', $verified)->get();
+
+            $data['content_doctor'] = \App\Doctor::where('city_id', $city_id)->where('specialization_id', $specialization_id)->where('verified', $verified)->whereHas('doctor_clinic', function($q) use($id)
+            {
+                $q-$q->where('clinic_id', $id);
+            })->get();
+
             $data['province_id'] = $province_id;
             $data['city_id'] = $city_id;
             $data['specialization_id'] = $specialization_id;

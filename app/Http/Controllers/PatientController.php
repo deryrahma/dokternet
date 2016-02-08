@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Requests\PatientRequest;
 use App\Http\Requests\PatientRegRequest;
 use App\Http\Requests\PatientUpdateRequest;
+use App\Http\Requests\PatientChangePasswordRequest;
 use App\Http\Controllers\Controller;
 use App\ArticleCategory;
 
@@ -118,6 +119,25 @@ class PatientController extends Controller
         $data['article'] = ArticleCategory::with( 'articles')->get();
         $data['content'] = Auth::user();
         return view('frontend.pages.patient.dashboard', compact('data'));
+    }
+    public function changePassword(){
+        $data = [];
+        $data['article'] = ArticleCategory::with( 'articles')->get();
+        $data['content'] = Auth::user();
+        return view('frontend.pages.patient.change-password', compact('data'));
+    }
+    public function submitChangePassword(PatientChangePasswordRequest $request)
+    {
+        $user = \App\User::find(Auth::id());
+        if (Hash::check($request->input('oldpassword'), $user->password))
+        {
+            $user->password = Hash::make($request->input('password'));
+            $user->save();
+            Session::flash('success','Password berhasil diperbarui');
+        }else{
+            Session::flash('danger','Password lama tidak cocok');
+        }
+        return redirect()->route('patient.change-password');
     }
     public function logout()
     {

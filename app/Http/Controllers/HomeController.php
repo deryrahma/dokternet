@@ -42,8 +42,8 @@ class HomeController extends Controller
         $data['practice_day_k'] = $request->input('practice_day');
 
         $data['city_obj'] = \App\City::where('name','like','%'.$data['city_k'].'%')->lists('id');
-
-        $result = \App\Specialization::where('name','like','%'.$data['specialization_k'].'%')
+        $arr_specialization = \App\Specialization::where('name','like','%'.$data['specialization_k'].'%')->lists('id');
+        /*$result = \App\Specialization::where('name','like','%'.$data['specialization_k'].'%')
             ->whereHas('doctors', function($query) use($data){
                 $query->whereIn('city_id', $data['city_obj'])
                     ->where('name','like', '%'.$data['keyword'].'%')
@@ -56,7 +56,18 @@ class HomeController extends Controller
                   $query->where('gender',$data['gender_k']);
                 }
             })->
-            with('doctors')->get();
+            with('doctors')->get();*/
+        $result = \App\Doctor::whereIn('city_id', $data['city_obj'])
+                    ->where('name','like', '%'.$data['keyword'].'%')
+                    ->whereHas('day', function($query) use($data){
+                      if(!empty($data['practice_day_k']) > 0)
+                        $query->whereIn('days.id', $data['practice_day_k']);
+                    });
+        if(!empty($data['gender_k'])){
+          $result->where('gender',$data['gender_k']);
+        }
+        $result = $result->paginate(10);
+        
         
         $data['article'] = ArticleCategory::with( 'articles')->get();
         $data['content'] = $result;

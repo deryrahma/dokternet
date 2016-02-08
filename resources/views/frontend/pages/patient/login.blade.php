@@ -33,8 +33,15 @@
 						</div><!-- /.box-body -->
 					</div>
 					<div class="row">
-				        <div class="col-md-12">
+				        <div class="col-md-6">
 				            <button type="submit" class="btn btn-register btn-block">Masuk</button>
+				        </div>
+				        <div class="col-md-6">
+				        	<p>
+				        		<a href="{!! url('/password/email') !!}">
+				        			Lupa Password?
+				        		</a>
+				        	</p>
 				        </div>
 				        <div class="col-md-12">
 				        	<p>

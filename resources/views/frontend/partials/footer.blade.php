@@ -3,6 +3,7 @@
 		<div class="row">
 			<div class="col-xs-9 bottom-menu">
 				<ul>
+				@if(isset($data['article']))
 					@foreach( $data['article'] as $row )
 					<li>
 						<a href="{!! route('home.article.show',[urlencode($row->name)]) !!}">
@@ -10,6 +11,7 @@
 						</a>
 					</li>
 					@endforeach
+				@endif
 				</ul>
 					
 			</div>

@@ -127,3 +127,6 @@ Route::resource('admin/doctor-verify', 'DoctorVerifyController');
 Route::get('admin/doctor-list/{id}/delete', array('as' => 'admin.doctor-list.delete', 'uses' => 'DoctorListController@destroy'));
 Route::resource('admin/doctor-list', 'DoctorListController');*/
 
+Route::controllers([
+	'password' => 'Auth\PasswordController'
+]);

@@ -152,6 +152,7 @@ return [
         AdamWathan\BootForms\BootFormsServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Watson\BootstrapForm\BootstrapFormServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
     ],
 
     /*
@@ -205,6 +206,7 @@ return [
         'Form'     => Collective\Html\FormFacade::class,
         'HTML'     => Collective\Html\HtmlFacade::class,
         'BootstrapForm' => Watson\BootstrapForm\Facades\BootstrapForm::class,
+        'Image' => Intervention\Image\Facades\Image::class
 
     ],
 

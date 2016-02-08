@@ -10,7 +10,7 @@
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                        <li class="active">Tambah Dokter</li>
+                        <li class="active">Tambah Pengalaman</li>
                     </ol>
                 </section>
                 <section class="content">
@@ -18,12 +18,13 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header">
-                                    <h3 class="box-title">Dokter</h3>                                    
+                                    <h3 class="box-title">Tambah Pengalaman</h3>                                    
                                 </div>
                                 <div class="box-body table-responsive">
-                                    {!! BootstrapForm::open(['model' => $data['content'], 'store' => 'admin.doctor.store', 'update' => 'admin.doctor.update','files' => true]) !!}
-                                    @include('pages.admin.doctor.form')   
-                                    {!! BootstrapForm::close() !!}
+                                    {!! BootForm::open()->action(route('admin.doctor.experience.store',[$doctor->id])) !!}
+                                    {!! BootstrapForm::text('name') !!}
+                                    {!! BootstrapForm::submit('Tambah') !!}
+                                    {!! BootForm::close() !!}
                                 </div>
                             </div>
                         </div>

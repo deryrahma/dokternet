@@ -91,6 +91,7 @@ class CreateTables extends Migration
             $table->string( 'name', 50 );
             $table->string( 'photo', 150 );
             $table->string( 'practice_time' );
+            $table->char( 'gender',1 );
             $table->text( 'description' );
             $table->text( 'address' );
             $table->float( 'latitude' );
@@ -282,6 +283,12 @@ class CreateTables extends Migration
             $table->text('description');
             $table->timestamps();
         });
+        Schema::create('doctor_experiences', function($table)
+        {
+            $table->increments('id');
+            $table->integer('doctor_id');
+            $table->string('name');
+        });
 
     }
 
@@ -321,5 +328,7 @@ class CreateTables extends Migration
         Schema::dropIfExists( 'doctor_specialization' );
         Schema::dropIfExists( 'specialization_category' );
         Schema::dropIfExists( 'doctor_educations' );
+        Schema::dropIfExists( 'doctor_experiences' );
+        
     }
 }

@@ -10,9 +10,16 @@ use Input;
 use Hash;
 use Session;
 use App\Http\Requests\DoctorAdminRequest;
+use File;
+use Image;
 
 class DoctorAdminController extends Controller
 {
+    protected $path;
+
+    function __construct() {
+        $this->path = 'data/doctor/';
+    }
     /**
      * Display a listing of the resource.
      *
@@ -68,6 +75,8 @@ class DoctorAdminController extends Controller
         $data['list_province'] = \App\Province::lists('name','id');
         $data['list_city'] = \App\City::lists('name','id');
         $data['list_specialization'] = \App\Specialization::lists('name','id');
+        $data['days'] = \App\Day::lists('name','id');
+        
         
         return view('pages.admin.doctor.create')->with('data',$data);
     }
@@ -92,8 +101,27 @@ class DoctorAdminController extends Controller
         $data['password'] = $request->get('password');
         $data['email'] = $request->get('email');
         $data['telephone'] = $request->get('telephone');
+        $data['registration_number'] = $request->get('registration_number');
+        $data['registration_year'] = $request->get('registration_year');
+        $data['description'] = $request->get('description');
+        $data['practice_time'] = $request->get('practice_time');
+        $data['gender'] = $request->get('gender');
+
+        if($request->hasFile('photo'))
+        {
+            $image = $request->file('photo');
+            $extension = $image->getClientOriginalExtension();
+            $fileName = "doctor_".date('Ymd_Hsi').'.'.$extension;
+            $file->move($this->path,$fileName);
+            $img = Image::make($this->path.$fileName);
+            $img->save($this->path.$fileName, 60);
+            $data['photo'] = $fileName;
+        }
         
         $hasil = \App\Doctor::create($data);
+        foreach ($request->practice_day as $key => $value) {
+            $hasil->day()->attach($value);
+        }
         Session::flash('success', "Data dokter berhasil ditambahkan");
         return redirect()->route('admin.doctor.index');
     }
@@ -125,6 +153,7 @@ class DoctorAdminController extends Controller
         $data['list_province'] = \App\Province::lists('name','id');
         $data['list_city'] = \App\City::lists('name','id');
         $data['list_specialization'] = \App\Specialization::lists('name','id');
+        $data['days'] = \App\Day::lists('name','id');
         return view('pages.admin.doctor.edit')->with('data',$data);
     }
 
@@ -137,7 +166,11 @@ class DoctorAdminController extends Controller
      */
     public function update(DoctorAdminRequest $request, $id)
     {
-        //
+        $hasil = \App\Doctor::find($id);
+        $hasil->day()->detach();
+        foreach ($request->practice_day as $key => $value) {
+            $hasil->day()->attach($value);
+        }
         $data = array();
         
         $data['user_id'] = 2;
@@ -149,9 +182,25 @@ class DoctorAdminController extends Controller
         $data['password'] = $request->get('password');
         $data['email'] = $request->get('email');
         $data['telephone'] = $request->get('telephone');
-        
-        $hasil = \App\Doctor::find($id);
+        $data['registration_number'] = $request->get('registration_number');
+        $data['registration_year'] = $request->get('registration_year');
+        $data['description'] = $request->get('description');
+        $data['gender'] = $request->get('gender');
+        $data['practice_time'] = $request->get('practice_time');
+        if($request->hasFile('photo'))
+        {
+            if(File::exists($this->path.$hasil->photo))
+                File::delete($this->path.$hasil->photo);
+            $image = $request->file('photo');
+            $extension = $image->getClientOriginalExtension();
+            $fileName = "doctor_".date('Ymd_Hsi').'.'.$extension;
+            $image->move($this->path,$fileName);
+            $img = Image::make($this->path.$fileName);
+            $img->save($this->path.$fileName, 60);
+            $data['photo'] = $fileName;
+        }
         $hasil->update($data);
+        
         Session::flash('success', "Data dokter berhasil diperbarui");
         return redirect()->route('admin.doctor.index');
     }
@@ -187,5 +236,35 @@ class DoctorAdminController extends Controller
             ]);
         Session::flash('success', "Data pendidikan berhasil ditambahkan.");
         return redirect()->route('admin.doctor.show', [$id]);
+    }
+    public function educationDestroy($id)
+    {
+        $data = \App\DoctorEducation::find($id);
+        $doctor_id = $data->doctor_id;
+        $data->delete();
+        Session::flash('success', "Data pendidikan berhasil dihapus.");
+        return redirect()->route('admin.doctor.show', [$doctor_id]);
+    }
+    public function experience($id)
+    {
+        $doctor = \App\Doctor::find($id);
+        return view('pages.admin.doctor.experience', compact('doctor'));
+    }
+    public function experienceStore(Request $request, $id)
+    {
+        \App\DoctorExperience::create([
+            'doctor_id' => $id,
+            'name' => $request->input('name')
+            ]);
+        Session::flash('success', "Data pengalaman berhasil ditambahkan.");
+        return redirect()->route('admin.doctor.show', [$id]);
+    }
+    public function experienceDestroy($id)
+    {
+        $data = \App\DoctorExperience::find($id);
+        $doctor_id = $data->doctor_id;
+        $data->delete();
+        Session::flash('success', "Data pengalaman berhasil dihapus.");
+        return redirect()->route('admin.doctor.show', [$doctor_id]);
     }
 }

@@ -4,13 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class DoctorEducation extends Model
+class DoctorExperience extends Model
 {
-    protected $table = 'doctor_educations';
+    protected $table = 'doctor_experiences';
     public $timestamps = false;
     protected $fillable = [
     	'doctor_id',
-    	'year',
         'name'
     ];
 

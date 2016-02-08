@@ -87,6 +87,7 @@
                             <div class="nav-tabs-custom">
                             <ul class="nav nav-tabs">
                               <li class="active"><a href="#education" data-toggle="tab">Pendidikan</a></li>
+                              <li><a href="#experience" data-toggle="tab">Pengalaman</a></li>
                               <li><a href="#schedule" data-toggle="tab">Jadwal Praktek</a></li>
                             </ul>
                             <div class="tab-content">
@@ -97,6 +98,7 @@
                                         <tr>
                                             <th>Tahun</th>
                                             <th>Pendidikan</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -104,6 +106,26 @@
                                         <tr>
                                             <td>{!! $row->year !!}</td>
                                             <td>{!! $row->name !!}</td>
+                                            <td><a href="{!! route('admin.doctor.education.destroy', [$row->id]) !!}" > <i class="fa fa-trash"></i></a></td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                              </div><!-- /.tab-pane -->
+                              <div class="tab-pane" id="experience">
+                                <a href="{!! route('admin.doctor.experience.create',[$data['content']->id]) !!}" class="btn btn-info">Tambah Pengalaman</a>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Pengalaman</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($data['content']->doctorExperience as $row)
+                                        <tr>
+                                            <td>{!! $row->name !!}</td>
+                                            <td><a href="{!! route('admin.doctor.experience.destroy', [$row->id]) !!}" > <i class="fa fa-trash"></i></a></td>
                                         </tr>
                                     @endforeach
                                     </tbody>

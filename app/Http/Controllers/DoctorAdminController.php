@@ -183,6 +183,7 @@ class DoctorAdminController extends Controller
         $doctor = \App\Doctor::find($id);
         return view('pages.admin.doctor.education', compact('doctor'));
     }
+    
     public function educationStore(Request $request, $id)
     {
         \App\DoctorEducation::create([

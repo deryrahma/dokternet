@@ -29,21 +29,34 @@ class HomeController extends Controller
     public function search(Request $request)
     {
         $data = array();
+        $data['days'] = \App\Day::lists('name','id');
         $data['article'] = ArticleCategory::with( 'articles')->get();
+        
         $data['city'] = \App\City::all();
         $data['specialization'] = \App\Specialization::all();
 
         $data['city_k'] = urldecode($request->input('city'));
         $data['specialization_k'] = urldecode($request->input('specialization'));
         $data['keyword'] = urldecode($request->input('keyword'));
+        $data['gender_k'] = $request->input('gender');
+        $data['practice_day_k'] = $request->input('practice_day');
 
         $data['city_obj'] = \App\City::where('name','like','%'.$data['city_k'].'%')->lists('id');
 
         $result = \App\Specialization::where('name','like','%'.$data['specialization_k'].'%')
             ->whereHas('doctors', function($query) use($data){
                 $query->whereIn('city_id', $data['city_obj'])
-                    ->where('name','like', '%'.$data['keyword'].'%');
-            })->with('doctors')->get();
+                    ->where('name','like', '%'.$data['keyword'].'%')
+                    ->whereHas('day', function($query) use($data){
+                      if(!empty($data['practice_day_k']) > 0)
+                        $query->whereIn('days.id', $data['practice_day_k']);
+                    })
+                ;
+                if(!empty($data['gender_k'])){
+                  $query->where('gender',$data['gender_k']);
+                }
+            })->
+            with('doctors')->get();
         
         $data['article'] = ArticleCategory::with( 'articles')->get();
         $data['content'] = $result;

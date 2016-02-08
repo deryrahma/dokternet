@@ -301,6 +301,9 @@ section .home-page .home-content{
     max-height: 170px;
     /*max-width: 80%;*/
 }
+.btn-advance-search{
+    margin-left: 5px;
+}
 
 .search-profile{
     padding-top: 10px;

@@ -15,6 +15,10 @@
 		 	allowClear: true,
 		 	language: "id"
 		 });
+		 $("#advanceSearch").hide();
+		 $("#advanceSearchBtn").click(function() {
+		 	$("#advanceSearch").fadeToggle( "slow", "linear" );
+		 });
 		 
 	</script>
 @endsection
@@ -23,50 +27,76 @@
 	<div class="row">
 		<div class="col-md-12 search-bg">
 			{!! Form::open(['method' => 'GET', 'url' => route('search.doctor'), 'class' => '']) !!}
-			<div class="col-md-3">
-				<div class="form-group">
+			<div class="row">
+				<div class="col-md-3">
+					<div class="form-group">
+						
+						<div class="input-group">
+							<div class="input-group-addon dokternet-bg-yellow"><i class="fa fa-map-marker"></i></div>
+							<select name="city" class="form-control" id="city">
+								@foreach($data['city'] as $row)
+								<option value="{!! urlencode($row->name) !!}">
+									{!! $row->name !!}
+								</option>
+								@endforeach
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="form-group">
+						
+						<div class="input-group">
+							<div class="input-group-addon dokternet-bg-yellow"><i class="fa fa-tasks"></i></div>
+							<select name="specialization" class="form-control" id="specialization">
+								@foreach($data['specialization'] as $row)
+								<option value="{!! urlencode($row->name) !!}">
+									{!! $row->name !!}
+								</option>
+								@endforeach
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="form-group">
+						{!! Form::text('keyword',$data['keyword'], array('placeholder' => 'Nama Dokter, Nama Rumah Sakit, dll', 'class' => 'form-control')) !!}
+					</div>
+				</div>	
+				<div class="col-md-2">
+					<button class="btn btn-dokternet" type="submit">
+						CARI DOKTER
+						<i class="fa fa-arrow-circle-right"></i>
+					</button>
 					
-					<div class="input-group">
-						<div class="input-group-addon dokternet-bg-yellow"><i class="fa fa-map-marker"></i></div>
-						<select name="city" class="form-control" id="city">
-							@foreach($data['city'] as $row)
-							<option value="{!! urlencode($row->name) !!}">
-								{!! $row->name !!}
-							</option>
-							@endforeach
+				</div>
+				<div class="col-md-1">
+					<a href="javascript:void(0)" class="btn btn-default btn-advance-search" data-toggle="tooltip" title="Lanjutan" id="advanceSearchBtn"><i class="fa fa-sliders"></i></a>
+				</div>
+			</div>
+			<div class="row" id="advanceSearch">
+				<div class="col-md-8">
+					<div class="form-group">
+						<label class="control-label" for="">Jadwal Praktek :</label>
+						<div class="checkbox">
+						@foreach($data['days'] as $key => $value)
+						<label class="checkbox-inline">
+						  <input name="practice_day[]" type="checkbox"  value="{!! $key !!}"> {!! $value !!}
+						</label>
+						@endforeach
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="form-group">
+						<label class="control-label" for="">Jenis Kelamin :</label>
+						<select class="form-control" name="gender">
+							<option value="">Semua</option>
+							<option value="L">Laki-laki</option>
+							<option value="P">Perempuan</option>
 						</select>
 					</div>
 				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="form-group">
-					
-					<div class="input-group">
-						<div class="input-group-addon dokternet-bg-yellow"><i class="fa fa-tasks"></i></div>
-						<select name="specialization" class="form-control" id="specialization">
-							@foreach($data['specialization'] as $row)
-							<option value="{!! urlencode($row->name) !!}">
-								{!! $row->name !!}
-							</option>
-							@endforeach
-						</select>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="form-group">
-					{!! Form::text('keyword',$data['keyword'], array('placeholder' => 'Nama Dokter, Nama Rumah Sakit, dll', 'class' => 'form-control')) !!}
-				</div>
-			</div>	
-			<div class="col-md-2">
-				<button class="btn btn-dokternet" type="submit">
-					CARI DOKTER
-					<i class="fa fa-arrow-circle-right"></i>
-				</button>
-				
-			</div>
-			<div class="col-md-1">
-				<a href="" class="btn btn-default"><i class="fa fa-sliders"></i></a>
 			</div>
 			{!! Form::close() !!}
 		</div>

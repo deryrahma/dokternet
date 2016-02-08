@@ -106,9 +106,11 @@ class PatientController extends Controller
     public function activate($code, \App\User $patient)
     {
         if ($patient->activateAccount($code)) {
-            return 'Akun pasien Anda berhasil diaktivasi';
+            Session::flash('success', "Akun anda berhasil diaktifkan, silakan masuk ke sistem.");
+            return redirect()->route('patient.login');
         }
-        return 'Akun pasien Anda gagal diaktivasi';
+        Session::flash('danger', "Akun anda gagal diaktifkan, jika mengalami kesulitan dalam mengaktifkan akun Anda, Anda dapat menghubungi kami melalui email di <a href='mailto:support@dokternet.com'>support@dokternet.com</a>.");
+        return redirect()->route('patient.login');
     }
     public function dashboard()
     {
@@ -135,7 +137,7 @@ class PatientController extends Controller
         $data->telephone = $request->telephone;
         $data->address = $request->address;
         $data->save();
-
+        Session::flash('success', 'Data anda berhasil diperbarui');
         return redirect()->route('patient.dashboard');
     }
 }

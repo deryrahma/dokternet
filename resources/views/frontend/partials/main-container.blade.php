@@ -13,6 +13,12 @@
 				</div>
 				<div class="collapse navbar-collapse" id="bs-navbar">
 					<ul class="nav navbar-nav main-menu navbar-right">
+						
+						<li class="">
+							<a href="{!! route('home.blog') !!}">
+								Blog
+							</a>
+						</li>
 						@if(Auth::check() == false or (Auth::check() and Auth::user()->roles->first()->level =='1'))
 						<!-- <li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -23,11 +29,6 @@
 								<li><a href="{!! route( 'patient.login' ) !!}">Masuk</a></li>
 							</ul>
 						</li> -->
-						<li class="">
-							<a href="{!! route('home.blog') !!}">
-								Blog
-							</a>
-						</li>
 						<li class="">
 							<a href="{!! route('patient.login') !!}">
 								Masuk

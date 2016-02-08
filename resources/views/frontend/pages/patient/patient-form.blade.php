@@ -1,20 +1,43 @@
 	<div class="box-body">
-		{!! BootstrapForm::text('first_name','Nama Depan') !!}
-	    {!! BootstrapForm::text('last_name','Nama Belakang') !!}
-	    {!! BootstrapForm::text('email','Email') !!}
-	    {!! BootstrapForm::text('birth_date','Tanggal Lahir') !!}
-	    <?php 
-			$genders = [
-			    'L'   => 'Laki-laki',
-			    'P' => 'Perempuan'
-			];
-	    ?>
-	    {!! BootstrapForm::radios('gender', null, $genders, null, true) !!}
-	    {!! BootstrapForm::text('mobile','Handphone') !!}
-	    {!! BootstrapForm::text('telephone','Telephone') !!}
-	    {!! BootstrapForm::textarea('address','Alamat') !!}
-    </div>
-
-    <div class="box-footer">
-    	<button type="submit" class="btn btn-primary">Simpan</button>
-  	</div>
+		<div class="row">
+			<div class="col-md-6">
+				{!! BootstrapForm::text('first_name','Nama Depan') !!}				
+			</div>
+			<div class="col-md-6">
+				{!! BootstrapForm::text('last_name','Nama Belakang') !!}				
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				{!! BootstrapForm::text('email','Email') !!}
+			</div>
+			<div class="col-md-6">
+				{!! BootstrapForm::text('birth_date','Tanggal Lahir') !!}
+			</div>
+		</div>
+		<?php 
+		$genders = [
+		'L'   => 'Laki-laki',
+		'P' => 'Perempuan'
+		];
+		?>
+		{!! BootstrapForm::radios('gender', 'Jenis Kelamin', $genders, null, true) !!}
+		<div class="row">
+			<div class="col-md-6">
+				{!! BootstrapForm::text('mobile','Handphone') !!}
+			</div>
+			<div class="col-md-6">
+				{!! BootstrapForm::text('telephone','Telephone') !!}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				{!! BootstrapForm::textarea('address','Alamat',null, ['rows' => 2]) !!}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3 col-md-offset-4">
+				<button type="submit" class="btn btn-register btn-block">Simpan</button>
+			</div>
+		</div>
+	</div>

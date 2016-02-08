@@ -434,3 +434,13 @@ section .register-page .register-content{
     background: #171b20 none repeat scroll 0 0;
     color: #ffffff;
 }
+.patient-page{
+    padding-top: 10px;
+    background-color: #F1F1F2;
+}
+.patient-page .sidebar-container{
+    padding-top: 10px;
+}
+.dashboard-profile {
+    margin-bottom: 10px;
+}

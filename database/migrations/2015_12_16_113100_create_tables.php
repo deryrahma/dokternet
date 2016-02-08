@@ -91,6 +91,7 @@ class CreateTables extends Migration
             $table->string( 'name', 50 );
             $table->string( 'photo', 150 );
             $table->string( 'practice_time' );
+            $table->char( 'gender',1 );
             $table->text( 'description' );
             $table->text( 'address' );
             $table->float( 'latitude' );

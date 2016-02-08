@@ -21,14 +21,9 @@
                                     <h3 class="box-title">Dokter</h3>                                    
                                 </div>
                                 <div class="box-body table-responsive">
-                                    @if( $data['content'] == null )
-                                        {!! BootForm::open()->action( route( 'admin.doctor.store' ) ) !!}
-                                    @else
-                                        {!! BootForm::open()->put()->action( route( 'admin.doctor.update', [$data['content']->id] ) ) !!}
-                                        {!! BootForm::bind( $data['content'] ) !!}
-                                    @endif
+                                    {!! BootstrapForm::open(['model' => $data['content'], 'store' => 'admin.doctor.store', 'update' => 'admin.doctor.update','files' => true]) !!}
                                     @include('pages.admin.doctor.form')   
-                                    {!! BootForm::close() !!}
+                                    {!! BootstrapForm::close() !!}
                                 </div>
                             </div>
                         </div>

@@ -11,10 +11,42 @@
         <label class="form-label" for="name">Nama</label>
         {!! Form::text('name', $data['content']['name'], array('class' => 'form-control')) !!}
     </div>
+
+    <div class="form-group">
+    @if(isset($data['content']))
+        @if(File::exists('data/doctor/'.$data['content']->photo) and !empty($data['content']->photo))
+            <img src="{!! asset('data/doctor/'.$data['content']->photo) !!}" class="img-responsive img-thumbnail">
+        @else
+            <img src="{!! asset('img/doctor.png') !!}" class="img-responsive img-thumbnail">
+        @endif
+        <br>
+        <small>Kosongkan kolom foto jika tidak ingin diganti.</small>
+    @endif
+    </div>
+    <div class="form-group">
+        <label class="form-label" for="name">Foto</label>
+        {!! Form::file('photo', array('class' => 'form-control')) !!}
+    </div>
     <div class="form-group">
         <label class="form-label" for="address">Alamat</label>
         {!! Form::text('address', $data['content']['address'], array('class' => 'form-control')) !!}
     </div>
+    <div class="form-group">
+        <label class="form-label" for="practice_time">Jam Praktek</label>
+        {!! Form::text('practice_time', $data['content']['practice_time'], array('class' => 'form-control')) !!}
+    </div>
+    @if(isset($data['content']))
+    <?php 
+    $checked_ar = $data['content']->day->toArray();
+    $checked = array();
+    foreach ($checked_ar as $row) {
+        array_push($checked, $row['id']);
+    }
+    ?>
+    {!! BootstrapForm::checkboxes('practice_day[]', 'Jadwal Praktek', $data['days'], $checked) !!}
+    @else
+    {!! BootstrapForm::checkboxes('practice_day[]', 'Jadwal Praktek', $data['days'], null) !!}
+    @endif
     <div class="form-group">
         <label class="form-label" for="latitude">Latitude</label>
         {!! Form::text('latitude', $data['content']['latitude'], array('class' => 'form-control')) !!}
@@ -23,6 +55,7 @@
         <label class="form-label" for="longitude">Longitude</label>
         {!! Form::text('longitude', $data['content']['longitude'], array('class' => 'form-control')) !!}
     </div>
+    {!! BootstrapForm::radios('gender','Jenis Kelamin', ['L'   => 'Laki-laki','P' => 'Perempuan'],  $data['content']['gender'], true); !!}
     <div class="form-group">
         <label class="form-label" for="province_id">Provinsi</label>
         <?php 

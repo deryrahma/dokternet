@@ -8,7 +8,6 @@ class Province extends Model
 {
 	public $timestamps = false;
     protected $table = 'province';
-    public $timestamps = false;
     protected $fillable = [
     	'name',
     ];

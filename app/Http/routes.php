@@ -30,7 +30,7 @@ Route::get( 'patient/register', ['as' => 'patient.register', 'uses' => 'PatientC
 Route::post('patient/post-register', ['as' => 'patient.post-register', 'uses' => 'PatientController@post_register']);
 Route::get('patient/activate/{code}', ['as' => 'patient.activate', 'uses' => 'PatientController@activate']);
 
-Route::get( 'clinic/register', ['as' => 'clinic.register', 'uses' => 'ClinicController@register'] );
+
 
 Route::get('search', ['as' => 'search.doctor' , 'uses' => 'HomeController@search']);
 Route::get('doctor/{name}', ['as' => 'doctor.search-profile' , 'uses' => 'HomeController@searchProfile']);
@@ -101,6 +101,8 @@ Route::group(['middleware' => 'admin'], function()
 	Route::post('admin/doctor/{id}/experience',array('as' => 'admin.doctor.experience.store', 'uses' => 'DoctorAdminController@experienceStore'));
 });
 
+Route::get( 'clinic/register', ['as' => 'clinic.register', 'uses' => 'ClinicController@register'] );
+Route::post('clinic/post-register', ['as' => 'clinic.post-register', 'uses' => 'ClinicController@post_register']);
 Route::get( 'clinic/login', array( 'as' => 'clinic.login', 'uses' => 'ClinicController@login' ) );
 Route::post( 'clinic/login', array( 'as' => 'clinic.login.post', 'uses' => 'ClinicController@postLogin' ) );
 Route::group( ['middleware' => 'clinic'], function() {

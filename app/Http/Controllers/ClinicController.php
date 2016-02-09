@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Requests\ClinicUpdateRequest;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ClinicRegisterRequest;
 
 use Auth;
 use Session;
@@ -134,5 +135,40 @@ class ClinicController extends Controller
         $data['article'] = ArticleCategory::with( 'articles' )->get();
 
         return view( 'frontend.pages.clinic.dashboard', compact( 'data' ) );
+    }
+    public function register()
+    {
+        //
+        $data = array();
+        $data['content'] = null;
+
+        $data['list_gender'][0] = 'L';
+        $data['list_gender'][1] = 'P';
+        $data['city'] = \App\City::all();
+        $data['specialization'] = \App\Specialization::all();
+
+        $data['article'] = \App\ArticleCategory::with( 'articles')->get();
+
+        return view('frontend.pages.clinic.register')->with('data', $data);
+    }
+    public function post_register(ClinicRegisterRequest $request)
+    {
+        $input = $request->all();
+        $password = bcrypt($request->input('password'));
+        $input['password'] = $password;
+        $input['activation_code'] = str_random(10) . $request->input('email');
+        $register = \App\User::create($input);
+        $register->password = $password;
+        $register->save();
+        $register->roles()->attach(2);
+        
+        $clinic = \App\Clinic::create([
+            'user_id' => $register->id,
+            'name' => $input['name'],
+            'city_id' => $input['city_id']
+        ]);
+        Session::flash('success', "Jika dalam kurun waktu 24 jam Anda tidak menerima email dari kami, Anda dapat menghubungi kami melalui email di <a href='mailto:support@dokternet.com'>support@dokternet.com</a>");
+        
+        return redirect()->route('clinic.register');
     }
 }

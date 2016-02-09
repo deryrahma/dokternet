@@ -16,7 +16,7 @@
     <div class="row">
         <div class="col-md-12">
             <p>
-            Dengan menekan Daftar, saya mengkonfirmasi telah menyetujui Syarat & Ketentuan dan Kebijakan Privasi Konsula 
+            Dengan menekan Daftar, saya mengkonfirmasi telah menyetujui Syarat & Ketentuan dan Kebijakan Privasi Dokternet
         </p>
         </div>
     </div>

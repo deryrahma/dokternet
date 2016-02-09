@@ -444,3 +444,12 @@ section .register-page .register-content{
 .dashboard-profile {
     margin-bottom: 10px;
 }
+
+
+.register-panel .select2-container--default .select2-selection--single{
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
+}
+.register-panel .select2-container .select2-selection--single {
+    height: 100%;
+}

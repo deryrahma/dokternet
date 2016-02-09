@@ -31,9 +31,12 @@ Route::post('patient/post-register', ['as' => 'patient.post-register', 'uses' =>
 Route::get('patient/activate/{code}', ['as' => 'patient.activate', 'uses' => 'PatientController@activate']);
 
 
+
 Route::get('search', ['as' => 'search.doctor' , 'uses' => 'HomeController@search']);
 Route::get('doctor/{name}', ['as' => 'doctor.search-profile' , 'uses' => 'HomeController@searchProfile']);
+Route::get('category/{category}', ['as' => 'home.category.show', 'uses' => 'HomeController@category']);
 Route::get('article/{category}', ['as' => 'home.article.show', 'uses' => 'HomeController@article']);
+Route::get('blog', ['as' => 'home.blog', 'uses' => 'HomeController@blog']);
 
 //LOGIN MANAGEMENT
 Route::get('patient/login', function(){
@@ -49,6 +52,7 @@ Route::group(['middleware' => 'patient'], function()
 	Route::get('patient/logout', array('as' => 'patient.logout', 'uses' => 'PatientController@logout'));
 	Route::put('patient/update', array('as' => 'patient.update', 'uses' => 'PatientController@update'));
 	Route::get('patient/change-password',array('as' => 'patient.change-password', 'uses' => 'PatientController@changePassword'));
+	Route::post('patient/change-password', array('as' => 'patient.change-password.store', 'uses' => 'PatientController@submitChangePassword'));
 	Route::get('patient/history',array('as' => 'patient.history', 'uses' => 'PatientController@history'));
 });
 
@@ -76,11 +80,30 @@ Route::group(['middleware' => 'admin'], function()
 	// Clinic management
 	Route::get('admin/clinic/{id}/delete', array('as' => 'admin.clinic.delete', 'uses' => 'ClinicAdminController@destroy'));
 	Route::resource('admin/clinic', 'ClinicAdminController');
+	// Specialization management
+	Route::get('admin/spec/{id}/delete', array('as' => 'admin.spec.delete', 'uses' => 'SpecAdminController@destroy'));
+	Route::resource('admin/spec', 'SpecAdminController');
+	// Specialization category management
+	Route::get('admin/spec-cat/{id}/delete', array('as' => 'admin.spec-cat.delete', 'uses' => 'SpecCatAdminController@destroy'));
+	Route::resource('admin/spec-cat', 'SpecCatAdminController');
+	
+	// Add Doctor from Clinic management
+	//Route::get('admin/clinic/doctor/{id}/delete', array('as' => 'admin.clinic.doctor.delete', 'uses' => 'DoctorAtClinicAdminController@destroy'));
+	//Route::resource('admin/clinic/doctor', 'DoctorAtClinicAdminController');
+
 	// Doctor management
 	Route::get('admin/doctor/{id}/delete', array('as' => 'admin.doctor.delete', 'uses' => 'DoctorAdminController@destroy'));
 	Route::resource('admin/doctor', 'DoctorAdminController');
+	Route::get('admin/doctor/education/{id}/destroy',array('as' => 'admin.doctor.education.destroy', 'uses' => 'DoctorAdminController@educationDestroy'));
+	Route::get('admin/doctor/{id}/education',array('as' => 'admin.doctor.education.create', 'uses' => 'DoctorAdminController@education'));
+	Route::post('admin/doctor/{id}/education',array('as' => 'admin.doctor.education.store', 'uses' => 'DoctorAdminController@educationStore'));
+	Route::get('admin/doctor/experience/{id}/destroy',array('as' => 'admin.doctor.experience.destroy', 'uses' => 'DoctorAdminController@experienceDestroy'));
+	Route::get('admin/doctor/{id}/experience',array('as' => 'admin.doctor.experience.create', 'uses' => 'DoctorAdminController@experience'));
+	Route::post('admin/doctor/{id}/experience',array('as' => 'admin.doctor.experience.store', 'uses' => 'DoctorAdminController@experienceStore'));
 });
 
+Route::get( 'clinic/register', ['as' => 'clinic.register', 'uses' => 'ClinicController@register'] );
+Route::post('clinic/post-register', ['as' => 'clinic.post-register', 'uses' => 'ClinicController@post_register']);
 Route::get( 'clinic/login', array( 'as' => 'clinic.login', 'uses' => 'ClinicController@login' ) );
 Route::post( 'clinic/login', array( 'as' => 'clinic.login.post', 'uses' => 'ClinicController@postLogin' ) );
 Route::group( ['middleware' => 'clinic'], function() {
@@ -107,3 +130,9 @@ Route::resource('admin/doctor-verify', 'DoctorVerifyController');
 Route::get('admin/doctor-list/{id}/delete', array('as' => 'admin.doctor-list.delete', 'uses' => 'DoctorListController@destroy'));
 Route::resource('admin/doctor-list', 'DoctorListController');*/
 
+
+Route::resource( 'contact-us', 'ContactUsController', ['except' => ['show', 'delete']] );
+
+Route::controllers([
+	'password' => 'Auth\PasswordController'
+]);

@@ -52,6 +52,7 @@ html, body {
     
     color: #086CA3;
     text-decoration: none;
+    border-bottom: 1px solid #C8C8CC;
 }
 .main-navbar a{
     color: #086CA3;
@@ -62,7 +63,7 @@ html, body {
 }
 .nav > li > a:focus, .nav > li > a:hover, .nav .open > a, .nav .open > a:focus, .nav .open > a:hover{
     background: none;
-    border-bottom: 2px solid #086CA3;
+    border-top: 2px solid #086CA3;
 }
 .main-navbar .main-menu{
     font-weight: 300;
@@ -70,9 +71,13 @@ html, body {
 .main-navbar .login a{
     background: #f6bb19 none repeat scroll 0 0;
     text-transform: uppercase;
+    color: #ffffff;
+    font-weight: bold;
 }
 .main-navbar li.login a:hover{
     background: #171b20 none repeat scroll 0 0;
+    color: #ffffff;
+    border-top: none;
 }
 body{
     /*background-color: #F1F1F1;*/
@@ -94,10 +99,13 @@ body .main-page-content{
     color: #ffffff;
     border-color: #f6bb19;
 }
-
+.dokternet-color{
+    color: #086CA3;
+}
 section .container{
     background-color: #F7F8FA;
 }
+
 section .home-page {
     padding-top: 20px;
     background-image: url('../../img/home-bg.jpg');
@@ -260,25 +268,188 @@ section .home-page .home-content{
 }
 .section-search-result{
     font-family: 'Roboto', sans-serif;
+    padding: 10px;
 }
-.section-search-result ul.list-search-result{
-    list-style-type: none;
+.section-search-result li{
+
+}
+.section-search-result .list-search-result{
     margin: 0px;
     padding: 0px;
 }
-.section-search-result ul.list-search-result .name{
+.section-search-result .list-search-result .name{
     padding: 0px;
     margin: 0px;
     font-size: 15px;
+    font-weight: 700;
 }
-.section-search-result ul.list-search-result .search-doctor-detail {
+.section-search-result .list-search-result .search-doctor-detail {
     color: #4c4c4c;
 }
-.section-search-result ul.list-search-result .search-doctor-detail .speciality{
+.section-search-result .list-search-result .search-doctor-detail .speciality{
     font-size: 12px;
     line-height: 12px;
     font-weight: 700;
 }
-.section-search-result ul.list-search-result .search-doctor-detail .address{
+.section-search-result .list-search-result .search-doctor-detail .address{
     font-size: 12px;
+}
+.section-search-result .list-search-result .item .btn-action .btn{
+    font-size: 10px;
+}
+.section-search-result .practice_time, 
+.section-search-result .address,
+.section-search-result .speciality
+{
+    font-size: 12px;
+    padding-top: 4px;
+}
+.section-search-result .speciality .list-rating{
+    padding-top: 4px;
+}
+.search-result-image-doctor{
+    height: 140px;
+}
+.search-result-image-doctor img{
+    height: auto;
+    margin-bottom: 10px;
+    max-height: 140px;
+    /*max-width: 80%;*/
+}
+.btn-advance-search{
+    margin-left: 5px;
+}
+
+.search-profile{
+    padding-top: 10px;
+    background-color: #F1F1F2;
+    font-family: 'Roboto', sans-serif;
+}
+.search-profile .image{
+    padding-top: 20px;
+}
+.search-profile blockquote{
+    font-size: 12px;
+    padding: 5px;
+}
+
+ul.list-rating {
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+}
+ul.list-rating li{
+    padding: 0px;
+}
+.search-profile .lead-text{
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.blue-dokternet{
+    color: #086CA3;
+}
+.schedule-practice{
+    font-size: 11px;
+}
+.blog-page ul{
+    list-style-type: none;
+}
+.blog-page ul .title{
+    text-transform: uppercase;
+}
+.blog-head{
+    background-image: url('../../img/blog-bg.jpg');
+    background-color: #1B8AF3;
+    background-position: center top;
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100px;
+    width: 100%;
+}
+.blog-head::after{
+    background: rgba(8, 108, 163, 0.7) none repeat scroll 0 0;
+    content: "";
+    height: 100%;
+    left: 0;
+    top: 0;
+    width: 100%;
+    position: absolute;
+}
+.blog-head .blog-head-content{
+    top: 20px;
+    z-index: 10;
+    position: relative;
+    text-transform: uppercase;
+    color: #ffffff;
+}
+    
+.blog-head .blog-head-content h3{
+    font-size: 48px;
+    font-weight: 300;
+    margin-top: 0;
+}
+.detail-article i{
+    color: #086CA3;
+}
+.register-page {
+    padding-top: 10px;
+}
+.register-page .register-panel{
+    padding: 10px;
+}
+
+
+section .register-page{
+    padding-top: 20px;
+    background-image: url('../../img/home-bg.jpg');
+    background-color: #1B8AF3;
+    background-position: center top;
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+section .register-page::after{
+    background: rgba(8, 108, 163, 0.7) none repeat scroll 0 0;
+    content: "";
+    height: 100%;
+    left: 0;
+    top: 0;
+    width: 100%;
+    position: absolute;
+
+
+}
+section .register-page .register-content{
+    position: relative;
+    z-index: 100;
+}
+
+.btn-register{
+    color: #ffffff;
+    font-weight: 700;
+    background: #f6bb19 none repeat scroll 0 0;
+}
+.btn-register:hover{
+    background: #171b20 none repeat scroll 0 0;
+    color: #ffffff;
+}
+.patient-page{
+    padding-top: 10px;
+    background-color: #F1F1F2;
+}
+.patient-page .sidebar-container{
+    padding-top: 10px;
+}
+.dashboard-profile {
+    margin-bottom: 10px;
+}
+
+
+.register-panel .select2-container--default .select2-selection--single{
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
+}
+.register-panel .select2-container .select2-selection--single {
+    height: 100%;
 }

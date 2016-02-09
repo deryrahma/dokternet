@@ -3,13 +3,20 @@
 		<div class="row">
 			<div class="col-xs-9 bottom-menu">
 				<ul>
+				@if(isset($data['article']))
 					@foreach( $data['article'] as $row )
 					<li>
-						<a href="{!! route('home.article.show',[urlencode($row->name)]) !!}">
+						<a href="{!! route('home.category.show',[urlencode($row->name)]) !!}">
 							{!! $row->name !!}
 						</a>
 					</li>
 					@endforeach
+				@endif
+					<li>
+						<a href="{!! route('contact-us.index') !!}">
+							Hubungi Kami
+						</a>
+					</li>
 				</ul>
 					
 			</div>

@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Requests\PatientRequest;
 use App\Http\Requests\PatientRegRequest;
 use App\Http\Requests\PatientUpdateRequest;
+use App\Http\Requests\PatientChangePasswordRequest;
 use App\Http\Controllers\Controller;
 use App\ArticleCategory;
 
@@ -87,7 +88,7 @@ class PatientController extends Controller
            'code' => $input['activation_code']
         ];
         // $this->sendEmail($data, $input);
-        Session::flash('success', "Cek email untuk mengaktivasi akun");
+        Session::flash('success', "Silakan periksa email anda untuk mengaktifkan akun Anda. Jika dalam kurun waktu 24 jam Anda tidak menerima email dari kami, Anda dapat menghubungi kami melalui email di <a href='mailto:support@dokternet.com'>support@dokternet.com</a>");
         
         return redirect()->route('patient.register');
     }
@@ -106,9 +107,11 @@ class PatientController extends Controller
     public function activate($code, \App\User $patient)
     {
         if ($patient->activateAccount($code)) {
-            return 'Akun pasien Anda berhasil diaktivasi';
+            Session::flash('success', "Akun anda berhasil diaktifkan, silakan masuk ke sistem.");
+            return redirect()->route('patient.login');
         }
-        return 'Akun pasien Anda gagal diaktivasi';
+        Session::flash('danger', "Akun anda gagal diaktifkan, jika mengalami kesulitan dalam mengaktifkan akun Anda, Anda dapat menghubungi kami melalui email di <a href='mailto:support@dokternet.com'>support@dokternet.com</a>.");
+        return redirect()->route('patient.login');
     }
     public function dashboard()
     {
@@ -116,6 +119,25 @@ class PatientController extends Controller
         $data['article'] = ArticleCategory::with( 'articles')->get();
         $data['content'] = Auth::user();
         return view('frontend.pages.patient.dashboard', compact('data'));
+    }
+    public function changePassword(){
+        $data = [];
+        $data['article'] = ArticleCategory::with( 'articles')->get();
+        $data['content'] = Auth::user();
+        return view('frontend.pages.patient.change-password', compact('data'));
+    }
+    public function submitChangePassword(PatientChangePasswordRequest $request)
+    {
+        $user = \App\User::find(Auth::id());
+        if (Hash::check($request->input('oldpassword'), $user->password))
+        {
+            $user->password = Hash::make($request->input('password'));
+            $user->save();
+            Session::flash('success','Password berhasil diperbarui');
+        }else{
+            Session::flash('danger','Password lama tidak cocok');
+        }
+        return redirect()->route('patient.change-password');
     }
     public function logout()
     {
@@ -135,7 +157,7 @@ class PatientController extends Controller
         $data->telephone = $request->telephone;
         $data->address = $request->address;
         $data->save();
-
+        Session::flash('success', 'Data anda berhasil diperbarui');
         return redirect()->route('patient.dashboard');
     }
 }

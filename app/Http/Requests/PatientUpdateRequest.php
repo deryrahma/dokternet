@@ -33,7 +33,7 @@ class PatientUpdateRequest extends Request
             'birth_date' => 'required',
             'email' => 'required|email|unique:users,email,'.Auth::user()->id,
             'mobile' => 'required',
-            'telephone' => 'required',
+            // 'telephone' => 'required',
             'address' => 'required',
         ];
     }

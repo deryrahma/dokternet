@@ -16,7 +16,15 @@ class CreateTables extends Migration
             $table->increments( 'id' );
             $table->string( 'name', 30 );
         } );
-
+        Schema::create( 'days', function( Blueprint $table ) {
+            $table->increments( 'id' );
+            $table->string( 'name', 30 );
+        } );
+        Schema::create( 'day_doctor', function( Blueprint $table ) {
+            $table->increments( 'id' );
+            $table->integer( 'day_id');
+            $table->integer( 'doctor_id');
+        } );
         Schema::create( 'city', function( Blueprint $table ) {
             $table->increments( 'id' );
             $table->integer( 'province_id' )->unsigned();
@@ -78,7 +86,13 @@ class CreateTables extends Migration
             $table->integer( 'user_id' );
             $table->integer( 'specialization_id' )->unsigned();
             $table->integer( 'city_id' )->unsigned();
+            $table->string( 'registration_number', 100 );
+            $table->integer('registration_year');
             $table->string( 'name', 50 );
+            $table->string( 'photo', 150 );
+            $table->string( 'practice_time' );
+            $table->char( 'gender',1 );
+            $table->text( 'description' );
             $table->text( 'address' );
             $table->float( 'latitude' );
             $table->float( 'longitude' );
@@ -90,6 +104,12 @@ class CreateTables extends Migration
             $table->rememberToken();
             $table->timestamps();
         } );
+        Schema::create('doctor_educations', function($table){
+            $table->increments('id');
+            $table->integer('doctor_id');
+            $table->string('name');
+            $table->integer('year');
+        });
 
         Schema::create( 'specialization_category', function( Blueprint $table ) {
             $table->increments( 'id' );
@@ -263,6 +283,12 @@ class CreateTables extends Migration
             $table->text('description');
             $table->timestamps();
         });
+        Schema::create('doctor_experiences', function($table)
+        {
+            $table->increments('id');
+            $table->integer('doctor_id');
+            $table->string('name');
+        });
 
     }
 
@@ -281,6 +307,8 @@ class CreateTables extends Migration
         Schema::dropIfExists( 'schedule' );
         Schema::dropIfExists( 'doctor_clinic' );
         Schema::dropIfExists( 'doctor' );
+        Schema::dropIfExists( 'days' );
+        Schema::dropIfExists( 'day_doctor' );
         Schema::dropIfExists( 'specialization' );
         Schema::dropIfExists( 'review' );
         Schema::dropIfExists( 'recommendation' );
@@ -299,5 +327,8 @@ class CreateTables extends Migration
         Schema::dropIfExists( 'clinic_patient' );
         Schema::dropIfExists( 'doctor_specialization' );
         Schema::dropIfExists( 'specialization_category' );
+        Schema::dropIfExists( 'doctor_educations' );
+        Schema::dropIfExists( 'doctor_experiences' );
+        
     }
 }

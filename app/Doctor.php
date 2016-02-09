@@ -22,12 +22,16 @@ class Doctor extends Model implements AuthenticatableContract,
         'user_id',
     	'specialization_id',
     	'city_id',
+        'registration_number',
+        'registration_year',
+        'description',
+        'photo',
+        'practice_time',
+        'gender',
     	'name',
     	'address',
     	'latitude',
     	'longitude',
-    	'email',
-    	'password',
     	'mobile',
     	'telephone',
     	'verified',
@@ -49,7 +53,13 @@ class Doctor extends Model implements AuthenticatableContract,
     }
 
     public function reviews() {
-    	return $this->hasMany( 'App\Review' );
+        return $this->hasMany( 'App\Review' );
+    }
+    public function doctorEducation() {
+        return $this->hasMany( 'App\DoctorEducation' );
+    }
+    public function doctorExperience() {
+        return $this->hasMany( 'App\DoctorExperience' );
     }
 
     public function recommendations() {
@@ -66,6 +76,12 @@ class Doctor extends Model implements AuthenticatableContract,
 
     public function doctor_clinic() {
     	return $this->hasMany( 'App\DoctorClinic' );
+    }
+    public function clinics(){
+        return $this->belongsToMany('App\Clinic','doctor_clinic','doctor_id','clinic_id');
+    }
+    public function day() {
+        return $this->belongsToMany( 'App\Day','day_doctor','doctor_id','day_id' );
     }
 
     public function activateAccount($code)

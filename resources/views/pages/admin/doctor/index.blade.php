@@ -37,12 +37,12 @@
                 <div class="box">
 
                     <div class="box-header">
-                        <h3 class="box-title">Daftar Dokter &nbsp;&nbsp;&nbsp; <a class="btn btn-primary btn-sm" href="{!! route('admin.doctor.create') !!}">Tambah Pasien</a></h3>                                    
+                        <h3 class="box-title">Daftar Dokter &nbsp;&nbsp;&nbsp; <a class="btn btn-primary btn-sm" href="{!! route('admin.doctor.create') !!}">Tambah Dokter</a></h3>                                    
                     </div>
                     <div class="box-body">
                         <form method="get" action="{!! route('admin.doctor.index') !!}">
                             <div class="form-group">
-                                <label class="form-label" for="gender_id">Provinsi</label>
+                                <label class="form-label" for="province_id">Provinsi</label>
                                 <?php 
                                     $arr_Province = array();
                                     //$arr_Parent['0'] = "Tidak Ada";
@@ -54,7 +54,7 @@
                                 {!! Form::select('province_id', $arr_Province, null, array('class' => 'form-control')) !!}
                             </div>
                             <div class="form-group">
-                                <label class="form-label" for="gender_id">Kota</label>
+                                <label class="form-label" for="city_id">Kota</label>
                                 <?php 
                                     $arr_City = array();
                                     //$arr_Parent['0'] = "Tidak Ada";
@@ -66,7 +66,7 @@
                                 {!! Form::select('city_id', $arr_City, null, array('class' => 'form-control')) !!}
                             </div>
                             <div class="form-group">
-                                <label class="form-label" for="gender_id">Spesialisasi</label>
+                                <label class="form-label" for="specialization_id">Spesialisasi</label>
                                 <?php 
                                     $arr_Specialization = array();
                                     //$arr_Parent['0'] = "Tidak Ada";
@@ -78,7 +78,7 @@
                                 {!! Form::select('specialization_id', $arr_Specialization, null, array('class' => 'form-control')) !!}
                             </div>
                             <div class="form-group">
-                                <label class="form-label" for="parent_id">Status</label>
+                                <label class="form-label" for="verified">Status</label>
                                 {!! Form::select('verified', array('0' => 'Belum diverifikasi', '1' => 'Sudah diverifikasi'), $data['verified'], array('class' => 'form-control')) !!}
                             </div>
                             <div class="box-footer">
@@ -109,10 +109,10 @@
                                             {!! $row->telephone !!}
                                         </td>
                                         <td>
-                                            {!! $row->email !!}
+                                            {!! $row->user->email !!}
                                         </td>
                                         <td>
-                                            
+                                            <a href="{!! route('admin.doctor.show', [$row->id]) !!}" class="fa fa-eye"></a>
                                                 <a href="{!! route('admin.doctor.edit',[$row->id]) !!}" class="fa fa-pencil-square-o"></a>
                                             
                                                 <a href="javascript:void(0);" onclick="deleteModal(this)" data-href="{!! route('admin.doctor.delete',[$row->id]) !!}" class="fa fa-trash-o"></a>

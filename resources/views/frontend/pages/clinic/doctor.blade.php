@@ -13,7 +13,7 @@
         "info": true,
         "searching": true,
         "lengthChange": false,
-        "dom": '<"top"iflp<"clear">>rt<"bottom"iflp<"clear">>',
+        
         "language": {
           "emptyTable": "Data tidak ditemukan!",
           "infoEmpty": "Total dokter: _TOTAL_",
@@ -32,16 +32,12 @@
 @endsection
 
 @section( 'sub-content' )
-  <h3>Daftar Dokter Klinik</h3>
-  <a href="{{ route( 'clinic.doctor.create' ) }}" class="btn btn-primary">Tambah Dokter</a>
-  <br><br>
+  <h3>Daftar Dokter Klinik &nbsp;&nbsp;&nbsp; <a href="{{ route( 'clinic.doctor.create' ) }}" class="btn btn-default btn-sm">Tambah Dokter </a></h3>
   <table class="table table-bordered table-striped dataTable">
     <thead>
       <tr>
-        <th>Name</th>
-        <th>Kota</th>
-        <th>Alamat</th>
         <th>Spesialisasi</th>
+        <th>Nama</th>
         <th>Email</th>
         <th>No. Telp/HP</th>
         <th>Aksi</th>
@@ -50,22 +46,25 @@
     <tbody>
       @foreach( $data['content'] as $doctor )
         <tr>
-          <td>{{ $doctor->doctor->name }}</td>
-          <td>{{ $doctor->doctor->city->name }}</td>
-          <td>{{ $doctor->doctor->address }}</td>
-          <td>{{ $doctor->doctor->specialization->name }}</td>
-          <td>{{ $doctor->doctor->email }}</td>
+          <td>{{ $doctor->specialization->name }}</td>
+          <td>{{ $doctor->name }}</td>
+          
+          <td>{{ $doctor->user->email }}</td>
           <td>
-            @if( $doctor->doctor->telephone && $doctor->doctor->mobile )
-              {{ $doctor->doctor->telephone }} / {{ $doctor->doctor->mobile }}
-            @elseif( $doctor->doctor->telephone )
-              {{ $doctor->doctor->telephone }}
-            @elseif( $doctor->doctor->mobile )
-              {{ $doctor->doctor->mobile }}
+            @if( $doctor->telephone && $doctor->mobile )
+              {{ $doctor->telephone }} / {{ $doctor->mobile }}
+            @elseif( $doctor->telephone )
+              {{ $doctor->telephone }}
+            @elseif( $doctor->mobile )
+              {{ $doctor->mobile }}
             @endif
           </td>
           <td>
-            {!! Form::open( ['url' => route( 'clinic.doctor.destroy', ['id' => $doctor->doctor->id ] ) ] ) !!}
+            <a  class="btn btn-default btn-xs" href="{!! route('clinic.doctor.edit', [$doctor->id]) !!}">
+                <span class="glyphicon glyphicon-pencil"></span>
+                &nbsp;edit
+            </a>
+            {!! Form::open( ['url' => route( 'clinic.doctor.destroy', ['id' => $doctor->id ] ) ] ) !!}
               {!! Form::hidden( '_method', 'DELETE' ) !!}
               <button type="submit" class="btn btn-danger btn-xs">
                 <span class="glyphicon glyphicon-trash"></span>

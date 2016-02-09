@@ -45,9 +45,14 @@ class PatientController extends Controller
         $remember_me = true;
         if (Auth::attempt(['email' => $email, 'password' => $password], $remember_me)){
             
-            if(Auth::user()->verified == '1')
+            if(Auth::user()->verified == '1' and Auth::user()->roles->first()->level =='3')
                 return redirect()->route('patient.dashboard');
-            else{
+            else if (Auth::user()->verified != '1' and Auth::user()->roles->first()->level =='3') {
+                Session::flash('failed', "Akun anda belum terverifikasi silakan cek email anda.");
+                Auth::logout();
+            }elseif (Auth::user()->verified == '1' and Auth::user()->roles->first()->level =='4') {
+                return redirect()->route('clinic.dashboard');
+            }else{
                 Session::flash('failed', "Akun anda belum terverifikasi silakan cek email anda.");
                 Auth::logout();
             }

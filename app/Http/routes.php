@@ -111,7 +111,7 @@ Route::group( ['middleware' => 'clinic'], function() {
 	Route::put( 'clinic/update', array( 'as' => 'clinic.update', 'uses' => 'ClinicController@update' ) );
 	Route::get( 'clinic/change-password', array( 'as' => 'clinic.change-password', 'uses' => 'ClinicController@changePassword' ) );
 	Route::post( 'clinic/change-password', array( 'as' => 'clinic.change-password.save', 'uses' => 'ClinicController@postChangePassword' ) );
-	Route::resource( 'clinic/doctor', 'DoctorClinicController', ['except' => ['show', 'edit', 'update']] );
+	Route::resource( 'clinic/doctor', 'DoctorClinicController', ['except' => ['show']] );
 	Route::get( 'clinic/appointment', array( 'as' => 'clinic.appointment', 'uses' => 'ClinicController@appointment' ) );
 	Route::get( 'clinic/report', array( 'as' => 'clinic.report', 'uses' => 'ClinicController@report' ) );
 } );

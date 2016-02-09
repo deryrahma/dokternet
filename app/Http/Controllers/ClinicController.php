@@ -112,14 +112,6 @@ class ClinicController extends Controller
         return redirect()->back();
     }
 
-    public function doctor()
-    {
-        $data = [];
-        $data['article'] = ArticleCategory::with( 'articles' )->get();
-
-        return view( 'frontend.pages.clinic.dashboard', compact( 'data' ) );
-    }
-
     public function appointment()
     {
         $data = [];

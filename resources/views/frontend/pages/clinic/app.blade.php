@@ -11,7 +11,7 @@
           <a href="{!! route('clinic.change-password') !!}">Ganti Password</a>
         </li>
         <li class="list-group-item">
-          <a href="{!! route('clinic.doctor') !!}">Manajemen Dokter</a>
+          <a href="{!! route('clinic.doctor.index') !!}">Manajemen Dokter</a>
         </li>
         <li class="list-group-item">
           <a href="{!! route('clinic.appointment') !!}">Manajemen Perjanjian Dokter</a>

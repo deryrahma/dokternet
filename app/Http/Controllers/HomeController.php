@@ -129,4 +129,12 @@ class HomeController extends Controller
       $data['content'] = \App\Article::orderBy('created_at', 'desc')->paginate(10);
       return view('frontend.pages.home.blog', compact('data')); 
     }
+    public function article($title)
+    {
+      $title = urldecode($title);
+      $data['content'] = \App\Article::where('title', 'like', '%'.$title.'%')->first();
+      if(empty($data['content']))
+        return redirect()->route('home');
+      return view('frontend.pages.home.single-article', compact('data'));
+    }
 }

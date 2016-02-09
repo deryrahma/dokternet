@@ -34,6 +34,7 @@ Route::get('patient/activate/{code}', ['as' => 'patient.activate', 'uses' => 'Pa
 
 Route::get('search', ['as' => 'search.doctor' , 'uses' => 'HomeController@search']);
 Route::get('doctor/{name}', ['as' => 'doctor.search-profile' , 'uses' => 'HomeController@searchProfile']);
+Route::get('category/{category}', ['as' => 'home.category.show', 'uses' => 'HomeController@category']);
 Route::get('article/{category}', ['as' => 'home.article.show', 'uses' => 'HomeController@article']);
 Route::get('blog', ['as' => 'home.blog', 'uses' => 'HomeController@blog']);
 

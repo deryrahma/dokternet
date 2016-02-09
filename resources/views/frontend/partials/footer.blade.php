@@ -6,7 +6,7 @@
 				@if(isset($data['article']))
 					@foreach( $data['article'] as $row )
 					<li>
-						<a href="{!! route('home.article.show',[urlencode($row->name)]) !!}">
+						<a href="{!! route('home.category.show',[urlencode($row->name)]) !!}">
 							{!! $row->name !!}
 						</a>
 					</li>

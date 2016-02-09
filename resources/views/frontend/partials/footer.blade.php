@@ -12,6 +12,11 @@
 					</li>
 					@endforeach
 				@endif
+					<li>
+						<a href="{!! route('contact-us.index') !!}">
+							Hubungi Kami
+						</a>
+					</li>
 				</ul>
 					
 			</div>

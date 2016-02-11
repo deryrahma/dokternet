@@ -43,7 +43,7 @@ Route::get('patient/login', function(){
 	return redirect()->route('patient.login');
 });
 
-Route::get('patient/login', array('as' => 'patient.login', 'uses' => 'PatientController@login'));
+Route::get('auth/login', array('as' => 'patient.login', 'uses' => 'PatientController@login'));
 Route::post('patient/login', array('as' => 'patient.login.post', 'uses' => 'PatientController@postLogin'));
 
 Route::group(['middleware' => 'patient'], function()
@@ -123,6 +123,9 @@ Route::post( 'reservation/{id}/book/login', array( 'as' => 'reservation.login', 
 Route::post( 'reservation/{id}/book/confirm', array( 'as' => 'reservation.confirm', 'uses' => 'ReservationController@confirm' ) );
 Route::post( 'reservation/{id}/book/verify', array( 'as' => 'reservation.verify', 'uses' => 'ReservationController@verify' ) );
 
+Route::get('doctor/review/{id}/create', array('as' => 'doctor.review.create', 'uses' => 'PatientController@review'));
+Route::post('doctor/review/{id}/create', array('as' => 'doctor.review.store', 'uses' => 'PatientController@reviewStore'));
+
 // Doctor management
 /*Route::get('admin/doctor-verify/{id}/delete', array('as' => 'admin.doctor-verify.delete', 'uses' => 'DoctorVerifyController@destroy'));
 Route::resource('admin/doctor-verify', 'DoctorVerifyController');
@@ -132,7 +135,11 @@ Route::resource('admin/doctor-list', 'DoctorListController');*/
 
 
 Route::resource( 'contact-us', 'ContactUsController', ['except' => ['show', 'delete']] );
+Route::get( 'admin/contact-us', ['as' => 'admin.contact-us', 'uses' => 'ContactUsController@adminIndex'] );
+Route::get( 'admin/contact-us/{id}/show', ['as' => 'admin.contact-us.show', 'uses' => 'ContactUsController@adminShow'] );
+Route::get( 'admin/contact-us/{id}/delete', ['as' => 'admin.contact-us.delete', 'uses' => 'ContactUsController@adminDelete'] );
 
 Route::controllers([
 	'password' => 'Auth\PasswordController'
 ]);
+Route::get('auth/logout', array('as' => 'auth.logout', 'uses' => 'PatientController@logout'));

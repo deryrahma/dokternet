@@ -134,6 +134,7 @@ class DoctorClinicController extends Controller
             'email'=> $request->input('email'),
             'password'=> Hash::make('1234')
         ]);
+        $user->roles()->attach(2);
 
         $data['user_id'] = $user->id;
         $data['specialization_id'] = $request->get('specialization_id');

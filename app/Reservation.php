@@ -34,6 +34,6 @@ class Reservation extends Model
     }
 
     public function reviews() {
-    	return $this->hasMany( 'App\Review' );
+    	return $this->hasOne( 'App\Review' );
     }
 }

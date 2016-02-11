@@ -95,5 +95,12 @@
                 </li>
             </ul>
         </li>
+        <li >
+            <a href="{!! route('admin.contact-us') !!}">
+                <i class="fa fa-share-square-o"></i>
+                <span>Pesan Masuk</span>
+                <i class="fa fa-angle-left pull-right"></i>
+            </a>
+        </li>
     </ul>
 </section>

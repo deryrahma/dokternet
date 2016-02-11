@@ -165,4 +165,30 @@ class PatientController extends Controller
         Session::flash('success', 'Data anda berhasil diperbarui');
         return redirect()->route('patient.dashboard');
     }
+
+    public function history()
+    {
+        $data['content'] = \App\Reservation::where('patient_id', Auth::id())->get();
+        return view('frontend.pages.patient.history', compact('data'));
+    }
+    public function review($id)
+    {
+        $data['content'] = \App\Reservation::find($id);
+        return view('frontend.pages.patient.review', compact('data'));
+    }
+
+    public function reviewStore(Request $request, $id)
+    {
+        $reservation = \App\Reservation::find($id);
+        $data = array();
+        $data['doctor_id'] = $reservation->schedule->doctor_id;
+        $data['patient_id'] = Auth::id();
+        $data['reservation_id'] = $reservation->id;
+        $data['rating'] = $request->input('rating');
+        $data['description'] = $request->input('description');
+
+        $review = \App\Review::create($data);
+        Session::flash('success', 'Review anda berhasil terkirim');
+        return redirect()->route('patient.history');
+    }
 }

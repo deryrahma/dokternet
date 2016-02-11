@@ -21,9 +21,19 @@
 					</div>
 				</div>
 				<div class="col-md-8">
+					<!-- <div class="row">
+						<div class="col-md-10">
+							<h3>
+								{!! $data['content']->name !!}
+							</h3>
+						</div>
+						<div class="col-md-2">
+							<a href="javascript:void(0)" data-toggle="modal" data-target="#reviewModal" class="btn btn-danger"><i class="fa fa-share-square-o fa-lg"></i></a>
+						</div>
+					</div> -->
 					<h3>
-						{!! $data['content']->name !!}
-					</h3>
+								{!! $data['content']->name !!}
+							</h3>
 					<p>
 						{!! $data['content']->specialization->name !!}
 						<?php 
@@ -113,4 +123,35 @@
 			</div>
 		</div>
 	</div>
+
+<div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="reviewModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="reviewModalLabel">
+        	Tuliskan Ulasan
+        </h4>
+      </div>
+      <div class="modal-body">
+        @if(!Auth::check())
+        	<p>
+        		Anda harus login terlebih dahulu. Klik <a href="{!! routes('patient.login') !!}">disini</a> untuk login.
+        	</p>
+        @elseif(Auth::user()->roles->first()->level == '2')
+        	{!! BootstrapForm::open(['model' => $data['content'], 'store' => 'clinic.doctor.store', 'update' => 'clinic.doctor.update','files' => true]) !!}
+        	@include('frontend.pages.review.form')
+        	{!! BootstrapForm::close() !!}
+        @else
+        	<p>
+        		Anda tidak berhak mengisi tulisan ulasan.
+        	</p>
+        @endif
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 @endsection

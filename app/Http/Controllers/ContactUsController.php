@@ -97,4 +97,20 @@ class ContactUsController extends Controller
     {
         //
     }
+
+    public function adminIndex(){
+        $data = \App\ContactUs::orderBy('created_at','desc')->get();
+        return view( 'pages.admin.contact-us.index', compact( 'data' ) );
+    }
+    public function adminShow($id){
+        $data = \App\ContactUs::find($id);
+        return view( 'pages.admin.contact-us.show', compact( 'data' ) );
+    }
+    public function adminDelete($id){
+
+        $data = \App\ContactUs::find($id);
+        $data->delete();
+        Session::flash('success', 'Data pesan masuk berhasil dihapus');
+        return redirect()->route('admin.contact-us');
+    }
 }

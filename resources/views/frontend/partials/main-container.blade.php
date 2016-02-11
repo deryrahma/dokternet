@@ -37,14 +37,14 @@
 						<li class="login">
 							<a href="{!! route( 'patient.register' ) !!}">Daftar Disini</a>
 						</li>
-						@else
+						@elseif(Auth::check() and (Auth::user()->roles->first()->level =='4' or Auth::user()->roles->first()->level =='3' ))
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 								Akun Anda <span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu">
-								<li><a href="{!! route('patient.dashboard') !!}"><i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;Dashboard</a></li>
-								<li><a href="{!! route('patient.logout') !!}"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;Keluar</a></li>
+								<li><a href="{!! route('patient.dashboard') !!}"><i class="fa fa-dashboard"></i>&nbsp;&nbsp;Dashboard</a></li>
+								<li><a href="{!! route('auth.logout') !!}"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Keluar</a></li>
 							</ul>
 						</li>
 						@endif

@@ -163,4 +163,49 @@ class ClinicController extends Controller
         
         return redirect()->route('clinic.register');
     }
+    public function education($id)
+    {
+        $doctor = \App\Doctor::find($id);
+        return view('frontend.pages.clinic.doctor.education', compact('doctor'));
+    }
+    public function educationStore(Request $request, $id)
+    {
+        \App\DoctorEducation::create([
+            'doctor_id' => $id,
+            'year' => $request->input('year'),
+            'name' => $request->input('name')
+            ]);
+        Session::flash('success', "Data pendidikan berhasil ditambahkan.");
+        return redirect()->route('clinic.doctor.show', [$id]);
+    }
+    public function educationDestroy($id)
+    {
+        $data = \App\DoctorEducation::find($id);
+        $doctor_id = $data->doctor_id;
+        $data->delete();
+        Session::flash('success', "Data pendidikan berhasil dihapus.");
+        return redirect()->route('clinic.doctor.show', [$doctor_id]);
+    }
+    public function experience($id)
+    {
+        $doctor = \App\Doctor::find($id);
+        return view('frontend.pages.clinic.doctor.experience', compact('doctor'));
+    }
+    public function experienceStore(Request $request, $id)
+    {
+        \App\DoctorExperience::create([
+            'doctor_id' => $id,
+            'name' => $request->input('name')
+            ]);
+        Session::flash('success', "Data pengalaman berhasil ditambahkan.");
+        return redirect()->route('clinic.doctor.show', [$id]);
+    }
+    public function experienceDestroy($id)
+    {
+        $data = \App\DoctorExperience::find($id);
+        $doctor_id = $data->doctor_id;
+        $data->delete();
+        Session::flash('success', "Data pengalaman berhasil dihapus.");
+        return redirect()->route('clinic.doctor.show', [$doctor_id]);
+    }
 }

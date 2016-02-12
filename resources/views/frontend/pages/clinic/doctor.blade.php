@@ -60,10 +60,16 @@
             @endif
           </td>
           <td>
-            <a  class="btn btn-default btn-xs" href="{!! route('clinic.doctor.edit', [$doctor->id]) !!}">
-                <span class="glyphicon glyphicon-pencil"></span>
-                &nbsp;edit
-            </a>
+            <!-- Single button -->
+            <div class="btn-group">
+              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Opsi <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li><a href="{!! route('clinic.doctor.edit', [$doctor->id]) !!}">Edit</a></li>
+                <li><a href="{!! route('clinic.doctor.show', [$doctor->id]) !!}">Detail</a></li>
+              </ul>
+            </div>
             {!! Form::open( ['url' => route( 'clinic.doctor.destroy', ['id' => $doctor->id ] ) ] ) !!}
               {!! Form::hidden( '_method', 'DELETE' ) !!}
               <button type="submit" class="btn btn-danger btn-xs">

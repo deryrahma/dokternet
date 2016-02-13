@@ -186,4 +186,9 @@ class DoctorClinicController extends Controller
                     ->delete();
         return redirect()->back();
     }
+    public function show($id)
+    {
+        $data['content'] = \App\Doctor::find($id);
+        return view('frontend.pages.clinic.show', compact('data'));
+    }
 }

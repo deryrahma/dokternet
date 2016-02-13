@@ -111,8 +111,8 @@ Route::group( ['middleware' => 'clinic'], function() {
 	Route::put( 'clinic/update', array( 'as' => 'clinic.update', 'uses' => 'ClinicController@update' ) );
 	Route::get( 'clinic/change-password', array( 'as' => 'clinic.change-password', 'uses' => 'ClinicController@changePassword' ) );
 	Route::post( 'clinic/change-password', array( 'as' => 'clinic.change-password.save', 'uses' => 'ClinicController@postChangePassword' ) );
-	Route::resource( 'clinic/doctor', 'DoctorClinicController', ['except' => ['show']] );
 	Route::resource( 'clinic/schedule', 'ScheduleController', ['except' => ['show']] );
+	Route::resource( 'clinic/doctor', 'DoctorClinicController');
 	Route::get( 'clinic/appointment', array( 'as' => 'clinic.appointment', 'uses' => 'ClinicController@appointment' ) );
 	Route::get( 'clinic/report', array( 'as' => 'clinic.report', 'uses' => 'ClinicController@report' ) );
 } );
@@ -126,6 +126,13 @@ Route::post( 'reservation/{id}/book/verify', array( 'as' => 'reservation.verify'
 
 Route::get('doctor/review/{id}/create', array('as' => 'doctor.review.create', 'uses' => 'PatientController@review'));
 Route::post('doctor/review/{id}/create', array('as' => 'doctor.review.store', 'uses' => 'PatientController@reviewStore'));
+Route::get('clinic/doctor/{id}/education/create', array('as' => 'clinic.doctor.education.create', 'uses' => 'ClinicController@education'));
+Route::post('clinic/doctor/{id}/education/create', array('as' => 'clinic.doctor.education.store', 'uses' => 'ClinicController@educationStore'));
+Route::get('clinic/doctor/education/{id}/destroy', array('as' => 'clinic.doctor.education.destroy', 'uses' => 'ClinicController@educationDestroy'));
+Route::get('clinic/doctor/{id}/experience/create', array('as' => 'clinic.doctor.experience.create', 'uses' => 'ClinicController@experience'));
+Route::post('clinic/doctor/{id}/experience/create', array('as' => 'clinic.doctor.experience.store', 'uses' => 'ClinicController@experienceStore'));
+Route::get('clinic/doctor/experience/{id}/destroy', array('as' => 'clinic.doctor.experience.destroy', 'uses' => 'ClinicController@experienceDestroy'));
+
 
 // Doctor management
 /*Route::get('admin/doctor-verify/{id}/delete', array('as' => 'admin.doctor-verify.delete', 'uses' => 'DoctorVerifyController@destroy'));

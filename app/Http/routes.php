@@ -86,7 +86,7 @@ Route::group(['middleware' => 'admin'], function()
 	// Specialization category management
 	Route::get('admin/spec-cat/{id}/delete', array('as' => 'admin.spec-cat.delete', 'uses' => 'SpecCatAdminController@destroy'));
 	Route::resource('admin/spec-cat', 'SpecCatAdminController');
-	
+
 	// Add Doctor from Clinic management
 	//Route::get('admin/clinic/doctor/{id}/delete', array('as' => 'admin.clinic.doctor.delete', 'uses' => 'DoctorAtClinicAdminController@destroy'));
 	//Route::resource('admin/clinic/doctor', 'DoctorAtClinicAdminController');
@@ -112,6 +112,7 @@ Route::group( ['middleware' => 'clinic'], function() {
 	Route::get( 'clinic/change-password', array( 'as' => 'clinic.change-password', 'uses' => 'ClinicController@changePassword' ) );
 	Route::post( 'clinic/change-password', array( 'as' => 'clinic.change-password.save', 'uses' => 'ClinicController@postChangePassword' ) );
 	Route::resource( 'clinic/doctor', 'DoctorClinicController', ['except' => ['show']] );
+	Route::resource( 'clinic/schedule', 'ScheduleController', ['except' => ['show']] );
 	Route::get( 'clinic/appointment', array( 'as' => 'clinic.appointment', 'uses' => 'ClinicController@appointment' ) );
 	Route::get( 'clinic/report', array( 'as' => 'clinic.report', 'uses' => 'ClinicController@report' ) );
 } );

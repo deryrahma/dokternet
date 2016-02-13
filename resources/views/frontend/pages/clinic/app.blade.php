@@ -14,6 +14,9 @@
           <a href="{!! route('clinic.doctor.index') !!}">Manajemen Dokter</a>
         </li>
         <li class="list-group-item">
+          <a href="{!! route('clinic.schedule.index') !!}">Manajemen Jadwal Dokter</a>
+        </li>
+        <li class="list-group-item">
           <a href="{!! route('clinic.appointment') !!}">Manajemen Perjanjian Dokter</a>
         </li>
         <li class="list-group-item">

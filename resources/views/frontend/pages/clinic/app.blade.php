@@ -23,7 +23,6 @@
           <a href="{!! route('clinic.report') !!}">Rekapitulasi Data</a>
         </li>
       </ul>
-      @include('frontend.pages.clinic.sidebar')
     </div>
     <div class="col-md-9">
       @include( 'frontend.errors.session' )

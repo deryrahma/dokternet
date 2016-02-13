@@ -71,6 +71,7 @@ class ScheduleController extends Controller
             'schedule_end'      => date( "H:i", strtotime( $request->input( 'schedule_end' ) ) ),
             'date'              => $request->input( 'date' ),
             'quota'             => $request->input( 'quota' ),
+            'status_batal'      => '0',
         ];
 
         Schedule::create( $data );
@@ -137,6 +138,21 @@ class ScheduleController extends Controller
     {
         Schedule::find( $id )->delete();
         Session::flash('success', "Jadwal dokter berhasil dihapus");
+        return redirect()->back();
+    }
+
+    public function cancel( $id )
+    {
+        $schedule = Schedule::find( $id );
+
+        if ( $schedule->status_batal == '0' ) {
+            $schedule->update( ['status_batal' => '1'] );
+        }
+        else if ( $schedule->status_batal == '1' ) {
+            $schedule->update( ['status_batal' => '0'] );
+        }
+
+        Session::flash('success', "Jadwal dokter dibatalkan");
         return redirect()->back();
     }
 }

@@ -48,11 +48,21 @@
           <td>{{ $schedule->date }}</td>
           <td>{{ $schedule->schedule_start }} - {{ $schedule->schedule_end }}</td>
           <td>{{ $schedule->quota }}</td>
-          <td>{{ $schedule->status_batal }}</td>
           <td>
-            <a  class="btn btn-default btn-xs" href="{!! route('clinic.schedule.edit', [$schedule->id]) !!}">
+            @if( $schedule->status_batal )
+              Batal
+            @else
+              Aktif
+            @endif
+          </td>
+          <td class="btn-group-vertical">
+            <a class="btn btn-default btn-xs" href="{!! route('clinic.schedule.edit', [$schedule->id]) !!}">
                 <span class="glyphicon glyphicon-pencil"></span>
                 &nbsp;Ubah
+            </a>
+            <a class="btn {!! $schedule->status_batal == '0' ? 'btn-warning' : 'btn-success' !!} btn-xs" href="{!! route('clinic.schedule.cancel', [$schedule->id]) !!}">
+              <span class="glyphicon glyphicon-{!! $schedule->status_batal == '0' ? 'remove' : 'ok' !!}"></span>
+              &nbsp;{!! $schedule->status_batal == '0' ? 'Batal': 'Aktifkan' !!}
             </a>
             {!! Form::open( ['url' => route( 'clinic.schedule.destroy', ['id' => $schedule->id ] ) ] ) !!}
               {!! Form::hidden( '_method', 'DELETE' ) !!}

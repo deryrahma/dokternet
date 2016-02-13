@@ -111,8 +111,9 @@ Route::group( ['middleware' => 'clinic'], function() {
 	Route::put( 'clinic/update', array( 'as' => 'clinic.update', 'uses' => 'ClinicController@update' ) );
 	Route::get( 'clinic/change-password', array( 'as' => 'clinic.change-password', 'uses' => 'ClinicController@changePassword' ) );
 	Route::post( 'clinic/change-password', array( 'as' => 'clinic.change-password.save', 'uses' => 'ClinicController@postChangePassword' ) );
-	Route::resource( 'clinic/schedule', 'ScheduleController', ['except' => ['show']] );
 	Route::resource( 'clinic/doctor', 'DoctorClinicController');
+	Route::resource( 'clinic/schedule', 'ScheduleController', ['except' => ['show']] );
+	Route::get( 'clinic/schedule/cancel/{id}', array( 'as' => 'clinic.schedule.cancel', 'uses' => 'ScheduleController@cancel' ) );
 	Route::get( 'clinic/appointment', array( 'as' => 'clinic.appointment', 'uses' => 'ClinicController@appointment' ) );
 	Route::get( 'clinic/report', array( 'as' => 'clinic.report', 'uses' => 'ClinicController@report' ) );
 } );

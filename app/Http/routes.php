@@ -114,7 +114,9 @@ Route::group( ['middleware' => 'clinic'], function() {
 	Route::resource( 'clinic/doctor', 'DoctorClinicController');
 	Route::resource( 'clinic/schedule', 'ScheduleController', ['except' => ['show']] );
 	Route::get( 'clinic/schedule/cancel/{id}', array( 'as' => 'clinic.schedule.cancel', 'uses' => 'ScheduleController@cancel' ) );
-	Route::get( 'clinic/appointment', array( 'as' => 'clinic.appointment', 'uses' => 'ClinicController@appointment' ) );
+	Route::get( 'clinic/reservation', array( 'as' => 'clinic.reservation', 'uses' => 'ReservationController@index' ) );
+	Route::get( 'clinic/reservation/accept/{id}', array( 'as' => 'clinic.reservation.accept', 'uses' => 'ReservationController@accept' ) );
+	Route::get( 'clinic/reservation/decline/{id}', array( 'as' => 'clinic.reservation.decline', 'uses' => 'ReservationController@decline' ) );
 	Route::get( 'clinic/report', array( 'as' => 'clinic.report', 'uses' => 'ClinicController@report' ) );
 } );
 

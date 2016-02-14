@@ -141,6 +141,7 @@ class ReservationController extends Controller
     if ( $request->ajax() ) {
       $reservation = Reservation::find( Input::get( 'reservation_id' ) );
       if ( $reservation->token == Input::get( 'verification_token' ) ) {
+        $reservation->update( ['verified' => 1] );
         return Response::json( [ 'success' => true ] );
       }
       else {
@@ -150,5 +151,31 @@ class ReservationController extends Controller
         ] );
       }
     }
+  }
+
+  public function index()
+  {
+    $data = [];
+    $data['article'] = ArticleCategory::with( 'articles' )->get();
+    $data['content'] = Reservation::with( 'patient', 'schedule.doctor' )
+                                  ->where( 'verified', 1 )
+                                  ->orderBy( 'created_at', 'desc' )
+                                  ->get();
+
+    return view( 'frontend.pages.clinic.reservation', compact( 'data' ) );
+  }
+
+  public function accept( $id )
+  {
+    Reservation::find( $id )->update( ['status' => '1'] );
+    Session::flash( 'success', "Data reservasi jadwal dokter diterima" );
+    return redirect()->back();
+  }
+
+  public function decline( $id )
+  {
+    Reservation::find( $id )->update( ['status' => '2'] );
+    Session::flash( 'warning', "Data reservasi jadwal dokter ditolak" );
+    return redirect()->back();
   }
 }

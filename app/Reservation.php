@@ -30,7 +30,7 @@ class Reservation extends Model
     }
 
     public function patient() {
-    	return $this->belongsTo( 'App\Patient' );
+    	return $this->belongsTo( 'App\User', 'patient_id' );
     }
 
     public function reviews() {

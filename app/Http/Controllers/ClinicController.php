@@ -113,14 +113,6 @@ class ClinicController extends Controller
         return redirect()->back();
     }
 
-    public function appointment()
-    {
-        $data = [];
-        $data['article'] = ArticleCategory::with( 'articles' )->get();
-
-        return view( 'frontend.pages.clinic.dashboard', compact( 'data' ) );
-    }
-
     public function report()
     {
         $data = [];
@@ -153,14 +145,14 @@ class ClinicController extends Controller
         $register->password = $password;
         $register->save();
         $register->roles()->attach(2);
-        
+
         $clinic = \App\Clinic::create([
             'user_id' => $register->id,
             'name' => $input['name'],
             'city_id' => $input['city_id']
         ]);
         Session::flash('success', "Jika dalam kurun waktu 24 jam Anda tidak menerima email dari kami, Anda dapat menghubungi kami melalui email di <a href='mailto:support@dokternet.com'>support@dokternet.com</a>");
-        
+
         return redirect()->route('clinic.register');
     }
     public function education($id)

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use Session;
 use Response;
 use Input;
 use Auth;
@@ -158,10 +159,26 @@ class ReservationController extends Controller
     $data = [];
     $data['article'] = ArticleCategory::with( 'articles' )->get();
     $data['content'] = Reservation::with( 'patient', 'schedule.doctor' )
-                                  ->where( 'verified', 1 )
-                                  ->orderBy( 'created_at', 'desc' )
-                                  ->get();
+                                  ->where( 'verified', 1 );
 
+    if ( Input::get( 'data_content' ) == '2' ) {
+      $data['content'] = $data['content']->where( 'status', "" );
+    }
+    else if ( Input::get( 'data_content' ) == '3' ) {
+      $data['content'] = $data['content']->where( 'status', '1' );
+    }
+    else if ( Input::get( 'data_content' ) == '4' ) {
+      $data['content'] = $data['content']->where( 'status', '2' );
+    }
+    else if ( Input::get( 'data_content' ) == '5' ) {
+      $data['content'] = $data['content']->where( 'status', '3' );
+    }
+    else if ( Input::get( 'data_content' ) == '6' ) {
+      $data['content'] = $data['content']->where( 'status', '4' );
+    }
+
+    $data['content'] = $data['content']->orderBy( 'created_at', 'desc' )
+                                       ->get();
     return view( 'frontend.pages.clinic.reservation', compact( 'data' ) );
   }
 
@@ -176,6 +193,20 @@ class ReservationController extends Controller
   {
     Reservation::find( $id )->update( ['status' => '2'] );
     Session::flash( 'warning', "Data reservasi jadwal dokter ditolak" );
+    return redirect()->back();
+  }
+
+  public function done( $id )
+  {
+    Reservation::find( $id )->update( ['status' => '4'] );
+    Session::flash( 'success', "Data reservasi jadwal dokter selesai" );
+    return redirect()->back();
+  }
+
+  public function cancel( $id )
+  {
+    Reservation::find( $id )->update( ['status' => '3'] );
+    Session::flash( 'warning', "Data reservasi jadwal dokter dibatalkan" );
     return redirect()->back();
   }
 }

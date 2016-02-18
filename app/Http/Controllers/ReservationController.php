@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Http\Requests\ReservationCompleteRequest;
+
 use Session;
 use Response;
 use Input;
@@ -196,11 +198,28 @@ class ReservationController extends Controller
     return redirect()->back();
   }
 
-  public function done( $id )
+  public function complete( $id )
   {
-    Reservation::find( $id )->update( ['status' => '4'] );
-    Session::flash( 'success', "Data reservasi jadwal dokter selesai" );
-    return redirect()->back();
+    $data = [];
+
+    $data['article'] = ArticleCategory::with( 'articles' )->get();
+    $data['reservation_id'] = $id;
+
+    return view( 'frontend.pages.clinic.reservation-complete', compact( 'data' ) );
+  }
+
+  public function done( ReservationCompleteRequest $request )
+  {
+    Reservation::find( $request->id )->update( [
+      'status'            => '4',
+      'diagnosis_in'      => $request->diagnosis_in,
+      'diagnosis_out'     => $request->diagnosis_out,
+      'laboratory_result' => $request->laboratory_result,
+      'activity'          => $request->activity,
+      'note'              => $request->note
+    ] );
+    Session::flash( 'success', "Reservasi selesai" );
+    return redirect()->route( 'clinic.reservation' );
   }
 
   public function cancel( $id )

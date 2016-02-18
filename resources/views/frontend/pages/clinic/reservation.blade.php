@@ -90,7 +90,7 @@
               <span class="label label-danger">Ditolak</span>
             @elseif( $reservation->status == '3' )
               <span class="label label-primary">Dibatalkan</span>
-            @elseif( $reservation->status == '3' )
+            @elseif( $reservation->status == '4' )
               <span class="label label-success">Selesai</span>
             @endif
           </td>
@@ -105,7 +105,7 @@
                 &nbsp;Tolak
               </a>
             @elseif( $reservation->status == '1' )
-              <a href="{!! route( 'clinic.reservation.done', [$reservation->id] ) !!}" class="btn btn-primary btn-xs">
+              <a href="{!! route( 'clinic.reservation.complete', [$reservation->id] ) !!}" class="btn btn-primary btn-xs">
                 <span class="glyphicon glyphicon-ok"></span>
                 &nbsp;Selesai
               </a>

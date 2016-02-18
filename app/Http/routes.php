@@ -117,7 +117,8 @@ Route::group( ['middleware' => 'clinic'], function() {
 	Route::get( 'clinic/reservation', array( 'as' => 'clinic.reservation', 'uses' => 'ReservationController@index' ) );
 	Route::get( 'clinic/reservation/accept/{id}', array( 'as' => 'clinic.reservation.accept', 'uses' => 'ReservationController@accept' ) );
 	Route::get( 'clinic/reservation/decline/{id}', array( 'as' => 'clinic.reservation.decline', 'uses' => 'ReservationController@decline' ) );
-	Route::get( 'clinic/reservation/done/{id}', array( 'as' => 'clinic.reservation.done', 'uses' => 'ReservationController@done' ) );
+	Route::get( 'clinic/reservation/complete/{id}', array( 'as' => 'clinic.reservation.complete', 'uses' => 'ReservationController@complete' ) );
+	Route::post( 'clinic/reservation/done', array( 'as' => 'clinic.reservation.done', 'uses' => 'ReservationController@done' ) );
 	Route::get( 'clinic/reservation/cancel/{id}', array( 'as' => 'clinic.reservation.cancel', 'uses' => 'ReservationController@cancel' ) );
 	Route::get( 'clinic/report', array( 'as' => 'clinic.report', 'uses' => 'ClinicController@report' ) );
 } );
